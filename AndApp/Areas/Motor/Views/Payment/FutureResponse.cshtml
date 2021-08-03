@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "thankyouurl";
+}
+
+
+
+
+<section class="padding-sm succ-pay gray-bg m-top2">
+    <div class="container">
+        <div class="row row justify-content-center">
+            <div class="col-md-4 col-lg-3">
+                <div class="p-box succ-left">
+                    <div class="p-4 align-self-center">
+                        <a href="@Url.Action("CarDetails","PrivateCar")" class="btn btn-pink">Dashboard</a>
+                        <a href="@Url.Action("MyPolicy","PrivateCar")" class="btn btn-pink">My Policy</a>
+                        <a href="@Url.Action("QuotationList", "QuotationList")" class="btn btn-pink">My Quote</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-7">
+                <div class="p-box p-4">
+                    <div class="row-box succ-head">
+                        <div class="left-icon">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i> <h5>@ViewBag.payment</h5>
+                        </div>
+                        <p class="ml-auto">@ViewBag.paymentDate</p>
+                    </div>
+                    @if (ViewBag.payment == "Payment Successful")
+                    {
+                        <div class="succ-cont">
+                            <p>Dear @ViewBag.pospname,</p>
+                            <p>Thank you for doing Business with ANDAPP.</p>
+                            <p>Payment for the Enquiry no @ViewBag.EnqNo has been successfully done.</p>
+                            <p>Your Policy Number is: @ViewBag.PolicyNo </p>
+                           
+                           
+                        </div>
+                        <div class="row-box succ-foot">
+                            <a href="http://andapp.in/" class="gray-color">www.andapp.in/help</a>
+                            @*<p class="mb-0 ml-auto">Invoice ID:@ViewBag.EnqNo</p>*@
+                        </div>}
+                    else
+                    {
+                        <div class="succ-cont">
+                            <p>Dear @ViewBag.pospname,</p>
+                            <p>Thank you for doing Business with ANDAPP.</p>
+                            <p>Payment for the Enquiry no @ViewBag.EnqNo has not been completed.</p>
+                        </div>
+                        <div class="row-box succ-foot">
+                            <a href="http://andapp.in/" class="gray-color">www.andapp.in/help</a>
+                            @*<p class="mb-0 ml-auto">Invoice ID:@ViewBag.EnqNo</p>*@
+                        </div>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</section>

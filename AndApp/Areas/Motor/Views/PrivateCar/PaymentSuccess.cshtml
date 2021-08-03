@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "PaymentSuccess";
+}
+
+<div ng-app="myApp">
+    <div id="" ng-controller="myPaymentSuccess">
+        <section class="padding-sm succ-pay gray-bg m-top2">
+            <div class="container">
+                <div class="row row justify-content-center">
+                    <div class="col-md-4 col-lg-3">
+                        <div class="p-box succ-left">
+                            <div class="p-4 align-self-center">
+                                <a href="@Url.Action("CarDetails","PrivateCar")" class="btn btn-pink">Dashboard</a>
+                                <a href="@Url.Action("MyPolicy","PrivateCar")" class="btn btn-pink">My Policy</a>
+                                <a href="@Url.Action("QuotationList", "QuotationList")" class="btn btn-pink">My Quote</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-lg-7">
+                        <div class="p-box p-4">
+                            <div class="row-box succ-head">
+                                <div class="left-icon">
+                                    <i class="fa fa-check-circle" aria-hidden="true"></i> <h5>Payment Successful</h5>
+                                </div>
+                                <p class="ml-auto">7 June 2021 20:15</p>
+                            </div>
+                            @if (ViewBag.ErrMsg == "")
+                            {
+                                <div class="succ-cont">
+                                    <p>Dear Hemant Darji,</p>
+                                    <p>Thank you for doing Business with ANDAPP.</p>
+                                    @*<p>Payment for the Quotation no Q123-185 has been successfully done.</p>*@
+                                    @*<p>Click Here to download the Policy copy <a href="#" ng-click="DownloadPolicy();" class="pink-color">Download Policy PDF</a></p>*@
+                                    @*<p>Commission amount of 25000 is credited to your account bearing the account number xxxxxx890.</p>*@
+                                </div>
+                                <div class="row-box succ-foot">
+                                    <a href="http://andapp.in/" class="gray-color">www.andapp.in/help</a>
+                                    @*<p class="mb-0 ml-auto">Invoice ID:101010</p>*@
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="succ-cont">
+                                    <p style="color:red">@ViewBag.ErrMsg</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="~/assets/js/angular.min.js"></script>
+<script src="~/assets/js/ngStorage.min.js"></script>
+<script src="~/assets/js/angular-filter.js"></script>
+
+@*<script type="text/javascript">
+
+    var app = angular.module("myApp", ["ngStorage", "angular.filter"]);
+
+    app.controller("myPaymentSuccess", function ($scope, $http, $window, $compile, $sessionStorage, $filter) {
+         
+        $scope.DownloadPolicy = function () {
+            debugger
+         
+            var policyno = '@ViewBag.PolicyNo';
+            alert(policyno);
+
+            $window.location.href = '/Motor/PrivateCar/PaymentSuccess?policyno=' + policyno;
+        }
+    });
+</script>*@

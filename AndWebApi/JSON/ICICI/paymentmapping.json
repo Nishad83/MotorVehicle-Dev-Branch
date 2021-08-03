@@ -1,0 +1,30 @@
+﻿{
+ "DealId":"DL-3001/718881",
+  "isTaggingRequired": true,
+  "isMappingRequired": false,
+  "PaymentEntry": {
+    "onlineDAEntry": {
+      "AuthCode": "demoasadas",
+      "MerchantID": "ICICILUAT",
+      "TransactionId": "83158d8c-48f0-481c-82e1-7c38bc0733f8",
+      "ReceiptDate": "2021-06-14",
+      "PaymentAmount": "38791",
+      "InstrumentDate": "2021-06-14",
+      "CustomerID": "101577102750",
+      "PayerType": "C"
+    }
+  },
+
+  "PaymentMapping": null,
+  "PaymentTagging": {
+    "customerProposal": [
+      {
+        "CustomerID": "101577102750",
+        "ProposalNo": "1207143756"
+      }
+    ]
+  },
+
+  "CorrelationId": "7a6a94db-93b7-4ec3-b8f8-b68a6215cee2"
+
+}

@@ -1,0 +1,107 @@
+﻿{
+  "functionality": "validateproposal",
+  "quotation_no": "Q/H/3121/0001800933",
+  "sol_id": "1001",
+  "lead_id": "Rajesh",
+  "pol_sdate": "20210512",
+  "sp_name": "Name",
+  "sp_license": "Lino12345566",
+  "sp_place": "Mahbubnagar",
+  "productcod": "3121",
+  "customer": {
+    "salutation": "Mr",
+    "client_type": "individual",
+    "first_name": "Firast Name",
+    "middle_name": "",
+    "last_name": "Last Name",
+    "gender": "Male",
+    "dob": "19790301",
+    "marital_status": "Single",
+    "address_1": "Address One",
+    "address_2": "",
+    "address_3": "",
+    "address_4": "",
+    "pincode": "625107",
+    "account_no": "12345678910111",
+    "cust_aadhaar": "123456789011",
+    "mobile_no": "98826788771",
+    "email_id": "test@gmail.com"
+  },
+  "vehicle": {
+    "engine_no": "engineno123",
+    "chassis_no": "chassisno1232222h"
+  },
+  "prevpolicy": 
+  {
+    "flag": "N",
+    "code": "",
+    "name": "",
+    "address1": "",
+    "address2": "",
+    "address3": "",
+    "polno": "",
+    "pincode": "",
+    "doc_name": ""
+  },
+  "financier": {
+    "type": "",
+    "name": "",
+    "address": "",
+    "loanacno": ""
+  },
+  "automobile": {
+    "flag": "N",
+    "number": "",
+    "name": "",
+    "expiry_date": ""
+  },
+  "nominee": {
+    "name": "nominee Name",
+    "age": "20",
+    "relation": "OTHERS"
+  },
+  "driver": {
+    "flag": "N",
+    "fname": "",
+    "lname": "",
+    "gender": "Male",
+    "age": "",
+    "drivingexp": "",
+    "marital_status": ""
+  },
+  "inspection": {
+    "flag": "N",
+    "number": "",
+    "date": "",
+    "agency_name": "",
+    "imagename_1": "",
+    "imagename_2": "",
+    "imagename_3": ""
+  },
+  "bundpolicy": {
+    "flag": "N",
+    "code": "",
+    "name": "",
+    "address1": "",
+    "address2": "",
+    "address3": "",
+    "pincode": "",
+    "bp_no": "",
+    "bp_edate": "",
+    "op_sdate": "",
+    "op_edate": "",
+    "cpap_sdate": "",
+    "cpap_edate": "",
+    "cpap_tenure": "",
+
+    "tp_polnum":"cd",
+"tp_pol_sdate":"20180717",
+"tp_pol_edate":"20210716"
+  },
+
+  "cover": {
+    "C35": {
+      "opted": "N"
+    }
+  }
+}

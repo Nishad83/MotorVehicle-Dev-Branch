@@ -1,0 +1,108 @@
+﻿{
+
+    "BusinessType": "Roll Over",
+
+    "CorrelationId": "",
+
+    "VehicleMakeCode": "121",
+
+    "VehicleModelCode": 11289,
+
+    "ExShowRoomPrice": 512715,
+
+    "RTOLocationCode": 8,
+
+   "DealId": "DL-3001/A/1484630",
+
+    "PolicyStartDate": "2021-06-10",
+
+    "PolicyEndDate": "2022-06-09",
+
+    "GSTToState": "MAHARASHTRA",
+
+    "CustomerType": "Individual",
+
+    "ManufacturingYear": "2017",
+
+    "DeliveryOrRegistrationDate": "2017-01-10",
+
+    "EngineNumber": "ENG023DZZ31524",
+
+    "ChassisNumber": "CHS4540001GT1015",
+
+    "RegistrationNumber": "MH02CF3063",
+
+    "PreviousPolicyDetails": {
+
+        "previousPolicyStartDate": "2020-06-10",
+
+        "previousPolicyEndDate": "2021-06-09",
+
+      "ClaimOnPreviousPolicy": 0,
+
+
+        "PreviousPolicyType": "Comprehensive Package",
+
+        "PreviousInsurerName": "GIC",
+
+        "PreviousPolicyNumber": "12101254"
+
+    },
+
+    "CustomerDetails": {
+
+        "CustomerType": "INDIVIDUAL",
+
+        "CustomerName": "Sheili",
+
+        "DateOfBirth": "1985-11-17",
+
+        "PinCode": "226022",
+
+        "PANCardNo": "",
+
+        "Email": "Sheili@gmail.com",
+
+        "MobileNumber": "9862328758",
+
+        "AddressLine1": "Andheri East",
+
+        "CountryCode": 100,
+
+        "StateCode": 65,
+
+        "CityCode": 200,
+
+        "AadharNumber": "852012121000",
+
+        "GSTDetails": {
+
+            "CustomerType": "RELATED PARTIES",
+
+            "ConstitutionOfBusiness": "PROPRIETORSHIP",
+
+            "GSTToState": "MAHARASHTRA",
+
+            "PanDetails": "TESTI8895F",
+
+            "GSTRegistrationStatus": "TO BE COMMENCED",
+
+            "GSTInNumber": "27TESTI8895F2Z5"
+
+        }
+
+    },
+
+    "nomineeDetails": {
+
+        "NameOfNominee": "test nominee",
+
+        "Age": 20,
+
+        "Relationship": "Son"
+
+    }
+
+}
+
+  

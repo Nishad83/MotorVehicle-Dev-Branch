@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetPDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PolicyNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPDFResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEndNotePDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PolicyNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEndNotePDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEndNotePDFResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRenewalPDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PolicyNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="month" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRenewalPDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRenewalPDFResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetPDFSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPDF" />
+  </wsdl:message>
+  <wsdl:message name="GetPDFSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEndNotePDFSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEndNotePDF" />
+  </wsdl:message>
+  <wsdl:message name="GetEndNotePDFSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEndNotePDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRenewalPDFSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRenewalPDF" />
+  </wsdl:message>
+  <wsdl:message name="GetRenewalPDFSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRenewalPDFResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PDFSoap">
+    <wsdl:operation name="GetPDF">
+      <wsdl:input message="tns:GetPDFSoapIn" />
+      <wsdl:output message="tns:GetPDFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEndNotePDF">
+      <wsdl:input message="tns:GetEndNotePDFSoapIn" />
+      <wsdl:output message="tns:GetEndNotePDFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRenewalPDF">
+      <wsdl:input message="tns:GetRenewalPDFSoapIn" />
+      <wsdl:output message="tns:GetRenewalPDFSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PDFSoap" type="tns:PDFSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPDF">
+      <soap:operation soapAction="http://tempuri.org/GetPDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEndNotePDF">
+      <soap:operation soapAction="http://tempuri.org/GetEndNotePDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRenewalPDF">
+      <soap:operation soapAction="http://tempuri.org/GetRenewalPDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PDFSoap12" type="tns:PDFSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPDF">
+      <soap12:operation soapAction="http://tempuri.org/GetPDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEndNotePDF">
+      <soap12:operation soapAction="http://tempuri.org/GetEndNotePDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRenewalPDF">
+      <soap12:operation soapAction="http://tempuri.org/GetRenewalPDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PDF">
+    <wsdl:port name="PDFSoap" binding="tns:PDFSoap">
+      <soap:address location="http://fglpg001.futuregenerali.in/PDFDownload/PDF.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PDFSoap12" binding="tns:PDFSoap12">
+      <soap12:address location="http://fglpg001.futuregenerali.in/PDFDownload/PDF.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,585 @@
+﻿@model AndApp.Models.SearchCriteria.QuotaionSearchCriteria
+@using AndApp.Utilities
+@{
+    ViewBag.Title = "QuotationList";
+    //Layout = null;
+}
+
+<style>
+    #select2-drop {
+        z-index: 111111111111111111111 !important;
+    }
+
+    td, th {
+        font-size: 13px;
+    }
+
+    a,
+    a label {
+        cursor: pointer;
+    }
+
+    .table {
+        margin-bottom: 0px;
+    }
+
+    th, td {
+        white-space: nowrap;
+    }
+
+    div.dataTables_wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .dataTables_scrollBody {
+        overflow-x: auto;
+    }
+
+        .dataTables_scrollBody::-webkit-scrollbar {
+            width: 3px;
+            height: 13px;
+            background-color: #fff;
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar-thumb {
+            background-color: #428bca;
+            outline: 1px solid slategrey;
+        }
+</style>
+<style>
+    #pageloader {
+        /*background: rgba( 255, 255, 255, 0.8 );*/
+        display: none;
+        height: 100%;
+        position: fixed;
+        width: 100%;
+        z-index: 9999;
+    }
+
+        #pageloader img {
+            left: 38%;
+            margin-left: -50px;
+            margin-top: -32px;
+            position: absolute;
+            top: 20%;
+        }
+</style>
+<link href="~/assets/select2/select2.css" rel="stylesheet" />
+<link href="~/assets/css/date-picker.min.css" rel="stylesheet" />
+@*<link href="~/assets/datatable/datatables.css" rel="stylesheet" />*@
+<link href="~/assets/datatable/datatables.min.css" rel="stylesheet" />
+<br /><br /><br />
+<div class="container" ng-app="myApp">
+    <div id="" ng-controller="myResultCtrl">
+
+        @using (Html.BeginForm("QuotationList", "QuotationList", FormMethod.Post, new { role = "form", @class = "form novalidate", id = "frmlistQuotation" }))
+        {
+            <div class="container-full">
+                <div id="pageloader">
+                    <img src="~/assets/images/loader_3.gif" alt="processing..." />
+                </div>
+
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-12">
+                            <div class="box">
+                                <div class="box-body">
+                                </div>
+                                <button type="button" class="btn btn-br" id="btnshowmodal">Search</button>
+                                <a href=@Url.Action("QuotationList") type="text/html" class="btn btn-br">Reset</a>
+                            </div>
+
+                            <br />
+                            <div class="row-box">
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-12 col-xs-12 col-lg-12 table-responsive">
+                                            <table id="listtable" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Q. No.</th>
+                                                        <th>Make Name</th>
+                                                        <th>Model Name</th>
+                                                        <th style="display:none;">Req. No.</th>
+                                                        <th style="display:none;">Premium</th>
+                                                        <th>Ins. Comp. & Premium</th>
+                                                        <th style="display:none;">Status</th>
+                                                        <th class="editbtn">Re-Generate</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    @if (ViewBag.quotedata != null)
+                                                    {
+                                                        foreach (var item in ViewBag.quotedata)
+                                                        {
+
+                                                            <tr>
+                                                                <td>@item.enquiryno</td>
+                                                                <td>@item.MakeName</td>
+                                                                <td>@item.ModelName</td>
+                                                                <td style="display:none;">Req. No</td>
+                                                                <td style="display:none;">@item.Company</td>
+
+                                                                <td>@item.NetPremiumC</td>
+                                                                <td style="display:none;">status</td>
+                                                                <td class="editbtn">
+                                                                    @*<a style="color:#ef3b85" class="notice-icon glyphicon glyphicon-edit" href="@Url.Action("", "", new { id = item.enquiryid })">Regenerate</a>*@
+
+                                                                    <a href="#" class="btn btn-br" enqno="@item.enquiryno" ng-click="GetQuotation($event)" @*onclick="location.href='@Url.Action("GetQuotationByEnquiry","QuotationList",new { enqno =@item.enquiryno })'"*@>Re-Generate</a>
+
+                                                                </td>
+                                                            </tr>
+
+                                                        }
+                                                    }
+
+
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <div class="modal fade col-sm-12" id="cmpltadminModal-5" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" style="width: 65%">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Search Criteria</h4>
+                            </div>
+                            <div class="modal-body">
+                                <label id="lblerror" style="color:red"></label>
+                                <div class="row">
+                                    @*makename*@
+                                    <div class="col-sm-4">
+                                        <label>Make</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.DropDownListFor(x => x.makeid, new SelectList(ViewBag.FillMakeName, "makeid", "makename"), "Select Make", new { @class = "select2" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*modelname*@
+                                    <div class="col-sm-4">
+                                        <label>Model</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.DropDownListFor(m => m.modelid, new SelectList(Enumerable.Empty<SelectListItem>(), "modelid", "modelname"), "Select Model", new { @class = "select2" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*variantname*@
+                                    <div class="col-sm-4">
+                                        <label>Variant</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.DropDownListFor(m => m.variantid, new SelectList(Enumerable.Empty<SelectListItem>(), "variantid", "variantname"), "Select Variant", new { @class = "select2" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+                                <div class="row">
+
+                                    @*insurancename*@
+                                    <div class="col-sm-4">
+                                        <label>Insurance</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+
+                                                @Html.DropDownListFor(x => x.insurancename, new SelectList(ViewBag.InsuranceCompany, "shortname", "companyname"), "Insurance Name", new { @class = "select2" })
+
+                                                @*                                                @Html.TextBoxFor(x => x.insurancename, new { @class = "form-control", @placeholder = "Insurance Name" })*@
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*registrationno*@
+                                    <div class="col-sm-4">
+                                        <label>Registration No</label>
+
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.TextBoxFor(x => x.registrationno, new { @class = "form-control", @placeholder = "Registration No" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*status*@
+                                    <div class="col-sm-3" style="display:none;">
+                                        <label>Status</label>
+
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @* @Html.DropDownListFor(x => x.status, new SelectList(ViewBag.FillCustGroup, "groupid", "groupname"), "Select modelname", new { @class = "form-control" })*@
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*quotationno*@
+                                    <div class="col-sm-4">
+                                        <label>Enquiry No</label>
+
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.TextBoxFor(x => x.quotationno, new { @class = "form-control", @placeholder = "Enquiry No" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    @*fromdate*@
+                                    <div class="col-sm-4">
+                                        <label>From Date</label>
+
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.TextBoxFor(x => x.fromdate, "{0:dd/MMM/yyyy}", new { @class = "form-control ", @data_format = "dd-M-yyyy", @placeholder = "From Date", @type = "date" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*todate*@
+                                    <div class="col-sm-4">
+                                        <label>To Date</label>
+
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.TextBoxFor(x => x.todate, "{0:dd/MMM/yyyy}", new { @class = "form-control ", @placeholder = "To Date", @type = "date" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4" style="display:none;">
+                                        <label>Status</label>
+
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.DropDownList("status", new List<SelectListItem>{
+                                                new SelectListItem{ Text="-- SELECT STATUS --", Value = "" },
+                                                new SelectListItem{ Text="PROCESS", Value = "PROCESS" },
+                                                new SelectListItem{ Text="CLOSED", Value = "CLOSED" },
+                                             }, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-br" id="btnsearch">Search</button>
+                                <button type="button" class="btn btn-br" id="btnmodalclose">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    <!-- /.modal-content -->
+    <!--</div>-->
+    <!-- /.modal-dialog -->
+    <!--</div>-->
+        }
+    </div>
+</div>
+@*<div>
+        <div ng-app="myApp">
+            <div id="" ng-controller="myResultCtrl">
+
+
+            </div>
+        </div>
+
+    </div>*@
+<script src="~/assets/js/angular.min.js"></script>
+<script src="~/assets/js/ngStorage.min.js"></script>
+<script src="~/assets/js/date-picker.min.js"></script>
+<script src="~/assets/waitme/waitMe.min.js"></script>
+<script src="~/assets/js/angular-filter.js"></script>
+
+
+<script src="~/assets/select2/select2.js"></script>
+<script src="~/assets/js/jquery.mask.min.js"></script>
+@*<script src="~/assets/js/date-picker.min.js"></script>*@
+@*<script src="~/assets/datatable/datatables.js"></script>*@
+@*<script src="~/assets/js/jquery.js"></script>*@
+<script src="~/assets/datatable/datatables.min.js"></script>
+<script type="text/javascript">
+    var app = angular.module("myApp", ["ngStorage", "angular.filter"]);
+
+    app.controller("myResultCtrl", function ($scope, $http, $window, $compile, $sessionStorage, $filter) {
+        $sessionStorage.modelid = 108;
+
+        $scope.variantid;
+        //$sessionStorage.RegistrationDate=
+        //$sessionStorage.ManufaturingDate
+
+        $scope.GetQuotation = function ($event) {
+            var enqno = ($event.target).attributes["enqno"].value;
+          $("#pageloader").fadeIn();
+            $http({
+                url: '/PrivateCar/GetQuoteByEnquiryNo',
+                method: "POST",
+                data: { enqno: enqno }
+            })
+         .then(function (response) {
+             if (!angular.isUndefined(response && response.data)) {
+                 var firstquote = JSON.parse(response.data.firstquote);
+                 $sessionStorage.GetQuoteByEnquiry = true;
+                 if (!angular.isUndefined(firstquote.prvexpdate)) {
+                     var today = new Date();
+                     var policyexpdate = new Date(firstquote.prvexpdate);
+                     
+                     if (policyexpdate.getTime() < today.getTime())
+                         firstquote.prvexpdate = today;
+                 }
+                 $sessionStorage.FirstQuote = firstquote;
+                 console.log($sessionStorage.FirstQuote);
+                 $scope.variantid = $sessionStorage.FirstQuote.VariantId;
+                $sessionStorage.variantid = $scope.variantid;
+                 GetModelId($scope.variantid);
+
+
+                QualifyCompany();
+             }
+         });
+        }
+            function QualifyCompany() {
+                var objQalifyCom = {
+                    "IsBreakin": 1,
+                    "VariantId": 12,
+                    "RtoId": 205
+                };
+                $http({
+                    url: '/PrivateCar/QualifyCom',
+                    method: "POST",
+                    data: JSON.stringify(objQalifyCom)
+                }).then(function (response) {
+
+                    if (!angular.isUndefined(response && response.data)) {
+                        console.log($scope.QualifyCompanyResData);
+                         $scope.QualifyCompanyResData = response.data.data;
+                        $sessionStorage.QualifyCompanyResData = $scope.QualifyCompanyResData;
+                        window.location.href = '/Motor/PrivateCar/PolicyDetails';
+                    }
+                });
+
+            }
+            function GetModelId( variantid)
+            {
+                $http({
+                    url: '/PrivateCar/GetModelid',
+                    method: "POST",
+                    data: { variantid: variantid }
+                })
+                .then(function (response) {
+                    if (!angular.isUndefined(response && response.data)) {
+                        $sessionStorage.modelid = response.data;
+                        console.log($sessionStorage.modelid);
+                    }
+                });
+
+            }
+        });
+
+</script>
+
+
+
+<script type="text/javascript">
+
+    $("#makeid,#modelid,#variantid,#insurancename").select2({
+    }).on('select2-open', function () {
+        //$(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+    });
+
+
+
+    $(document).ready(function () {
+        @*$("#spPageTitle").text("Quotation List");
+            $("#spModule").text("");
+            $("#spPageName").text("Quotation List");
+            $("#divmaintitle").css("display", "");
+
+            ShowPageMessage('@ViewBag.p_val', '@ViewBag.p_message');*@
+        /*Need to verify*/
+        $('#listtable').DataTable({
+            "paging": true,
+            "iDisplayLength": 10,
+            "ordering": false,
+            "info": false,
+            "scrollY": 381,
+            "scrollX": false,
+            "searching": false, dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: [0, 1, 2, 5]
+                    }
+                , title: 'Quotation List'
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: [0, 1, 2, 5]
+                    }, title: 'Quotation List'
+                },
+
+            ]
+        });
+
+        $('#lblerror').hide();
+
+        //$('#listtable').DataTable();
+    });
+
+
+    $('#btnshowmodal').click(function () {
+        debugger;
+        //$('#pagechange').val('Y');
+        $("input:text").val("");
+        $("#makeid,#modelid,#variantid,#insurancename").select2("val", "");
+        $('#lblerror').html('');
+        $('#lblerror').hide();
+        $('#cmpltadminModal-5').modal('show');
+    });
+
+    $('#btnmodalclose').click(function () {
+        //$('#pagechange').val('N');
+        $('#cmpltadminModal-5').modal('hide');
+    })
+
+    $("#makeid").change(function () {
+        //debugger;
+        var makeid = $('#makeid').val();
+        $("#variantid").html(""); // clear before appending new list
+        var v = "<option value>Select Variant</option>";
+        $("#variantid").append(v);
+
+        $("#modelid,#variantid").select2("val", "");
+        GetModel(makeid);
+
+    });
+
+    function GetModel(makeid) {
+        debugger;
+        var url = '@Url.Action("GetModel", "QuotationList")';
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "JSON",
+            data: { MakeId: makeid },
+            success: function (fillmodel) {
+                debugger;
+                $("#modelid").html(""); // clear before appending new list
+                var v = "<option value>Select Model</option>";
+                $.each(fillmodel, function (i, modelname) {
+                    //if (modelname.makeid == makeid) {
+                    //    v += "<option selected value='" + modelname.modelid + "'>" + modelname.modelname + "</option>"
+                    //}
+                    //else {
+                        v += "<option value='" + modelname.modelid + "'>" + modelname.modelname + "</option>"
+                    //}
+                });
+                $("#modelid").append(v);
+
+            }
+        });
+
+    }
+    $("#modelid").change(function () {
+        //debugger;
+        var modelid = $('#modelid').val();
+        $("#variantid").select2("val", "");
+        GetVariant(modelid);
+        //alert(modelid);
+
+    });
+
+    function GetVariant(modelid) {
+        debugger;
+        var url = '@Url.Action("GetVariant", "QuotationList")';
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "JSON",
+            data: { Modelid: modelid },
+            success: function (fillVariant) {
+                debugger;
+                $("#variantid").html(""); // clear before appending new list
+                var v = "<option value>Select Variant</option>";
+                $.each(fillVariant, function (i, variantname) {
+                    //if (fillVariant.modelid == modelid) {
+                    //    v += "<option selected value='" + variantname.variantid + "'>" + variantname.variantname + "</option>"
+                    //}
+                    //else {
+                        v += "<option value='" + variantname.variantid + "'>" + variantname.variantname + "</option>"
+                    //}
+                });
+                $("#variantid").append(v);
+
+            }
+        });
+
+    }
+
+
+
+    $('#btnsearch').click(function () {
+
+        $('#lblerror').html('');
+        var errstr = "";
+
+        var variantid = $('#variantid').val();
+        var fromdate = $('#fromdate').val();
+        var todate = $('#todate').val();
+
+        if (fromdate != "" || todate != "") {
+            if (fromdate == "") {
+                errstr += "Please Enter from Date";
+
+            } else if (todate == "") {
+                errstr += "Please Enter Todate";
+
+            }
+
+        }
+
+        if (errstr != "") {
+            $('#lblerror').show();
+            $('#lblerror').html(errstr);
+        }
+
+        if (errstr == "") {
+            $("#frmlistQuotation").submit();
+        }
+
+    });
+
+</script>

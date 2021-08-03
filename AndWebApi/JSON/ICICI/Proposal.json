@@ -1,0 +1,88 @@
+﻿{
+  "BusinessType": "New Business",
+  "CustomerType": "INDIVIDUAL",
+  "DealId": "DL-3001/718881",
+  "PolicyStartDate": "2021-03-24",
+  "PolicyEndDate": "2022-03-23",
+ "DeliveryOrRegistrationDate":"2021-05-01",
+ "ManufacturingYear":"2020",
+ "FirstRegistrationDate" : "2021-04-25",
+ "VehicleMakeCode":121,
+ "VehicleModelCode":11289,
+ "RTOLocationCode":8,
+ "ExShowRoomPrice":0,
+ 
+ "TPStartDate" : "2017-05-25",
+"TPEndDate" : "2021-05-24",
+"TPPolicyNo" : "12345abcdef",
+"TPInsurerName" : "GIC",
+ "TPTenure":3,
+ "Tenure":1,
+ "PACoverTenure":1,
+ "GSTToState":"MAHARASHTRA",
+ "RegistrationNumber" : "MH02CF3063",
+ "EngineNumber" : "",
+ "ChassisNumber": "",
+
+
+    "IsLegalLiabilityToPaidDriver": false,
+  "IsPACoverOwnerDriver": true,
+  "IsVehicleHaveLPG": false,
+  "IsVehicleHaveCNG": false,
+  "SIVehicleHaveLPG_CNG": 0,
+  "SIHaveElectricalAccessories": 0,
+  "SIHaveNonElectricalAccessories": 0,
+  "IsPACoverUnnamedPassenger": false,
+  "SIPACoverUnnamedPassenger": 0,
+  "IsAutomobileAssocnFlag": false,
+ 
+
+
+ "CustomerDetails":
+ {
+ "CustomerType":"INDIVIDUAL",
+ "CustomerName":"Khushal1 Patil",
+ "DateOfBirth":"1995-07-09",
+ "PinCode":"226022",
+ "PANCardNo":"vhdhz7643a",
+ "Email":"Khushal9.sseds@gmail.com",
+ "MobileNumber":"8899663322",
+ "AddressLine1":"Andheri East",
+ "CountryCode":94,
+ "StateCode":65,
+ "CityCode":200,
+ "AadharNumber" : "8899663322"
+ },
+ "CorrelationId":"",
+  "IsConsumables": false,
+
+  "IsEngineProtectPlus": false,
+  "IsTyreProtect": false,
+
+  "LossOfPersonalBelongingPlanName": "",
+  "RSAPlanName": "",
+  "ZeroDepPlanName": "",
+  "KeyProtectPlan": "",
+  "IsRTIApplicableflag": false,
+
+
+  "PreviousPolicyDetails": {
+    "PreviousPolicyType": "Comprehensive Package",
+    "previousPolicyStartDate": null,
+    "previousPolicyEndDate": null,
+    "ClaimOnPreviousPolicy": false,
+    "NoOfClaimsOnPreviousPolicy":0,
+    "PreviousPolicyNumber": "2222",
+     "PreviousInsurerName": "tata"
+  },
+
+   "nomineeDetails": {
+
+        "NameOfNominee": "test nominee",
+
+        "Age": 20,
+
+        "Relationship": "Son"
+
+    }
+ }

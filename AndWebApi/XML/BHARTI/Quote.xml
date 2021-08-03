@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+  <Body>
+    <serve xmlns="http://schemas.cordys.com/gateway/Provider">
+      <SessionDoc>
+        <Session>
+          <SessionData xmlns="http://schemas.cordys.com/bagi/b2c/emotor/bpm/1.0">
+            <Index>1</Index>
+            <InitTime>Fri, 24 Mar 2021 10:14:07 GMT</InitTime>
+            <UserName>IslaMtr</UserName>
+            <Password>AZg3Q1SktWKLz0Os/H0MlAxFfI75pjnpKjn9xrV9vimyyS7/5Ilil/ftcP5oHxC7IFYLVF0C3MAJcIznwrZvDA==</Password>
+            <OrderNo>NA</OrderNo>
+            <QuoteNo>NA</QuoteNo>
+            <Route>INT</Route>
+            <Contract>MTR</Contract>
+            <Channel>pioMtr</Channel>
+            <TransactionType>Quote</TransactionType>
+            <TransactionStatus>Fresh</TransactionStatus>
+            <ID>153579384148017311096183</ID>
+            <UserAgentID>2C000024</UserAgentID>
+            <Source>2C000024</Source>
+          </SessionData>
+          <tns:Vehicle xmlns:tns="http://schemas.cordys.com/bagi/b2c/emotor/2.0">
+            <tns:TypeOfBusiness>NB</tns:TypeOfBusiness>
+            <tns:AccessoryInsured>N</tns:AccessoryInsured>
+            <tns:AccessoryValue>0</tns:AccessoryValue>
+            <tns:NonElecAccessoryInsured>N</tns:NonElecAccessoryInsured>
+            <tns:NonElecAccessoryValue>0</tns:NonElecAccessoryValue>
+            <tns:BiFuelKit>
+              <tns:IsBiFuelKit>N</tns:IsBiFuelKit>
+              <tns:BiFuelKitValue>0</tns:BiFuelKitValue>
+              <tns:ExternallyFitted>N</tns:ExternallyFitted>
+            </tns:BiFuelKit>
+            <tns:DateOfManufacture>2021-01-01T11:14:07.000</tns:DateOfManufacture>
+            <tns:DateOfRegistration>2021-01-01T11:14:07.000</tns:DateOfRegistration>
+            <tns:RiskType>L13</tns:RiskType>
+            <tns:Make>HONDA</tns:Make>
+            <tns:Model>BRIO</tns:Model>
+            <tns:FuelType>P</tns:FuelType>
+            <tns:Variant>1.2 V MT</tns:Variant>
+            <tns:IDV>594083</tns:IDV>
+            <tns:VehicleAge>0</tns:VehicleAge>
+            <tns:CC>1198</tns:CC>
+            <tns:PlaceOfRegistration>Kolhapur</tns:PlaceOfRegistration>
+            <tns:SeatingCapacity>5</tns:SeatingCapacity>
+            <tns:RegistrationNo>NEW</tns:RegistrationNo>
+            <tns:ExShowroomPrice>625350</tns:ExShowroomPrice>
+            <tns:PAOwnerDriverTenure>3</tns:PAOwnerDriverTenure>
+          </tns:Vehicle>
+          <tns:Quote xmlns:tns="http://schemas.cordys.com/bagi/b2c/emotor/2.0">
+            <tns:ExistingPolicy>
+              <tns:Claims>0</tns:Claims>
+              <tns:PolicyType>Comprehensive</tns:PolicyType>
+              <tns:EndDate />
+              <tns:NCB>0</tns:NCB>
+              <tns:PolicyNo />
+              <tns:InsuranceCompany />
+            </tns:ExistingPolicy>
+            <tns:PolicyStartDate>2021-03-25T00:00:00.000</tns:PolicyStartDate>
+            <tns:Deductible>0</tns:Deductible>
+            <tns:PAFamilySI>0</tns:PAFamilySI>
+            <tns:Premium>
+              <tns:Discount />
+            </tns:Premium>
+            <tns:SelectedCovers>
+              <CarDamageSelected>True</CarDamageSelected>
+              <TPLiabilitySelected>True</TPLiabilitySelected>
+              <PADriverSelected>True</PADriverSelected>
+              <ZeroDepriciationSelected>True</ZeroDepriciationSelected>
+              <RoadsideAssistanceSelected>True</RoadsideAssistanceSelected>
+              <InvoicePriceSelected>True</InvoicePriceSelected>
+              <PAFamilyPremiumSelected>False</PAFamilyPremiumSelected>
+              <HospitalCashSelected>False</HospitalCashSelected>
+              <MedicalExpensesSelected>False</MedicalExpensesSelected>
+              <AmbulanceChargesSelected>False</AmbulanceChargesSelected>
+              <EngineGearBoxProtectionSelected>True</EngineGearBoxProtectionSelected>
+              <HydrostaticLockSelected>False</HydrostaticLockSelected>
+              <KeyReplacementSelected>True</KeyReplacementSelected>
+              <NoClaimBonusSameSlabSelected>True</NoClaimBonusSameSlabSelected>
+              <CosumableCoverSelected>False</CosumableCoverSelected>
+            </tns:SelectedCovers>
+            <tns:PolicyEndDate>2019-09-01T23:59:59.000</tns:PolicyEndDate>
+            <tns:PolicyTenure>3</tns:PolicyTenure>
+            <IsExistingPA>false</IsExistingPA>
+            <PADeclaration>YES</PADeclaration>
+          </tns:Quote>
+          <tns:POSP xmlns:tns="http://schemas.cordys.com/bagi/b2c/emotor/2.0">
+           <tns:PospFlag>N</tns:PospFlag>
+           <tns:PospName>vaseh</tns:PospName>
+           <tns:PospContactNo>1234567890</tns:PospContactNo>
+           <tns:PanNo>12345678985</tns:PanNo>
+           <tns:AadharNo>123445671234</tns:AadharNo>
+           </tns:POSP>
+          <tns:Client xmlns:tns="http://schemas.cordys.com/bagi/b2c/emotor/2.0">
+            <tns:ClientType>individual</tns:ClientType>
+            <tns:CltDOB>0</tns:CltDOB>
+            <tns:FinancierDetails>
+              <tns:IsFinanced>0</tns:IsFinanced>
+            </tns:FinancierDetails>
+            <tns:Salut>MR</tns:Salut>
+            <tns:GivName>153500302343SED34EAFFS32969</tns:GivName>
+            <tns:SurName />
+            <tns:ClientExtraTag01>MAHARASHTRA</tns:ClientExtraTag01>
+            <tns:CityOfResidence>Kolhapur</tns:CityOfResidence>
+            <tns:EmailID>9833587799@test.com</tns:EmailID>
+            <tns:MobileNo>9833587788</tns:MobileNo>
+            <tns:CltSex>M</tns:CltSex>
+            <tns:Marryd>S</tns:Marryd>
+            <tns:Occupation>0007</tns:Occupation>
+            <tns:CltAddr01>ASALAHALLI</tns:CltAddr01>
+            <tns:CltAddr02>RAMDURG</tns:CltAddr02>
+            <tns:CltAddr03>DIST BELGAUM</tns:CltAddr03>
+            <tns:City>Belgaum</tns:City>
+            <tns:State>Karnataka</tns:State>
+            <tns:PinCode>531130</tns:PinCode>
+            <tns:Nominee>
+              <tns:Name>MR POLADSAB</tns:Name>
+              <tns:Age>55</tns:Age>
+              <tns:Relationship>Father</tns:Relationship>
+            </tns:Nominee>
+            <tns:RegistrationZone>B</tns:RegistrationZone>
+            <tns:IsDrviningLicencePresent>Y</tns:IsDrviningLicencePresent>
+           <tns:GstinNo/>
+          </tns:Client>
+        </Session>
+      </SessionDoc>
+    </serve>
+  </Body>
+</Envelope>

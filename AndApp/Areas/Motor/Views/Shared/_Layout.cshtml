@@ -1,0 +1,148 @@
+﻿@*import  AndApp.Utilities.Common*@
+
+@{
+
+}
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="~/assets/images/favicon.png">
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/animate.min.css" />
+
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <link href="~/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <title>AND APP</title>
+    <script src="~/assets/js/jquery.js"></script>
+
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+</head>
+<body>
+    <header class="row-box">
+        <div class="head-left">
+            <div class="dropdown ins-pro">
+                <a style="color:#ef3b85" class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    
+                  @*@AndApp.Utilities.Common.MySession.UserDetail.username.ToUpper()*@ Click Here !
+                    
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" id="myprofile" href="#">MY Profile</a>
+                    <a class="dropdown-item" href="@Url.Action("cardetails","PrivateCar")">Dashboard</a>
+                    <a class="dropdown-item" href="@Url.Action("QuotationList", "QuotationList")">Generated Quote</a>
+                   <a class="dropdown-item" href="@Url.Action("MyPolicy","PrivateCar")">My Policy</a>
+                 
+                   @*@ <a class="dropdown-item" href="#">Two-Wheeler Insurance</a>
+    <a class="dropdown-item" href="#">Health Insurance</a>
+    <a class="dropdown-item" href="#">Travel Insurance</a>*@
+                </div>
+            </div>
+        </div>
+        <a href="@Url.Action("CarDetails","PrivateCar")" class="logo">
+            <img hre src="~/assets/images/logo.png" /></a>
+        <div class="head-right">
+            <a href="@Url.Action("QuotationList", "QuotationList", new { area = "Motor" }, null)" class="btn btn-br">Generated Quote</a>
+            <a href="@Url.Action("LogOut", "Home", new { area = "" }, null)" class="btn btn-br">Logout</a>
+
+
+
+        
+        </div>
+    </header>
+    @*<section class="padding ins-sec m-top">*@
+    <div class=" ">
+        @RenderBody()
+
+    </div>
+    @*</section>*@
+
+    <footer class="page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h6>links</h6>
+                    <ul>
+                        <li><a href="http://andapp.in/Home/aboutus">About Us</a></li>
+                        <li><a href="http://andapp.in/Home/team">Our Team</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6>Call Us</h6>
+                    <p>+91 8866939192</p>
+                </div>
+                <div class="col-md-3">
+                    <h6>Mail Us</h6>
+                    <p>hello@andapp.in</p>
+                </div>
+                <div class="col-md-3">
+                    <h6>Follow Us</h6>
+                    <div class="row-box follo-icon">
+                        <a href="https://www.facebook.com/andapp.in" target="_blank" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/andapp_in" target="_blank" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/andapp.in/" target="_blank" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="https://www.linkedIn.com/andapp.in/" target="_blank" title="LinkedIn"><i class="fa fa-linkedIn" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row middle-f">
+                <div class="col-md-12 text-center">
+                    <h4>iAND INSURANCE BROKER PRIVATE LIMITED</h4>
+                    <h6>Registered & Corporate Office</h6>
+                    <p>1106, 11th floor, D & C Dynasty building, C G Road, Near Sardar Patel Stadium Cross roads, Navrangpura, Ahmedabad-380009</p>
+                    <p>CIN: U66000GJ2019PTC111177</p>
+                    <h6>Registered With IRDAI As Direct Broker- Life And General</h6>
+                    <p>IRDAI License No. IRDA/DB 813/20, Registraton No.727, Valid Up To 25th Aug 2023.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <section class="footer-bottom">
+        <div class="container">
+            <div class="row-box">
+                <p class="left">Copyright © 2020 andapp.in. All rights reserved.</p>
+                
+            </div>
+        </div>
+    </section>
+
+
+  
+     
+</body>
+</html>
+<script src="~/assets/js/popper.min.js"></script>
+<script src="~/assets/js/bootstrap.min.js"></script>
+
+
+<script src="~/assets/js/script.min.js"></script>
+@*<script src="~/assets/js/jquery.scrollme.min.js"></script>*@
+
+<script src="~/assets/js/script.min.js"></script>
+
+<script type="text/javascript">
+
+    $("#myprofile").click(function (e) {
+        alert();
+        $.ajax({
+            type: "POST",
+            url: '/Home/Getguid/',
+            data: {
+                id: 2,
+            },
+            success: function(result) {
+                window.location.href = "http://103.254.244.86:81/Login/Login?" + result + ""
+            },
+            error: function(result) {
+                alert('error');
+            }
+        });
+    });
+ 
+</script>

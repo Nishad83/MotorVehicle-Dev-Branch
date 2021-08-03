@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+  <Body>
+    <getIDV xmlns="http://schemas.cordys.com/default">
+      <UserName>IslaMtr</UserName>
+      <Password>AZg3Q1SktWKLz0Os/H0MlAxFfI75pjnpKjn9xrV9vimyyS7/5Ilil/ftcP5oHxC7IFYLVF0C3MAJcIznwrZvDA==</Password>
+      <Make>HYUNDAI</Make>
+      <Model>EON</Model>
+      <Producttype>FPV</Producttype>
+      <Variant>MAGNA PLUS</Variant>
+      <StateCode>GJ</StateCode>
+      <Manfaturingyear>2021</Manfaturingyear>
+    </getIDV>
+  </Body>
+</Envelope>

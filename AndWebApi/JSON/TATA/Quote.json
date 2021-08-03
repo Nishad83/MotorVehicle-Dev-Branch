@@ -1,0 +1,210 @@
+﻿{
+	"functionality": "validatequote",
+	"quote_type": "quick",
+	"vehicle": {
+		"quotation_no": "",
+    "segment_code": "2",
+    "segment_name": "Compact",
+    "cc": "1198",
+    "sc": "5",
+    "sol_id": "1001",
+    "lead_id": "",
+    "mobile_no": "",
+    "email_id": "",
+    "emp_email_id": "",
+		"customer_type": "Individual",
+		"product_code": "3121",
+		"product_name": "Private Car",
+		"subproduct_code": "45",
+		"subproduct_name": "Private Car",
+		"subclass_code": "",
+		"subclass_name": "",
+		"covertype_code": "1",
+		"covertype_name": "Package",
+		"btype_code": "1",
+		"btype_name": "New Business",
+		"risk_startdate": "20210326",
+		"risk_enddate": "20240325",
+		"purchase_date": "20210110",
+		"veh_age": "",
+		"manf_year": "2021",
+    "make_code": "158",
+    "make_name": "HONDA",
+    "model_code": "102674",
+    "model_name": "BRIO",
+    "variant_code": "1022280",
+    "variant_name": "1.2 V MT",
+    "model_parent_code": "102674",
+    "fuel_code": "1",
+    "fuel_name": "Petrol",
+		"gvw": "",
+		"age": "0",
+		"miscdtype_code": "",
+		"bodytype_id": "34",
+		"idv": "",
+		"revised_idv": "",
+		    "regno_1": "GJ",
+      "regno_2": "01",
+      "regno_3": "",
+      "regno_4": "",
+      "rto_loc_code": "GJ-01",
+      "rto_loc_name": "AHMEDABAD GJ-01",
+      "rtolocationgrpcd": "12",
+      "rto_zone": "A",
+      "rating_logic": "",
+      "campaign_id": "",
+      "fleet_id": "",
+		"discount_perc": "",
+		"pp_covertype_code": "",
+		"pp_covertype_name": "",
+		"pp_enddate": "",
+		"pp_claim_yn": "",
+		"pp_prev_ncb": "",
+		"pp_curr_ncb": "",
+		"addon_plan_code": "",
+		"addon_choice_code": "CHOICE1",
+		"cust_name": "",
+		"ab_cust_id": "",
+		"ab_emp_id": "",
+		"usr_name": "sreenadh",
+		"producer_code": "",
+		"pup_check": "N",
+		"pos_panNo": "",
+		"pos_aadharNo": "",
+		"is_cust_JandK": "NO",
+		"cust_pincode": "600096",
+		"cust_gstin": "",
+		"tenure": "1",
+		"uw_discount": "",
+		"Uw_DisDb": "",
+		"uw_load": "",
+		"uw_loading_discount": "0",
+		"uw_loading_discount_flag": "D",
+		"engine_no": "",
+		"chasis_no": "",
+		"driver_declaration":"ODD01",
+    "ac_opted_in_pp": "Y",
+
+    "tppolicytype":"",
+
+"tppolicytenure":""
+	},
+	"cover": {
+		"C1": {
+			"opted": "N"
+		},
+		"C2": {
+			"opted": "Y"
+		},
+    "C3": {
+      "opted": "Y"
+    },
+
+    "C4": {
+			"opted": "N",
+			"SI": ""
+		},
+		"C5": {
+			"opted": "N",
+			"SI": ""
+		},
+		"C7": {
+			"opted": "N",
+			"SI": ""
+		},
+		"C8": {
+			"opted": "N"
+		},
+		"C10": {
+			"opted": "N",
+			"SI": ""
+		},
+		"C11": {
+			"opted": "N"
+		},
+		"C12": {
+			"opted": "N"
+		},
+		"C15": {
+			"opted": "N",
+			"perc": ""
+		},
+		"C17": {
+			"opted": "N",
+			"SI": "",
+			"persons": "0"
+		},
+		"C18": {
+			"opted": "N",
+			"persons": ""
+		},
+		"C45": {
+			"opted": "N"
+		},
+		"C29": {
+			"opted": "N"
+		},
+		"C47": {
+			"opted": "N"
+		},
+    "C39": {
+      "opted": "N"
+    },
+    "C36": {
+			"opted": "N"
+		},
+    "C38": {
+      "opted": "N"
+    },
+    "C40": {
+      "opted": "N"
+    },
+    "C41": {
+      "opted": "N"
+    },
+    "C42": {
+      "opted": "N"
+    },
+    "C43": {
+      "opted": "N"
+    },
+    "C44": {
+      "opted": "N"
+    },
+
+		"C37": {
+			"opted": "N"
+		},
+		"C48": {
+			"opted": "N",
+			"SI": null
+		},
+		"C49": {
+			"opted": "N",
+			"SI": null
+		},
+		"C50": {
+			"opted": "N",
+			"SI": null
+		},
+		"C51": {
+			"opted": "N",
+			"SI": null
+		},
+		"C13": {
+			"opted": "N"
+		},
+		"C14": {
+			"opted": "N"
+		},
+		"C6": {
+			"opted": "N",
+			"SI": ""
+		},
+		"C35": {
+			"opted": "N"
+			//"no_of_claims": "2",
+			//"Deductibles": "0"
+		}
+	}
+}

@@ -1,0 +1,2198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ANDAPPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADDONMASTER">
+          <Key>
+            <PropertyRef Name="addonid" />
+          </Key>
+          <Property Name="addonid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="addonname" Type="varchar" MaxLength="50" />
+          <Property Name="shortname" Type="varchar" MaxLength="20" />
+          <Property Name="type" Type="varchar" MaxLength="20" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="COMPANY_WISE_RTO_MASTER">
+          <Key>
+            <PropertyRef Name="rtoid" />
+          </Key>
+          <Property Name="rtoid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rto_loc_code" Type="varchar" MaxLength="50" />
+          <Property Name="rto_loc_name" Type="varchar" MaxLength="50" />
+          <Property Name="rtolocationgrpcd" Type="varchar" MaxLength="50" />
+          <Property Name="rto_zone" Type="varchar" MaxLength="50" />
+          <Property Name="companyid" Type="bigint" />
+          <Property Name="andapp_rtoid" Type="int" />
+        </EntityType>
+        <EntityType Name="COMPANY_WISE_STATE_CITY_AREA_MASTER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stateid" Type="bigint" />
+          <Property Name="statename" Type="varchar" MaxLength="250" />
+          <Property Name="statevalue" Type="varchar" MaxLength="250" />
+          <Property Name="cityid" Type="bigint" />
+          <Property Name="cityname" Type="varchar" MaxLength="250" />
+          <Property Name="cityvalue" Type="varchar" MaxLength="250" />
+          <Property Name="areaname" Type="varchar" MaxLength="250" />
+          <Property Name="areavalue" Type="varchar" MaxLength="250" />
+          <Property Name="companyid" Type="bigint" />
+          <Property Name="mstateid" Type="bigint" />
+          <Property Name="mcityid" Type="bigint" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="COMPANY_WISE_STATE_MASTER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mstateid" Type="bigint" />
+          <Property Name="statename" Type="varchar" MaxLength="50" />
+          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="compid" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="FINANCERMASTER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="150" />
+          <Property Name="value" Type="varchar" MaxLength="150" />
+          <Property Name="comid" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="icici_paymenttagging">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnqNo" Type="varchar" MaxLength="20" />
+          <Property Name="TransactionId" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentAmount" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerID" Type="varchar" MaxLength="50" />
+          <Property Name="PayerType" Type="varchar" MaxLength="50" />
+          <Property Name="ProposalNo" Type="varchar" MaxLength="50" />
+          <Property Name="PolicyNo" Type="varchar" MaxLength="50" />
+          <Property Name="dealid" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="INSURANCECOMPANY">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shortname" Type="varchar" MaxLength="20" />
+          <Property Name="companyname" Type="varchar" MaxLength="100" />
+          <Property Name="createdon" Type="datetime" />
+          <Property Name="status" Type="bit" />
+          <Property Name="isactive" Type="bit" />
+        </EntityType>
+        <EntityType Name="INSURANCEVARIANTMASTER">
+          <Key>
+            <PropertyRef Name="mastervariant_id" />
+          </Key>
+          <Property Name="mastervariant_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyid" Type="bigint" />
+          <Property Name="variantname" Type="varchar" MaxLength="50" />
+          <Property Name="mastermd_id" Type="bigint" />
+          <Property Name="variantid" Type="bigint" />
+        </EntityType>
+        <EntityType Name="MAKE_ANDAPP">
+          <Key>
+            <PropertyRef Name="makeid" />
+          </Key>
+          <Property Name="makeid" Type="bigint" Nullable="false" />
+          <Property Name="makename" Type="varchar" MaxLength="50" />
+          <Property Name="istopmake" Type="bit" />
+          <Property Name="showingorder" Type="bigint" />
+          <Property Name="status" Type="bit" />
+          <Property Name="createdon" Type="datetime" />
+          <Property Name="haslogo" Type="bit" />
+        </EntityType>
+        <EntityType Name="MARITALSTATUSMASTER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="compid" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="MODEL_ANDAPP">
+          <Key>
+            <PropertyRef Name="modelid" />
+          </Key>
+          <Property Name="modelid" Type="bigint" Nullable="false" />
+          <Property Name="modelname" Type="varchar" MaxLength="100" />
+          <Property Name="aliasmodelname" Type="varchar" MaxLength="100" />
+          <Property Name="istopmodel" Type="bit" />
+          <Property Name="modelname_v2" Type="varchar" MaxLength="100" />
+          <Property Name="makeid" Type="bigint" />
+          <Property Name="status" Type="bit" />
+          <Property Name="createdon" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NOMINEE_RELATIONSHIP">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="comid" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="OCCUPATION">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="comid" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Payment_Parameter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="enq_id" Type="varchar" MaxLength="50" />
+          <Property Name="com_id" Type="int" />
+          <Property Name="parameter_name" Type="varchar" MaxLength="50" />
+          <Property Name="parameter_value" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="POLICY_ENQUIRY">
+          <Key>
+            <PropertyRef Name="enquiryid" />
+          </Key>
+          <Property Name="enquiryid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="enquiryno" Type="varchar" MaxLength="50" />
+          <Property Name="enquiryrequest" Type="text" />
+          <Property Name="enquiryresponse" Type="text" />
+          <Property Name="firstquote" Type="text" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="status" Type="bit" />
+          <Property Name="createdon" Type="datetime" />
+          <Property Name="enquiryby" Type="bigint" />
+          <Property Name="enquirytype" Type="int" />
+        </EntityType>
+        <EntityType Name="PospCity_Mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rtoid" Type="bigint" />
+          <Property Name="stateid" Type="bigint" />
+          <Property Name="rtocode" Type="varchar" MaxLength="50" />
+          <Property Name="rtodesc" Type="varchar" MaxLength="50" />
+          <Property Name="cityid" Type="bigint" />
+        </EntityType>
+        <EntityType Name="POSPMASTER">
+          <Key>
+            <PropertyRef Name="pospid" />
+          </Key>
+          <Property Name="pospid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pospcode" Type="varchar" MaxLength="150" />
+          <Property Name="tmpcode" Type="varchar" MaxLength="50" />
+          <Property Name="tmpcodecreatedon" Type="datetime" />
+          <Property Name="salutation" Type="varchar" MaxLength="15" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="middelname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="gender" Type="varchar" MaxLength="50" />
+          <Property Name="dateofbirth" Type="datetime" />
+          <Property Name="isnameverified" Type="bit" />
+          <Property Name="mobileno" Type="varchar" MaxLength="20" />
+          <Property Name="emailid" Type="varchar" MaxLength="100" />
+          <Property Name="adharcardno" Type="varchar" MaxLength="20" />
+          <Property Name="isadharfrontverified" Type="bit" />
+          <Property Name="isadharbacktverified" Type="bit" />
+          <Property Name="pancardno" Type="varchar" MaxLength="20" />
+          <Property Name="ispancardverified" Type="bit" />
+          <Property Name="education" Type="varchar" MaxLength="50" />
+          <Property Name="iseducationverified" Type="bit" />
+          <Property Name="isdocverified" Type="bit" />
+          <Property Name="docverifiedby" Type="varchar" MaxLength="100" />
+          <Property Name="docverifiedon" Type="datetime" />
+          <Property Name="addressline1" Type="varchar" MaxLength="500" />
+          <Property Name="addressline2" Type="varchar" MaxLength="500" />
+          <Property Name="area" Type="varchar" MaxLength="50" />
+          <Property Name="stateid" Type="bigint" />
+          <Property Name="cityid" Type="bigint" />
+          <Property Name="pincode" Type="varchar" MaxLength="10" />
+          <Property Name="isirdaverified" Type="bit" />
+          <Property Name="irdaverifiedby" Type="varchar" MaxLength="100" />
+          <Property Name="irdaverifiedon" Type="datetime" />
+          <Property Name="createdon" Type="datetime" />
+          <Property Name="status" Type="bit" />
+          <Property Name="otp" Type="varchar" MaxLength="8" />
+          <Property Name="otpupdatedon" Type="datetime" />
+          <Property Name="reffredbyid" Type="bigint" />
+          <Property Name="reffredtype" Type="varchar" MaxLength="50" />
+          <Property Name="isdocreupload" Type="bit" />
+          <Property Name="docreuploadon" Type="datetime" />
+          <Property Name="beneficiaryname" Type="varchar" MaxLength="100" />
+          <Property Name="accountno" Type="varchar" MaxLength="30" />
+          <Property Name="ifsc" Type="varchar" MaxLength="30" />
+          <Property Name="isdocupload" Type="bit" />
+          <Property Name="docuploadon" Type="datetime" />
+          <Property Name="secretkey" Type="varchar" MaxLength="50" />
+          <Property Name="aadharcardnoEncrypted" Type="nvarchar(max)" />
+          <Property Name="pancardnoEncrypted" Type="nvarchar(max)" />
+          <Property Name="aadharcarfrontimage" Type="nvarchar(max)" />
+          <Property Name="aadharcardbackimage" Type="nvarchar(max)" />
+          <Property Name="pancardimage" Type="nvarchar(max)" />
+          <Property Name="educationimage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PREVIOUS_INSURER_MAPPING">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="previouscompanyid" Type="bigint" />
+          <Property Name="inscompanycode" Type="varchar" MaxLength="100" />
+          <Property Name="inscompanyname" Type="varchar" MaxLength="100" />
+          <Property Name="inscompanyshortname" Type="varchar" MaxLength="50" />
+          <Property Name="companyid" Type="bigint" />
+        </EntityType>
+        <EntityType Name="QA_LOGIN_MASTER">
+          <Key>
+            <PropertyRef Name="qaid" />
+          </Key>
+          <Property Name="qaid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mobileno" Type="varchar" MaxLength="50" />
+          <Property Name="otp" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="RTOMASTER">
+          <Key>
+            <PropertyRef Name="rtoid" />
+          </Key>
+          <Property Name="rtoid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stateid" Type="bigint" />
+          <Property Name="rtocode" Type="varchar" MaxLength="10" />
+          <Property Name="rtodesc" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="RTOMASTER_ANDAPP">
+          <Key>
+            <PropertyRef Name="rtoid" />
+          </Key>
+          <Property Name="rtoid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stateid" Type="bigint" />
+          <Property Name="rtocode" Type="varchar" MaxLength="50" />
+          <Property Name="rtodesc" Type="varchar" MaxLength="150" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="SALUTATIONMASTER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="compid" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="STATEMASTER">
+          <Key>
+            <PropertyRef Name="stateid" />
+          </Key>
+          <Property Name="stateid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="statecode" Type="varchar" MaxLength="50" />
+          <Property Name="statename" Type="varchar" MaxLength="250" />
+          <Property Name="zoneid" Type="bigint" />
+          <Property Name="effectivefrom" Type="datetime" />
+          <Property Name="effectiveto" Type="datetime" />
+          <Property Name="status" Type="bit" />
+          <Property Name="createdby" Type="varchar" MaxLength="50" />
+          <Property Name="createdon" Type="datetime" />
+          <Property Name="updatedby" Type="varchar" MaxLength="50" />
+          <Property Name="updatedon" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VARIANT_ANDAPP">
+          <Key>
+            <PropertyRef Name="variantid" />
+          </Key>
+          <Property Name="variantid" Type="bigint" Nullable="false" />
+          <Property Name="variantname" Type="varchar" MaxLength="250" />
+          <Property Name="modelid" Type="bigint" />
+          <Property Name="fueltype" Type="varchar" MaxLength="50" />
+          <Property Name="transmissiontype" Type="varchar" MaxLength="50" />
+          <Property Name="cc" Type="int" />
+          <Property Name="status" Type="bit" />
+          <Property Name="createdon" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ANDAPP.dbo.VW_ExamPassDate_ForAndReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_ExamPassDate_ForAndReport">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="userid" Type="bigint" />
+          <Property Name="MaxTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ANDAPP.dbo.VW_ExamPassDate_ForAndReport_LI' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_ExamPassDate_ForAndReport_LI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="userid" Type="bigint" />
+          <Property Name="MaxTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ANDAPP.dbo.VW_GENERATEDQUOTAIONLIST_POSPWISE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_GENERATEDQUOTAIONLIST_POSPWISE">
+          <Key>
+            <PropertyRef Name="enquiryid" />
+            <PropertyRef Name="insurancename" />
+            <PropertyRef Name="modelid" />
+            <PropertyRef Name="makeid" />
+            <PropertyRef Name="registrationno" />
+          </Key>
+          <Property Name="enquiryid" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="enquiryno" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="bit" />
+          <Property Name="createdon" Type="datetime" />
+          <Property Name="enquiryby" Type="bigint" />
+          <Property Name="insurancename" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="VariantId" Type="varchar" MaxLength="50" />
+          <Property Name="modelid" Type="bigint" Nullable="false" />
+          <Property Name="ModelName" Type="varchar" MaxLength="100" />
+          <Property Name="makeid" Type="bigint" Nullable="false" />
+          <Property Name="MakeName" Type="varchar" MaxLength="50" />
+          <Property Name="VariantId1" Type="nvarchar" MaxLength="4000" />
+          <Property Name="registrationno" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="8000" />
+          <Property Name="NetPremiumC" Type="varchar" MaxLength="8000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ANDAPP.dbo.VW_POLICYDETAILSMASTER' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_POLICYDETAILSMASTER">
+          <Key>
+            <PropertyRef Name="pdid" />
+          </Key>
+          <Property Name="pdid" Type="bigint" Nullable="false" />
+          <Property Name="enquiryid" Type="varchar" MaxLength="150" />
+          <Property Name="companyid" Type="bigint" />
+          <Property Name="pospid" Type="bigint" />
+          <Property Name="custmertype" Type="varchar" MaxLength="50" />
+          <Property Name="policytype" Type="varchar" MaxLength="50" />
+          <Property Name="producttype" Type="varchar" MaxLength="50" />
+          <Property Name="isrenewable" Type="bit" />
+          <Property Name="customerfirstname" Type="varchar" MaxLength="250" />
+          <Property Name="customermiddlename" Type="varchar" MaxLength="250" />
+          <Property Name="customerlastname" Type="varchar" MaxLength="250" />
+          <Property Name="customeraddress" Type="varchar(max)" />
+          <Property Name="customerpancardno" Type="varchar" MaxLength="50" />
+          <Property Name="customergstno" Type="varchar" MaxLength="50" />
+          <Property Name="customeremailid" Type="varchar" MaxLength="250" />
+          <Property Name="customerdob" Type="datetime" />
+          <Property Name="customermobileno" Type="varchar" MaxLength="50" />
+          <Property Name="rtoid" Type="bigint" />
+          <Property Name="zoneid" Type="bigint" />
+          <Property Name="makeid" Type="bigint" />
+          <Property Name="modelid" Type="bigint" />
+          <Property Name="variantid" Type="bigint" />
+          <Property Name="issuedate" Type="datetime" />
+          <Property Name="registrationdate" Type="datetime" />
+          <Property Name="manufacturdate" Type="datetime" />
+          <Property Name="seatingcapacity" Type="int" />
+          <Property Name="registrationno" Type="varchar" MaxLength="50" />
+          <Property Name="cubiccapacity" Type="bigint" />
+          <Property Name="engingno" Type="varchar" MaxLength="50" />
+          <Property Name="chassisno" Type="varchar" MaxLength="50" />
+          <Property Name="fueltype" Type="varchar" MaxLength="50" />
+          <Property Name="policyno" Type="varchar" MaxLength="350" />
+          <Property Name="policystartdate" Type="datetime" />
+          <Property Name="policyenddate" Type="datetime" />
+          <Property Name="tpstartdate" Type="datetime" />
+          <Property Name="tpenddate" Type="datetime" />
+          <Property Name="tenure" Type="int" />
+          <Property Name="ncdpercentage" Type="int" />
+          <Property Name="ncdpercentagevalue" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="otherdiscount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="idv" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="addonpremium" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="odpremium" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="tppremium" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="netpremium" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="gstvalue" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="finalpremium" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="paymentstatus" Type="bit" />
+          <Property Name="status" Type="bit" />
+          <Property Name="createdby" Type="varchar" MaxLength="50" />
+          <Property Name="createdon" Type="datetime" />
+          <Property Name="updatedby" Type="varchar" MaxLength="50" />
+          <Property Name="updatedon" Type="datetime" />
+          <Property Name="companyname" Type="varchar" MaxLength="100" />
+          <Property Name="shortname" Type="varchar" MaxLength="20" />
+          <Property Name="makename" Type="varchar" MaxLength="50" />
+          <Property Name="modelname" Type="varchar" MaxLength="100" />
+          <Property Name="variantname" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ANDAPP.dbo.VW_TOP10MAKE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_TOP10MAKE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="makeid" Type="bigint" />
+          <Property Name="MOST_FREQUENT" Type="int" />
+          <Property Name="makename" Type="varchar" MaxLength="50" />
+          <Property Name="haslogo" Type="bit" />
+        </EntityType>
+        <Function Name="GET_INSCOMPANYDATA_BY_VARIANT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_variantid" Type="bigint" Mode="In" />
+          <Parameter Name="p_companyid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GET_Payment_Parameter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_tran_id" Type="varchar" Mode="In" />
+          <Parameter Name="p_comid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_COMPANY_WISE_CITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_company" Type="varchar" Mode="In" />
+          <Parameter Name="p_stateid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_COMPANY_WISE_FINANCERMASTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_companyid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_COMPANY_WISE_MARITALSTATUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_companyid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_COMPANY_WISE_NOMINEERELATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_companyid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_COMPANY_WISE_OCCUPATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_companyid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_COMPANY_WISE_SALUTATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_companyid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_COMPANY_WISE_STATE_CITY_AREA_MASTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_companyid" Type="bigint" Mode="In" />
+          <Parameter Name="p_stateid" Type="bigint" Mode="In" />
+          <Parameter Name="p_cityid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_COMPANY_WISE_STATE_MASTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_companyid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GETFUELTYPE_BY_MODELID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_modelid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GETTOP10MODELBYMAKEID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_makeid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_GETTOP10VARIANTBYMODELID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_modelid" Type="bigint" Mode="In" />
+          <Parameter Name="p_fueltype" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ICICI_PAYMENT_TAGGING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_EnqNo" Type="varchar" Mode="In" />
+          <Parameter Name="p_TransactionId" Type="varchar" Mode="In" />
+          <Parameter Name="p_PaymentAmount" Type="varchar" Mode="In" />
+          <Parameter Name="p_CustomerID" Type="varchar" Mode="In" />
+          <Parameter Name="p_PayerType" Type="varchar" Mode="In" />
+          <Parameter Name="p_ProposalNo" Type="varchar" Mode="In" />
+          <Parameter Name="p_dealid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Payment_Parameter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="enquiryno" Type="varchar" Mode="In" />
+          <Parameter Name="comid" Type="bigint" Mode="In" />
+          <Parameter Name="parname" Type="text" Mode="In" />
+          <Parameter Name="parvalue" Type="text" Mode="In" />
+        </Function>
+        <Function Name="SP_POLICY_ENQUIRYDETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="enquiryno" Type="varchar" Mode="In" />
+          <Parameter Name="enquiryrequest" Type="text" Mode="In" />
+          <Parameter Name="enquiryresponse" Type="text" Mode="In" />
+          <Parameter Name="enquirytype" Type="int" Mode="In" />
+          <Parameter Name="firstquote" Type="text" Mode="In" />
+          <Parameter Name="enquiryby" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_POLICYDETAILSMASTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_mode" Type="varchar" Mode="In" />
+          <Parameter Name="p_enquiryid" Type="varchar" Mode="In" />
+          <Parameter Name="p_companyid" Type="bigint" Mode="In" />
+          <Parameter Name="p_pospid" Type="bigint" Mode="In" />
+          <Parameter Name="p_custmertype" Type="varchar" Mode="In" />
+          <Parameter Name="p_policytype" Type="varchar" Mode="In" />
+          <Parameter Name="p_producttype" Type="varchar" Mode="In" />
+          <Parameter Name="p_isrenewable" Type="bit" Mode="In" />
+          <Parameter Name="p_customerfirstname" Type="varchar" Mode="In" />
+          <Parameter Name="p_customermiddlename" Type="varchar" Mode="In" />
+          <Parameter Name="p_customerlastname" Type="varchar" Mode="In" />
+          <Parameter Name="p_customeraddress" Type="varchar(max)" Mode="In" />
+          <Parameter Name="p_customerpancardno" Type="varchar" Mode="In" />
+          <Parameter Name="p_customergstno" Type="varchar" Mode="In" />
+          <Parameter Name="p_customeremailid" Type="varchar" Mode="In" />
+          <Parameter Name="p_customerdob" Type="datetime" Mode="In" />
+          <Parameter Name="p_customermobileno" Type="varchar" Mode="In" />
+          <Parameter Name="p_rtoid" Type="bigint" Mode="In" />
+          <Parameter Name="p_zoneid" Type="bigint" Mode="In" />
+          <Parameter Name="p_makeid" Type="bigint" Mode="In" />
+          <Parameter Name="p_modelid" Type="bigint" Mode="In" />
+          <Parameter Name="p_variantid" Type="bigint" Mode="In" />
+          <Parameter Name="p_issuedate" Type="datetime" Mode="In" />
+          <Parameter Name="p_registrationdate" Type="datetime" Mode="In" />
+          <Parameter Name="p_manufacturdate" Type="datetime" Mode="In" />
+          <Parameter Name="p_seatingcapacity" Type="int" Mode="In" />
+          <Parameter Name="p_registrationno" Type="varchar" Mode="In" />
+          <Parameter Name="p_cubiccapacity" Type="bigint" Mode="In" />
+          <Parameter Name="p_engingno" Type="varchar" Mode="In" />
+          <Parameter Name="p_chassisno" Type="varchar" Mode="In" />
+          <Parameter Name="p_fueltype" Type="varchar" Mode="In" />
+          <Parameter Name="p_policyno" Type="varchar" Mode="In" />
+          <Parameter Name="p_policystartdate" Type="datetime" Mode="In" />
+          <Parameter Name="p_policyenddate" Type="datetime" Mode="In" />
+          <Parameter Name="p_tpstartdate" Type="datetime" Mode="In" />
+          <Parameter Name="p_tpenddate" Type="datetime" Mode="In" />
+          <Parameter Name="p_tenure" Type="int" Mode="In" />
+          <Parameter Name="p_ncdpercentage" Type="int" Mode="In" />
+          <Parameter Name="p_ncdpercentagevalue" Type="decimal" Mode="In" />
+          <Parameter Name="p_otherdiscount" Type="decimal" Mode="In" />
+          <Parameter Name="p_idv" Type="decimal" Mode="In" />
+          <Parameter Name="p_addonpremium" Type="decimal" Mode="In" />
+          <Parameter Name="p_odpremium" Type="decimal" Mode="In" />
+          <Parameter Name="p_tppremium" Type="decimal" Mode="In" />
+          <Parameter Name="p_netpremium" Type="decimal" Mode="In" />
+          <Parameter Name="p_gstvalue" Type="decimal" Mode="In" />
+          <Parameter Name="p_finalpremium" Type="decimal" Mode="In" />
+          <Parameter Name="p_paymentstatus" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SP_QUALIFYCOMPANY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_isbreaking" Type="bit" Mode="In" />
+          <Parameter Name="p_rtoid" Type="bigint" Mode="In" />
+          <Parameter Name="p_variantid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="SP_REQUEST_RESPONSE_API_MASTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_enquiryid" Type="varchar" Mode="In" />
+          <Parameter Name="p_companyid" Type="int" Mode="In" />
+          <Parameter Name="p_request" Type="varchar(max)" Mode="In" />
+          <Parameter Name="p_response" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_REQUEST_RESPONSE_MASTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_mode" Type="varchar" Mode="In" />
+          <Parameter Name="p_enquiryid" Type="varchar" Mode="In" />
+          <Parameter Name="p_companyid" Type="int" Mode="In" />
+          <Parameter Name="p_request" Type="varchar(max)" Mode="In" />
+          <Parameter Name="p_response" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_TOP_MMV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_makeid" Type="bigint" Mode="In" />
+          <Parameter Name="p_modelid" Type="bigint" Mode="In" />
+          <Parameter Name="p_variantid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="UpdatePOSPSecretKey" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pospid" Type="bigint" Mode="In" />
+          <Parameter Name="seceretkey" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ANDAPPModelStoreContainer">
+          <EntitySet Name="ADDONMASTER" EntityType="Self.ADDONMASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANY_WISE_RTO_MASTER" EntityType="Self.COMPANY_WISE_RTO_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANY_WISE_STATE_CITY_AREA_MASTER" EntityType="Self.COMPANY_WISE_STATE_CITY_AREA_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANY_WISE_STATE_MASTER" EntityType="Self.COMPANY_WISE_STATE_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FINANCERMASTER" EntityType="Self.FINANCERMASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="icici_paymenttagging" EntityType="Self.icici_paymenttagging" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INSURANCECOMPANY" EntityType="Self.INSURANCECOMPANY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INSURANCEVARIANTMASTER" EntityType="Self.INSURANCEVARIANTMASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MAKE_ANDAPP" EntityType="Self.MAKE_ANDAPP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MARITALSTATUSMASTER" EntityType="Self.MARITALSTATUSMASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MODEL_ANDAPP" EntityType="Self.MODEL_ANDAPP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NOMINEE_RELATIONSHIP" EntityType="Self.NOMINEE_RELATIONSHIP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OCCUPATION" EntityType="Self.OCCUPATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment_Parameter" EntityType="Self.Payment_Parameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POLICY_ENQUIRY" EntityType="Self.POLICY_ENQUIRY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PospCity_Mapping" EntityType="Self.PospCity_Mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POSPMASTER" EntityType="Self.POSPMASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PREVIOUS_INSURER_MAPPING" EntityType="Self.PREVIOUS_INSURER_MAPPING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QA_LOGIN_MASTER" EntityType="Self.QA_LOGIN_MASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RTOMASTER" EntityType="Self.RTOMASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RTOMASTER_ANDAPP" EntityType="Self.RTOMASTER_ANDAPP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALUTATIONMASTER" EntityType="Self.SALUTATIONMASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATEMASTER" EntityType="Self.STATEMASTER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VARIANT_ANDAPP" EntityType="Self.VARIANT_ANDAPP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_ExamPassDate_ForAndReport" EntityType="Self.VW_ExamPassDate_ForAndReport" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_ExamPassDate_ForAndReport].[id] AS [id], 
+    [VW_ExamPassDate_ForAndReport].[userid] AS [userid], 
+    [VW_ExamPassDate_ForAndReport].[MaxTime] AS [MaxTime]
+    FROM [dbo].[VW_ExamPassDate_ForAndReport] AS [VW_ExamPassDate_ForAndReport]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_ExamPassDate_ForAndReport_LI" EntityType="Self.VW_ExamPassDate_ForAndReport_LI" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_ExamPassDate_ForAndReport_LI].[id] AS [id], 
+    [VW_ExamPassDate_ForAndReport_LI].[userid] AS [userid], 
+    [VW_ExamPassDate_ForAndReport_LI].[MaxTime] AS [MaxTime]
+    FROM [dbo].[VW_ExamPassDate_ForAndReport_LI] AS [VW_ExamPassDate_ForAndReport_LI]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_GENERATEDQUOTAIONLIST_POSPWISE" EntityType="Self.VW_GENERATEDQUOTAIONLIST_POSPWISE" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[enquiryid] AS [enquiryid], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[enquiryno] AS [enquiryno], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[status] AS [status], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[createdon] AS [createdon], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[enquiryby] AS [enquiryby], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[insurancename] AS [insurancename], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[VariantId] AS [VariantId], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[modelid] AS [modelid], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[ModelName] AS [ModelName], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[makeid] AS [makeid], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[MakeName] AS [MakeName], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[VariantId1] AS [VariantId1], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[registrationno] AS [registrationno], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[Company] AS [Company], 
+    [VW_GENERATEDQUOTAIONLIST_POSPWISE].[NetPremiumC] AS [NetPremiumC]
+    FROM [dbo].[VW_GENERATEDQUOTAIONLIST_POSPWISE] AS [VW_GENERATEDQUOTAIONLIST_POSPWISE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_POLICYDETAILSMASTER" EntityType="Self.VW_POLICYDETAILSMASTER" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_POLICYDETAILSMASTER].[pdid] AS [pdid], 
+    [VW_POLICYDETAILSMASTER].[enquiryid] AS [enquiryid], 
+    [VW_POLICYDETAILSMASTER].[companyid] AS [companyid], 
+    [VW_POLICYDETAILSMASTER].[pospid] AS [pospid], 
+    [VW_POLICYDETAILSMASTER].[custmertype] AS [custmertype], 
+    [VW_POLICYDETAILSMASTER].[policytype] AS [policytype], 
+    [VW_POLICYDETAILSMASTER].[producttype] AS [producttype], 
+    [VW_POLICYDETAILSMASTER].[isrenewable] AS [isrenewable], 
+    [VW_POLICYDETAILSMASTER].[customerfirstname] AS [customerfirstname], 
+    [VW_POLICYDETAILSMASTER].[customermiddlename] AS [customermiddlename], 
+    [VW_POLICYDETAILSMASTER].[customerlastname] AS [customerlastname], 
+    [VW_POLICYDETAILSMASTER].[customeraddress] AS [customeraddress], 
+    [VW_POLICYDETAILSMASTER].[customerpancardno] AS [customerpancardno], 
+    [VW_POLICYDETAILSMASTER].[customergstno] AS [customergstno], 
+    [VW_POLICYDETAILSMASTER].[customeremailid] AS [customeremailid], 
+    [VW_POLICYDETAILSMASTER].[customerdob] AS [customerdob], 
+    [VW_POLICYDETAILSMASTER].[customermobileno] AS [customermobileno], 
+    [VW_POLICYDETAILSMASTER].[rtoid] AS [rtoid], 
+    [VW_POLICYDETAILSMASTER].[zoneid] AS [zoneid], 
+    [VW_POLICYDETAILSMASTER].[makeid] AS [makeid], 
+    [VW_POLICYDETAILSMASTER].[modelid] AS [modelid], 
+    [VW_POLICYDETAILSMASTER].[variantid] AS [variantid], 
+    [VW_POLICYDETAILSMASTER].[issuedate] AS [issuedate], 
+    [VW_POLICYDETAILSMASTER].[registrationdate] AS [registrationdate], 
+    [VW_POLICYDETAILSMASTER].[manufacturdate] AS [manufacturdate], 
+    [VW_POLICYDETAILSMASTER].[seatingcapacity] AS [seatingcapacity], 
+    [VW_POLICYDETAILSMASTER].[registrationno] AS [registrationno], 
+    [VW_POLICYDETAILSMASTER].[cubiccapacity] AS [cubiccapacity], 
+    [VW_POLICYDETAILSMASTER].[engingno] AS [engingno], 
+    [VW_POLICYDETAILSMASTER].[chassisno] AS [chassisno], 
+    [VW_POLICYDETAILSMASTER].[fueltype] AS [fueltype], 
+    [VW_POLICYDETAILSMASTER].[policyno] AS [policyno], 
+    [VW_POLICYDETAILSMASTER].[policystartdate] AS [policystartdate], 
+    [VW_POLICYDETAILSMASTER].[policyenddate] AS [policyenddate], 
+    [VW_POLICYDETAILSMASTER].[tpstartdate] AS [tpstartdate], 
+    [VW_POLICYDETAILSMASTER].[tpenddate] AS [tpenddate], 
+    [VW_POLICYDETAILSMASTER].[tenure] AS [tenure], 
+    [VW_POLICYDETAILSMASTER].[ncdpercentage] AS [ncdpercentage], 
+    [VW_POLICYDETAILSMASTER].[ncdpercentagevalue] AS [ncdpercentagevalue], 
+    [VW_POLICYDETAILSMASTER].[otherdiscount] AS [otherdiscount], 
+    [VW_POLICYDETAILSMASTER].[idv] AS [idv], 
+    [VW_POLICYDETAILSMASTER].[addonpremium] AS [addonpremium], 
+    [VW_POLICYDETAILSMASTER].[odpremium] AS [odpremium], 
+    [VW_POLICYDETAILSMASTER].[tppremium] AS [tppremium], 
+    [VW_POLICYDETAILSMASTER].[netpremium] AS [netpremium], 
+    [VW_POLICYDETAILSMASTER].[gstvalue] AS [gstvalue], 
+    [VW_POLICYDETAILSMASTER].[finalpremium] AS [finalpremium], 
+    [VW_POLICYDETAILSMASTER].[paymentstatus] AS [paymentstatus], 
+    [VW_POLICYDETAILSMASTER].[status] AS [status], 
+    [VW_POLICYDETAILSMASTER].[createdby] AS [createdby], 
+    [VW_POLICYDETAILSMASTER].[createdon] AS [createdon], 
+    [VW_POLICYDETAILSMASTER].[updatedby] AS [updatedby], 
+    [VW_POLICYDETAILSMASTER].[updatedon] AS [updatedon], 
+    [VW_POLICYDETAILSMASTER].[companyname] AS [companyname], 
+    [VW_POLICYDETAILSMASTER].[shortname] AS [shortname], 
+    [VW_POLICYDETAILSMASTER].[makename] AS [makename], 
+    [VW_POLICYDETAILSMASTER].[modelname] AS [modelname], 
+    [VW_POLICYDETAILSMASTER].[variantname] AS [variantname]
+    FROM [dbo].[VW_POLICYDETAILSMASTER] AS [VW_POLICYDETAILSMASTER]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_TOP10MAKE" EntityType="Self.VW_TOP10MAKE" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_TOP10MAKE].[id] AS [id], 
+    [VW_TOP10MAKE].[makeid] AS [makeid], 
+    [VW_TOP10MAKE].[MOST_FREQUENT] AS [MOST_FREQUENT], 
+    [VW_TOP10MAKE].[makename] AS [makename], 
+    [VW_TOP10MAKE].[haslogo] AS [haslogo]
+    FROM [dbo].[VW_TOP10MAKE] AS [VW_TOP10MAKE]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ANDAPPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ANDAPPEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="MODEL_ANDAPP" EntityType="ANDAPPModel.MODEL_ANDAPP" />
+          <EntitySet Name="RTOMASTERs" EntityType="ANDAPPModel.RTOMASTER" />
+          <EntitySet Name="STATEMASTERs" EntityType="ANDAPPModel.STATEMASTER" />
+          <EntitySet Name="INSURANCECOMPANies" EntityType="ANDAPPModel.INSURANCECOMPANY" />
+          <EntitySet Name="ADDONMASTERs" EntityType="ANDAPPModel.ADDONMASTER" />
+          <EntitySet Name="INSURANCEVARIANTMASTERs" EntityType="ANDAPPModel.INSURANCEVARIANTMASTER" />
+          <FunctionImport Name="GET_INSCOMPANYDATA_BY_VARIANT" ReturnType="Collection(ANDAPPModel.GET_INSCOMPANYDATA_BY_VARIANT_Result)">
+            <Parameter Name="p_variantid" Mode="In" Type="Int64" />
+            <Parameter Name="p_companyid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GET_INSCOMPANYDATA_BY_VARIANT1" ReturnType="Collection(ANDAPPModel.GET_INSCOMPANYDATA_BY_VARIANT1_Result)">
+            <Parameter Name="p_variantid" Mode="In" Type="Int64" />
+            <Parameter Name="p_companyid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="NOMINEE_RELATIONSHIP" EntityType="ANDAPPModel.NOMINEE_RELATIONSHIP" />
+          <EntitySet Name="OCCUPATIONs" EntityType="ANDAPPModel.OCCUPATION" />
+          <EntitySet Name="VARIANT_ANDAPP" EntityType="ANDAPPModel.VARIANT_ANDAPP" />
+          <EntitySet Name="MAKE_ANDAPP" EntityType="ANDAPPModel.MAKE_ANDAPP" />
+          <FunctionImport Name="SP_QUALIFYCOMPANY" ReturnType="Collection(ANDAPPModel.SP_QUALIFYCOMPANY)">
+            <Parameter Name="p_isbreaking" Mode="In" Type="Boolean" />
+            <Parameter Name="p_rtoid" Mode="In" Type="Int64" />
+            <Parameter Name="p_variantid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="PREVIOUS_INSURER_MAPPING" EntityType="ANDAPPModel.PREVIOUS_INSURER_MAPPING" />
+          <FunctionImport Name="SP_GETFUELTYPE_BY_MODELID" ReturnType="Collection(String)">
+          <Parameter Name="p_modelid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GETFUELTYPE_BY_MODELID1" ReturnType="Collection(ANDAPPModel.SP_GETFUELTYPE_BY_MODELID)">
+          <Parameter Name="p_modelid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_COMPANY_WISE_CITY" ReturnType="Collection(ANDAPPModel.SP_COMPANY_WISE_CITY_Result)">
+            <Parameter Name="p_company" Mode="In" Type="String" />
+            <Parameter Name="p_stateid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="VW_GENERATEDQUOTAIONLIST_POSPWISE" EntityType="ANDAPPModel.VW_GENERATEDQUOTAIONLIST_POSPWISE" />
+          <EntitySet Name="SALUTATIONMASTERs" EntityType="ANDAPPModel.SALUTATIONMASTER" />
+          <FunctionImport Name="SP_COMPANY_WISE_MARITALSTATUS" ReturnType="Collection(ANDAPPModel.SP_COMPANY_WISE_MARITALSTATUS_Result)">
+          <Parameter Name="p_companyid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_COMPANY_WISE_NOMINEERELATION" ReturnType="Collection(ANDAPPModel.SP_COMPANY_WISE_NOMINEERELATION_Result1)">
+          <Parameter Name="p_companyid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_COMPANY_WISE_OCCUPATION" ReturnType="Collection(ANDAPPModel.SP_COMPANY_WISE_OCCUPATION_Result1)">
+          <Parameter Name="p_companyid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_COMPANY_WISE_SALUTATION" ReturnType="Collection(ANDAPPModel.SP_COMPANY_WISE_SALUTATION_Result)">
+          <Parameter Name="p_companyid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="MARITALSTATUSMASTERs" EntityType="ANDAPPModel.MARITALSTATUSMASTER" />
+          <FunctionImport Name="SP_COMPANY_WISE_FINANCERMASTER" ReturnType="Collection(ANDAPPModel.SP_COMPANY_WISE_FINANCERMASTER_Result)">
+          <Parameter Name="p_companyid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="FINANCERMASTERs" EntityType="ANDAPPModel.FINANCERMASTER" />
+          <EntitySet Name="QA_LOGIN_MASTER" EntityType="ANDAPPModel.QA_LOGIN_MASTER" />
+          <EntitySet Name="POLICY_ENQUIRY" EntityType="ANDAPPModel.POLICY_ENQUIRY" />
+          <FunctionImport Name="SP_POLICY_ENQUIRYDETAILS">
+            <Parameter Name="enquiryno" Mode="In" Type="String" />
+            <Parameter Name="enquiryrequest" Mode="In" Type="String" />
+            <Parameter Name="enquiryresponse" Mode="In" Type="String" />
+            <Parameter Name="enquirytype" Mode="In" Type="Int32" />
+            <Parameter Name="firstquote" Mode="In" Type="String" />
+            <Parameter Name="enquiryby" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_REQUEST_RESPONSE_MASTER" ReturnType="Collection(ANDAPPModel.SP_REQUEST_RESPONSE_MASTER_Result)">
+            <Parameter Name="p_mode" Mode="In" Type="String" />
+            <Parameter Name="p_enquiryid" Mode="In" Type="String" />
+            <Parameter Name="p_companyid" Mode="In" Type="Int32" />
+            <Parameter Name="p_request" Mode="In" Type="String" />
+            <Parameter Name="p_response" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_REQUEST_RESPONSE_API_MASTER">
+            <Parameter Name="p_enquiryid" Mode="In" Type="String" />
+            <Parameter Name="p_companyid" Mode="In" Type="Int32" />
+            <Parameter Name="p_request" Mode="In" Type="String" />
+            <Parameter Name="p_response" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="COMPANY_WISE_STATE_MASTER" EntityType="ANDAPPModel.COMPANY_WISE_STATE_MASTER" />
+          <FunctionImport Name="SP_COMPANY_WISE_STATE_MASTER" ReturnType="Collection(ANDAPPModel.SP_COMPANY_WISE_STATE_MASTER_Result)">
+          <Parameter Name="p_companyid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Payment_Parameter">
+            <Parameter Name="enquiryno" Mode="In" Type="String" />
+            <Parameter Name="comid" Mode="In" Type="Int64" />
+            <Parameter Name="parname" Mode="In" Type="String" />
+            <Parameter Name="parvalue" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_Payment_Parameter" ReturnType="Collection(ANDAPPModel.GET_Payment_Parameter_Result)">
+            <Parameter Name="p_tran_id" Mode="In" Type="String" />
+            <Parameter Name="p_comid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="icici_paymenttagging" EntityType="ANDAPPModel.icici_paymenttagging" />
+          <FunctionImport Name="SP_ICICI_PAYMENT_TAGGING">
+            <Parameter Name="p_EnqNo" Mode="In" Type="String" />
+            <Parameter Name="p_TransactionId" Mode="In" Type="String" />
+            <Parameter Name="p_PaymentAmount" Mode="In" Type="String" />
+            <Parameter Name="p_CustomerID" Mode="In" Type="String" />
+            <Parameter Name="p_PayerType" Mode="In" Type="String" />
+            <Parameter Name="p_ProposalNo" Mode="In" Type="String" />
+            <Parameter Name="p_dealid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_COMPANY_WISE_STATE_CITY_AREA_MASTER" ReturnType="Collection(ANDAPPModel.SP_COMPANY_WISE_STATE_CITY_AREA_MASTER_Result)">
+            <Parameter Name="p_companyid" Mode="In" Type="Int64" />
+            <Parameter Name="p_stateid" Mode="In" Type="Int64" />
+            <Parameter Name="p_cityid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="COMPANY_WISE_STATE_CITY_AREA_MASTER" EntityType="ANDAPPModel.COMPANY_WISE_STATE_CITY_AREA_MASTER" />
+          <EntitySet Name="POSPMASTERs" EntityType="ANDAPPModel.POSPMASTER" />
+          <FunctionImport Name="UpdatePOSPSecretKey">
+            <Parameter Name="pospid" Mode="In" Type="Int64" />
+            <Parameter Name="seceretkey" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="VW_ExamPassDate_ForAndReport" EntityType="ANDAPPModel.VW_ExamPassDate_ForAndReport" />
+          <EntitySet Name="VW_ExamPassDate_ForAndReport_LI" EntityType="ANDAPPModel.VW_ExamPassDate_ForAndReport_LI" />
+          <FunctionImport Name="SP_TOP_MMV">
+            <Parameter Name="p_makeid" Mode="In" Type="Int64" />
+            <Parameter Name="p_modelid" Mode="In" Type="Int64" />
+            <Parameter Name="p_variantid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="VW_TOP10MAKE" EntityType="ANDAPPModel.VW_TOP10MAKE" />
+          <FunctionImport Name="SP_GETTOP10MODELBYMAKEID" ReturnType="Collection(ANDAPPModel.SP_GETTOP10MODELBYMAKEID)">
+          <Parameter Name="p_makeid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GETTOP10VARIANTBYMODELID" ReturnType="Collection(ANDAPPModel.SP_GETTOP10VARIANTBYMODELID_Result)">
+            <Parameter Name="p_modelid" Mode="In" Type="Int64" />
+            <Parameter Name="p_fueltype" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="RTOMASTER_ANDAPP" EntityType="ANDAPPModel.RTOMASTER_ANDAPP" />
+          <EntitySet Name="Payment_Parameter" EntityType="ANDAPPModel.Payment_Parameter" />
+          <EntitySet Name="PospCity_Mapping" EntityType="ANDAPPModel.PospCity_Mapping" />
+          <EntitySet Name="VW_POLICYDETAILSMASTER" EntityType="ANDAPPModel.VW_POLICYDETAILSMASTER" />
+          <FunctionImport Name="SP_POLICYDETAILSMASTER">
+            <Parameter Name="p_mode" Mode="In" Type="String" />
+            <Parameter Name="p_enquiryid" Mode="In" Type="String" />
+            <Parameter Name="p_companyid" Mode="In" Type="Int64" />
+            <Parameter Name="p_pospid" Mode="In" Type="Int64" />
+            <Parameter Name="p_custmertype" Mode="In" Type="String" />
+            <Parameter Name="p_policytype" Mode="In" Type="String" />
+            <Parameter Name="p_producttype" Mode="In" Type="String" />
+            <Parameter Name="p_isrenewable" Mode="In" Type="Boolean" />
+            <Parameter Name="p_customerfirstname" Mode="In" Type="String" />
+            <Parameter Name="p_customermiddlename" Mode="In" Type="String" />
+            <Parameter Name="p_customerlastname" Mode="In" Type="String" />
+            <Parameter Name="p_customeraddress" Mode="In" Type="String" />
+            <Parameter Name="p_customerpancardno" Mode="In" Type="String" />
+            <Parameter Name="p_customergstno" Mode="In" Type="String" />
+            <Parameter Name="p_customeremailid" Mode="In" Type="String" />
+            <Parameter Name="p_customerdob" Mode="In" Type="DateTime" />
+            <Parameter Name="p_customermobileno" Mode="In" Type="String" />
+            <Parameter Name="p_rtoid" Mode="In" Type="Int64" />
+            <Parameter Name="p_zoneid" Mode="In" Type="Int64" />
+            <Parameter Name="p_makeid" Mode="In" Type="Int64" />
+            <Parameter Name="p_modelid" Mode="In" Type="Int64" />
+            <Parameter Name="p_variantid" Mode="In" Type="Int64" />
+            <Parameter Name="p_issuedate" Mode="In" Type="DateTime" />
+            <Parameter Name="p_registrationdate" Mode="In" Type="DateTime" />
+            <Parameter Name="p_manufacturdate" Mode="In" Type="DateTime" />
+            <Parameter Name="p_seatingcapacity" Mode="In" Type="Int32" />
+            <Parameter Name="p_registrationno" Mode="In" Type="String" />
+            <Parameter Name="p_cubiccapacity" Mode="In" Type="Int64" />
+            <Parameter Name="p_engingno" Mode="In" Type="String" />
+            <Parameter Name="p_chassisno" Mode="In" Type="String" />
+            <Parameter Name="p_fueltype" Mode="In" Type="String" />
+            <Parameter Name="p_policyno" Mode="In" Type="String" />
+            <Parameter Name="p_policystartdate" Mode="In" Type="DateTime" />
+            <Parameter Name="p_policyenddate" Mode="In" Type="DateTime" />
+            <Parameter Name="p_tpstartdate" Mode="In" Type="DateTime" />
+            <Parameter Name="p_tpenddate" Mode="In" Type="DateTime" />
+            <Parameter Name="p_tenure" Mode="In" Type="Int32" />
+            <Parameter Name="p_ncdpercentage" Mode="In" Type="Int32" />
+            <Parameter Name="p_ncdpercentagevalue" Mode="In" Type="Decimal" />
+            <Parameter Name="p_otherdiscount" Mode="In" Type="Decimal" />
+            <Parameter Name="p_idv" Mode="In" Type="Decimal" />
+            <Parameter Name="p_addonpremium" Mode="In" Type="Decimal" />
+            <Parameter Name="p_odpremium" Mode="In" Type="Decimal" />
+            <Parameter Name="p_tppremium" Mode="In" Type="Decimal" />
+            <Parameter Name="p_netpremium" Mode="In" Type="Decimal" />
+            <Parameter Name="p_gstvalue" Mode="In" Type="Decimal" />
+            <Parameter Name="p_finalpremium" Mode="In" Type="Decimal" />
+            <Parameter Name="p_paymentstatus" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="COMPANY_WISE_RTO_MASTER" EntityType="ANDAPPModel.COMPANY_WISE_RTO_MASTER" />
+        </EntityContainer>
+        <EntityType Name="MODEL_ANDAPP">
+          <Key>
+            <PropertyRef Name="modelid" />
+          </Key>
+          <Property Name="modelid" Type="Int64" Nullable="false" />
+          <Property Name="modelname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="aliasmodelname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="istopmodel" Type="Boolean" />
+          <Property Name="modelname_v2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="makeid" Type="Int64" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="createdon" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RTOMASTER">
+          <Key>
+            <PropertyRef Name="rtoid" />
+          </Key>
+          <Property Name="rtoid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stateid" Type="Int64" />
+          <Property Name="rtocode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="rtodesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="STATEMASTER">
+          <Key>
+            <PropertyRef Name="stateid" />
+          </Key>
+          <Property Name="stateid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="statecode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="statename" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="zoneid" Type="Int64" />
+          <Property Name="effectivefrom" Type="DateTime" Precision="3" />
+          <Property Name="effectiveto" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="createdon" Type="DateTime" Precision="3" />
+          <Property Name="updatedby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updatedon" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="INSURANCECOMPANY">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="createdon" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="shortname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ADDONMASTER">
+          <Key>
+            <PropertyRef Name="addonid" />
+          </Key>
+          <Property Name="addonid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="addonname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shortname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="INSURANCEVARIANTMASTER">
+          <Key>
+            <PropertyRef Name="mastervariant_id" />
+          </Key>
+          <Property Name="mastervariant_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyid" Type="Int64" />
+          <Property Name="variantname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mastermd_id" Type="Int64" />
+          <Property Name="variantid" Type="Int64" />
+        </EntityType>
+        <ComplexType Name="GET_INSCOMPANYDATA_BY_VARIANT_Result">
+          <Property Type="SByte" Name="id" />
+          <Property Type="Int64" Name="variantid" Nullable="true" />
+          <Property Type="String" Name="vechiclecode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="sort_makecode" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="make" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="model" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="fueltype" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="cubiccapacity" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="seatingcapacity" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="bodytype" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="GET_INSCOMPANYDATA_BY_VARIANT1_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="variantid" Nullable="true" />
+          <Property Type="String" Name="vechiclecode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="sort_makecode" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="make" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="model" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="fueltype" Nullable="true" MaxLength="6" />
+          <Property Type="String" Name="cubiccapacity" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="seatingcapacity" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="bodytype" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <EntityType Name="NOMINEE_RELATIONSHIP">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="comid" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="OCCUPATION">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="comid" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="VARIANT_ANDAPP">
+          <Key>
+            <PropertyRef Name="variantid" />
+          </Key>
+          <Property Name="variantid" Type="Int64" Nullable="false" />
+          <Property Name="variantname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="modelid" Type="Int64" />
+          <Property Name="fueltype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="transmissiontype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cc" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="createdon" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MAKE_ANDAPP">
+          <Key>
+            <PropertyRef Name="makeid" />
+          </Key>
+          <Property Name="makeid" Type="Int64" Nullable="false" />
+          <Property Name="makename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="istopmake" Type="Boolean" />
+          <Property Name="showingorder" Type="Int64" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="createdon" Type="DateTime" Precision="3" />
+          <Property Name="haslogo" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="SP_QUALIFYCOMPANY">
+          <Property Type="String" Name="comid" Nullable="true" MaxLength="22" />
+          <Property Type="String" Name="comname" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="makecode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="makename" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="modelcode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="modelname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="variantcode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="variantname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cc" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="fuel" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="sc" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="segment" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="bodytype" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="PREVIOUS_INSURER_MAPPING">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="previouscompanyid" Type="Int64" />
+          <Property Name="inscompanycode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="inscompanyname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="inscompanyshortname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="companyid" Type="Int64" />
+        </EntityType>
+        <ComplexType Name="SP_GETFUELTYPE_BY_MODELID">
+          <Property Type="String" Name="fueltype" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_COMPANY_WISE_CITY_Result">
+          <Property Type="Int64" Name="cityid" Nullable="false" />
+          <Property Type="String" Name="citycode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cityname" Nullable="true" MaxLength="250" />
+          <Property Type="Int64" Name="stateid" Nullable="true" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_COMPANYWISESTATE_Result">
+          <Property Type="Int64" Name="stateid" Nullable="false" />
+          <Property Type="String" Name="statecode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="statename" Nullable="true" MaxLength="250" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_COMPANY_WISE_NOMINEERELATION_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="value" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="comid" Nullable="true" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_COMPANY_WISE_OCCUPATION_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="value" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="comid" Nullable="true" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="VW_GENERATEDQUOTAIONLIST_POSPWISE">
+          <Key>
+            <PropertyRef Name="enquiryid" />
+            <PropertyRef Name="insurancename" />
+            <PropertyRef Name="registrationno" />
+            <PropertyRef Name="modelid" />
+            <PropertyRef Name="makeid" />
+          </Key>
+          <Property Name="enquiryid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="enquiryno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="createdon" Type="DateTime" Precision="3" />
+          <Property Name="enquiryby" Type="Int64" />
+          <Property Name="insurancename" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="MakeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModelName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VariantId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="registrationno" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="NetPremiumC" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="modelid" Type="Int64" Nullable="false" />
+          <Property Name="makeid" Type="Int64" Nullable="false" />
+          <Property Name="VariantId1" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SALUTATIONMASTER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="compid" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="SP_COMPANY_WISE_MARITALSTATUS_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="value" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="compid" Nullable="true" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_COMPANY_WISE_NOMINEERELATION_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="value" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="comid" Nullable="true" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_COMPANY_WISE_OCCUPATION_Result1">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="value" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="comid" Nullable="true" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_COMPANY_WISE_SALUTATION_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="value" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="compid" Nullable="true" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="MARITALSTATUSMASTER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="compid" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="SP_COMPANY_WISE_FINANCERMASTER_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="value" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="comid" Nullable="true" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="FINANCERMASTER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="comid" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="QA_LOGIN_MASTER">
+          <Key>
+            <PropertyRef Name="qaid" />
+          </Key>
+          <Property Name="qaid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mobileno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="otp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="POLICY_ENQUIRY">
+          <Key>
+            <PropertyRef Name="enquiryid" />
+          </Key>
+          <Property Name="enquiryid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="enquiryno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="enquiryrequest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="enquiryresponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="firstquote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="createdon" Type="DateTime" Precision="3" />
+          <Property Name="enquiryby" Type="Int64" />
+          <Property Name="enquirytype" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="SP_REQUEST_RESPONSE_MASTER_Result">
+          <Property Type="Int64" Name="reqid" Nullable="false" />
+          <Property Type="String" Name="enquiryid" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="companyid" Nullable="true" />
+          <Property Type="String" Name="request" Nullable="true" />
+          <Property Type="DateTime" Name="requestedon" Nullable="true" Precision="23" />
+          <Property Type="String" Name="response" Nullable="true" />
+          <Property Type="DateTime" Name="respondedon" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="COMPANY_WISE_STATE_MASTER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mstateid" Type="Int64" />
+          <Property Name="statename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="compid" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="SP_COMPANY_WISE_STATE_MASTER_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="mstateid" Nullable="true" />
+          <Property Type="String" Name="statename" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="value" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="compid" Nullable="true" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GET_Payment_Parameter_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="enq_id" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="com_id" Nullable="true" />
+          <Property Type="String" Name="parameter_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="parameter_value" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <EntityType Name="icici_paymenttagging">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnqNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TransactionId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentAmount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PayerType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProposalNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PolicyNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dealid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="SP_COMPANY_WISE_STATE_CITY_AREA_MASTER_Result">
+          <Property Type="Int64" Name="id" Nullable="true" />
+          <Property Type="Int64" Name="mstateid" Nullable="true" />
+          <Property Type="String" Name="value" Nullable="true" MaxLength="250" />
+          <Property Type="Int64" Name="compid" Nullable="true" />
+          <Property Type="Boolean" Name="status" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="COMPANY_WISE_STATE_CITY_AREA_MASTER">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stateid" Type="Int64" />
+          <Property Name="statename" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="statevalue" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="cityid" Type="Int64" />
+          <Property Name="cityname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="cityvalue" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="areaname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="areavalue" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="companyid" Type="Int64" />
+          <Property Name="mstateid" Type="Int64" />
+          <Property Name="mcityid" Type="Int64" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="POSPMASTER">
+          <Key>
+            <PropertyRef Name="pospid" />
+          </Key>
+          <Property Name="pospid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pospcode" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="tmpcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tmpcodecreatedon" Type="DateTime" Precision="3" />
+          <Property Name="salutation" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="middelname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateofbirth" Type="DateTime" Precision="3" />
+          <Property Name="isnameverified" Type="Boolean" />
+          <Property Name="mobileno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="emailid" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="adharcardno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="isadharfrontverified" Type="Boolean" />
+          <Property Name="isadharbacktverified" Type="Boolean" />
+          <Property Name="pancardno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ispancardverified" Type="Boolean" />
+          <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="iseducationverified" Type="Boolean" />
+          <Property Name="isdocverified" Type="Boolean" />
+          <Property Name="docverifiedby" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="docverifiedon" Type="DateTime" Precision="3" />
+          <Property Name="addressline1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="addressline2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stateid" Type="Int64" />
+          <Property Name="cityid" Type="Int64" />
+          <Property Name="pincode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="isirdaverified" Type="Boolean" />
+          <Property Name="irdaverifiedby" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="irdaverifiedon" Type="DateTime" Precision="3" />
+          <Property Name="createdon" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="otp" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="otpupdatedon" Type="DateTime" Precision="3" />
+          <Property Name="reffredbyid" Type="Int64" />
+          <Property Name="reffredtype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isdocreupload" Type="Boolean" />
+          <Property Name="docreuploadon" Type="DateTime" Precision="3" />
+          <Property Name="beneficiaryname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="accountno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ifsc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="isdocupload" Type="Boolean" />
+          <Property Name="docuploadon" Type="DateTime" Precision="3" />
+          <Property Name="secretkey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aadharcardnoEncrypted" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pancardnoEncrypted" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="aadharcarfrontimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="aadharcardbackimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pancardimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="educationimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VW_ExamPassDate_ForAndReport">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="userid" Type="Int64" />
+          <Property Name="MaxTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VW_ExamPassDate_ForAndReport_LI">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="userid" Type="Int64" />
+          <Property Name="MaxTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VW_TOP10MAKE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="makeid" Type="Int64" />
+          <Property Name="MOST_FREQUENT" Type="Int32" />
+          <Property Name="makename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haslogo" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="SP_GETTOP10MODELBYMAKEID_Result">
+          <Property Type="Int64" Name="modelid" Nullable="true" />
+          <Property Type="Int32" Name="MOST_FREQUENT" Nullable="true" />
+          <Property Type="String" Name="modelname" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="makeid" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GETTOP10MODELBYMAKEID">
+          <Property Type="Int64" Name="modelid" Nullable="true" />
+          <Property Type="Int32" Name="MOST_FREQUENT" Nullable="true" />
+          <Property Type="String" Name="modelname" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="makeid" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GETTOP10VARIANTBYMODELID_Result">
+          <Property Type="Int64" Name="variantid" Nullable="true" />
+          <Property Type="Int32" Name="MOST_FREQUENT" Nullable="true" />
+          <Property Type="String" Name="variantname" Nullable="true" MaxLength="250" />
+          <Property Type="Int64" Name="modelid" Nullable="true" />
+          <Property Type="String" Name="fueltype" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="RTOMASTER_ANDAPP">
+          <Key>
+            <PropertyRef Name="rtoid" />
+          </Key>
+          <Property Name="rtoid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stateid" Type="Int64" />
+          <Property Name="rtocode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rtodesc" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Payment_Parameter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="enq_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="com_id" Type="Int32" />
+          <Property Name="parameter_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parameter_value" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PospCity_Mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rtoid" Type="Int64" />
+          <Property Name="stateid" Type="Int64" />
+          <Property Name="rtocode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rtodesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cityid" Type="Int64" />
+        </EntityType>
+        <EntityType Name="VW_POLICYDETAILSMASTER">
+          <Key>
+            <PropertyRef Name="pdid" />
+          </Key>
+          <Property Name="pdid" Type="Int64" Nullable="false" />
+          <Property Name="enquiryid" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="companyid" Type="Int64" />
+          <Property Name="pospid" Type="Int64" />
+          <Property Name="custmertype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="policytype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="producttype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isrenewable" Type="Boolean" />
+          <Property Name="customerfirstname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="customermiddlename" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="customerlastname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="customeraddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="customerpancardno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customergstno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customeremailid" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="customerdob" Type="DateTime" Precision="3" />
+          <Property Name="customermobileno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rtoid" Type="Int64" />
+          <Property Name="zoneid" Type="Int64" />
+          <Property Name="makeid" Type="Int64" />
+          <Property Name="modelid" Type="Int64" />
+          <Property Name="variantid" Type="Int64" />
+          <Property Name="issuedate" Type="DateTime" Precision="3" />
+          <Property Name="registrationdate" Type="DateTime" Precision="3" />
+          <Property Name="manufacturdate" Type="DateTime" Precision="3" />
+          <Property Name="seatingcapacity" Type="Int32" />
+          <Property Name="registrationno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cubiccapacity" Type="Int64" />
+          <Property Name="engingno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chassisno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fueltype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="policyno" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="policystartdate" Type="DateTime" Precision="3" />
+          <Property Name="policyenddate" Type="DateTime" Precision="3" />
+          <Property Name="tpstartdate" Type="DateTime" Precision="3" />
+          <Property Name="tpenddate" Type="DateTime" Precision="3" />
+          <Property Name="tenure" Type="Int32" />
+          <Property Name="ncdpercentage" Type="Int32" />
+          <Property Name="ncdpercentagevalue" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="otherdiscount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="idv" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="addonpremium" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="odpremium" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="tppremium" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="netpremium" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="gstvalue" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="finalpremium" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="paymentstatus" Type="Boolean" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="createdon" Type="DateTime" Precision="3" />
+          <Property Name="updatedby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updatedon" Type="DateTime" Precision="3" />
+          <Property Name="companyname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="shortname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="makename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="modelname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="variantname" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="COMPANY_WISE_RTO_MASTER">
+          <Key>
+            <PropertyRef Name="rtoid" />
+          </Key>
+          <Property Name="rtoid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rto_loc_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rto_loc_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rtolocationgrpcd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rto_zone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="companyid" Type="Int64" />
+          <Property Name="andapp_rtoid" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping CdmEntityContainer="ANDAPPEntities" StorageEntityContainer="ANDAPPModelStoreContainer">
+          <EntitySetMapping Name="MODEL_ANDAPP">
+            <EntityTypeMapping TypeName="ANDAPPModel.MODEL_ANDAPP">
+              <MappingFragment StoreEntitySet="MODEL_ANDAPP">
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="makeid" ColumnName="makeid" />
+                <ScalarProperty Name="modelname_v2" ColumnName="modelname_v2" />
+                <ScalarProperty Name="istopmodel" ColumnName="istopmodel" />
+                <ScalarProperty Name="aliasmodelname" ColumnName="aliasmodelname" />
+                <ScalarProperty Name="modelname" ColumnName="modelname" />
+                <ScalarProperty Name="modelid" ColumnName="modelid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RTOMASTERs">
+            <EntityTypeMapping TypeName="ANDAPPModel.RTOMASTER">
+              <MappingFragment StoreEntitySet="RTOMASTER">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="rtodesc" ColumnName="rtodesc" />
+                <ScalarProperty Name="rtocode" ColumnName="rtocode" />
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+                <ScalarProperty Name="rtoid" ColumnName="rtoid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATEMASTERs">
+            <EntityTypeMapping TypeName="ANDAPPModel.STATEMASTER">
+              <MappingFragment StoreEntitySet="STATEMASTER">
+                <ScalarProperty Name="updatedon" ColumnName="updatedon" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="effectiveto" ColumnName="effectiveto" />
+                <ScalarProperty Name="effectivefrom" ColumnName="effectivefrom" />
+                <ScalarProperty Name="zoneid" ColumnName="zoneid" />
+                <ScalarProperty Name="statename" ColumnName="statename" />
+                <ScalarProperty Name="statecode" ColumnName="statecode" />
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INSURANCECOMPANies">
+            <EntityTypeMapping TypeName="ANDAPPModel.INSURANCECOMPANY">
+              <MappingFragment StoreEntitySet="INSURANCECOMPANY">
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ADDONMASTERs">
+            <EntityTypeMapping TypeName="ANDAPPModel.ADDONMASTER">
+              <MappingFragment StoreEntitySet="ADDONMASTER">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="addonname" ColumnName="addonname" />
+                <ScalarProperty Name="addonid" ColumnName="addonid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INSURANCEVARIANTMASTERs">
+            <EntityTypeMapping TypeName="ANDAPPModel.INSURANCEVARIANTMASTER">
+              <MappingFragment StoreEntitySet="INSURANCEVARIANTMASTER">
+                <ScalarProperty Name="variantid" ColumnName="variantid" />
+                <ScalarProperty Name="mastermd_id" ColumnName="mastermd_id" />
+                <ScalarProperty Name="variantname" ColumnName="variantname" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="mastervariant_id" ColumnName="mastervariant_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GET_INSCOMPANYDATA_BY_VARIANT" FunctionName="ANDAPPModel.Store.GET_INSCOMPANYDATA_BY_VARIANT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.GET_INSCOMPANYDATA_BY_VARIANT_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="variantid" ColumnName="variantid" />
+                <ScalarProperty Name="vechiclecode" ColumnName="vechiclecode" />
+                <ScalarProperty Name="sort_makecode" ColumnName="sort_makecode" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="fueltype" ColumnName="fueltype" />
+                <ScalarProperty Name="cubiccapacity" ColumnName="cubiccapacity" />
+                <ScalarProperty Name="seatingcapacity" ColumnName="seatingcapacity" />
+                <ScalarProperty Name="bodytype" ColumnName="bodytype" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_INSCOMPANYDATA_BY_VARIANT1" FunctionName="ANDAPPModel.Store.GET_INSCOMPANYDATA_BY_VARIANT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.GET_INSCOMPANYDATA_BY_VARIANT1_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="variantid" ColumnName="variantid" />
+                <ScalarProperty Name="vechiclecode" ColumnName="vechiclecode" />
+                <ScalarProperty Name="sort_makecode" ColumnName="sort_makecode" />
+                <ScalarProperty Name="make" ColumnName="make" />
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="fueltype" ColumnName="fueltype" />
+                <ScalarProperty Name="cubiccapacity" ColumnName="cubiccapacity" />
+                <ScalarProperty Name="seatingcapacity" ColumnName="seatingcapacity" />
+                <ScalarProperty Name="bodytype" ColumnName="bodytype" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="NOMINEE_RELATIONSHIP">
+            <EntityTypeMapping TypeName="ANDAPPModel.NOMINEE_RELATIONSHIP">
+              <MappingFragment StoreEntitySet="NOMINEE_RELATIONSHIP">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="comid" ColumnName="comid" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OCCUPATIONs">
+            <EntityTypeMapping TypeName="ANDAPPModel.OCCUPATION">
+              <MappingFragment StoreEntitySet="OCCUPATION">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="comid" ColumnName="comid" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VARIANT_ANDAPP">
+            <EntityTypeMapping TypeName="ANDAPPModel.VARIANT_ANDAPP">
+              <MappingFragment StoreEntitySet="VARIANT_ANDAPP">
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="cc" ColumnName="cc" />
+                <ScalarProperty Name="transmissiontype" ColumnName="transmissiontype" />
+                <ScalarProperty Name="fueltype" ColumnName="fueltype" />
+                <ScalarProperty Name="modelid" ColumnName="modelid" />
+                <ScalarProperty Name="variantname" ColumnName="variantname" />
+                <ScalarProperty Name="variantid" ColumnName="variantid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MAKE_ANDAPP">
+            <EntityTypeMapping TypeName="ANDAPPModel.MAKE_ANDAPP">
+              <MappingFragment StoreEntitySet="MAKE_ANDAPP">
+                <ScalarProperty Name="haslogo" ColumnName="haslogo" />
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="showingorder" ColumnName="showingorder" />
+                <ScalarProperty Name="istopmake" ColumnName="istopmake" />
+                <ScalarProperty Name="makename" ColumnName="makename" />
+                <ScalarProperty Name="makeid" ColumnName="makeid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_QUALIFYCOMPANY" FunctionName="ANDAPPModel.Store.SP_QUALIFYCOMPANY">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_QUALIFYCOMPANY">
+                <ScalarProperty Name="comid" ColumnName="comid" />
+                <ScalarProperty Name="comname" ColumnName="comname" />
+                <ScalarProperty Name="makecode" ColumnName="makecode" />
+                <ScalarProperty Name="makename" ColumnName="makename" />
+                <ScalarProperty Name="modelcode" ColumnName="modelcode" />
+                <ScalarProperty Name="modelname" ColumnName="modelname" />
+                <ScalarProperty Name="variantcode" ColumnName="variantcode" />
+                <ScalarProperty Name="variantname" ColumnName="variantname" />
+                <ScalarProperty Name="cc" ColumnName="cc" />
+                <ScalarProperty Name="fuel" ColumnName="fuel" />
+                <ScalarProperty Name="sc" ColumnName="sc" />
+                <ScalarProperty Name="segment" ColumnName="segment" />
+                <ScalarProperty Name="bodytype" ColumnName="bodytype" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="PREVIOUS_INSURER_MAPPING">
+            <EntityTypeMapping TypeName="ANDAPPModel.PREVIOUS_INSURER_MAPPING">
+              <MappingFragment StoreEntitySet="PREVIOUS_INSURER_MAPPING">
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="inscompanyshortname" ColumnName="inscompanyshortname" />
+                <ScalarProperty Name="inscompanyname" ColumnName="inscompanyname" />
+                <ScalarProperty Name="inscompanycode" ColumnName="inscompanycode" />
+                <ScalarProperty Name="previouscompanyid" ColumnName="previouscompanyid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GETFUELTYPE_BY_MODELID" FunctionName="ANDAPPModel.Store.SP_GETFUELTYPE_BY_MODELID" />
+          <FunctionImportMapping FunctionImportName="SP_GETFUELTYPE_BY_MODELID1" FunctionName="ANDAPPModel.Store.SP_GETFUELTYPE_BY_MODELID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_GETFUELTYPE_BY_MODELID">
+                <ScalarProperty Name="fueltype" ColumnName="fueltype" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_COMPANY_WISE_CITY" FunctionName="ANDAPPModel.Store.SP_COMPANY_WISE_CITY">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_COMPANY_WISE_CITY_Result">
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="citycode" ColumnName="citycode" />
+                <ScalarProperty Name="cityname" ColumnName="cityname" />
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="VW_GENERATEDQUOTAIONLIST_POSPWISE">
+            <EntityTypeMapping TypeName="ANDAPPModel.VW_GENERATEDQUOTAIONLIST_POSPWISE">
+              <MappingFragment StoreEntitySet="VW_GENERATEDQUOTAIONLIST_POSPWISE">
+                <ScalarProperty Name="VariantId1" ColumnName="VariantId1" />
+                <ScalarProperty Name="makeid" ColumnName="makeid" />
+                <ScalarProperty Name="modelid" ColumnName="modelid" />
+                <ScalarProperty Name="NetPremiumC" ColumnName="NetPremiumC" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="registrationno" ColumnName="registrationno" />
+                <ScalarProperty Name="VariantId" ColumnName="VariantId" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="MakeName" ColumnName="MakeName" />
+                <ScalarProperty Name="insurancename" ColumnName="insurancename" />
+                <ScalarProperty Name="enquiryby" ColumnName="enquiryby" />
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="enquiryno" ColumnName="enquiryno" />
+                <ScalarProperty Name="enquiryid" ColumnName="enquiryid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALUTATIONMASTERs">
+            <EntityTypeMapping TypeName="ANDAPPModel.SALUTATIONMASTER">
+              <MappingFragment StoreEntitySet="SALUTATIONMASTER">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="compid" ColumnName="compid" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_COMPANY_WISE_MARITALSTATUS" FunctionName="ANDAPPModel.Store.SP_COMPANY_WISE_MARITALSTATUS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_COMPANY_WISE_MARITALSTATUS_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="compid" ColumnName="compid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_COMPANY_WISE_NOMINEERELATION" FunctionName="ANDAPPModel.Store.SP_COMPANY_WISE_NOMINEERELATION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_COMPANY_WISE_NOMINEERELATION_Result1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="comid" ColumnName="comid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_COMPANY_WISE_OCCUPATION" FunctionName="ANDAPPModel.Store.SP_COMPANY_WISE_OCCUPATION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_COMPANY_WISE_OCCUPATION_Result1">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="comid" ColumnName="comid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_COMPANY_WISE_SALUTATION" FunctionName="ANDAPPModel.Store.SP_COMPANY_WISE_SALUTATION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_COMPANY_WISE_SALUTATION_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="compid" ColumnName="compid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="MARITALSTATUSMASTERs">
+            <EntityTypeMapping TypeName="ANDAPPModel.MARITALSTATUSMASTER">
+              <MappingFragment StoreEntitySet="MARITALSTATUSMASTER">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="compid" ColumnName="compid" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_COMPANY_WISE_FINANCERMASTER" FunctionName="ANDAPPModel.Store.SP_COMPANY_WISE_FINANCERMASTER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_COMPANY_WISE_FINANCERMASTER_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="comid" ColumnName="comid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="FINANCERMASTERs">
+            <EntityTypeMapping TypeName="ANDAPPModel.FINANCERMASTER">
+              <MappingFragment StoreEntitySet="FINANCERMASTER">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="comid" ColumnName="comid" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QA_LOGIN_MASTER">
+            <EntityTypeMapping TypeName="ANDAPPModel.QA_LOGIN_MASTER">
+              <MappingFragment StoreEntitySet="QA_LOGIN_MASTER">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="otp" ColumnName="otp" />
+                <ScalarProperty Name="mobileno" ColumnName="mobileno" />
+                <ScalarProperty Name="qaid" ColumnName="qaid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POLICY_ENQUIRY">
+            <EntityTypeMapping TypeName="ANDAPPModel.POLICY_ENQUIRY">
+              <MappingFragment StoreEntitySet="POLICY_ENQUIRY">
+                <ScalarProperty Name="enquirytype" ColumnName="enquirytype" />
+                <ScalarProperty Name="enquiryby" ColumnName="enquiryby" />
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="firstquote" ColumnName="firstquote" />
+                <ScalarProperty Name="enquiryresponse" ColumnName="enquiryresponse" />
+                <ScalarProperty Name="enquiryrequest" ColumnName="enquiryrequest" />
+                <ScalarProperty Name="enquiryno" ColumnName="enquiryno" />
+                <ScalarProperty Name="enquiryid" ColumnName="enquiryid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_POLICY_ENQUIRYDETAILS" FunctionName="ANDAPPModel.Store.SP_POLICY_ENQUIRYDETAILS" />
+          <FunctionImportMapping FunctionImportName="SP_REQUEST_RESPONSE_MASTER" FunctionName="ANDAPPModel.Store.SP_REQUEST_RESPONSE_MASTER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_REQUEST_RESPONSE_MASTER_Result">
+                <ScalarProperty Name="reqid" ColumnName="reqid" />
+                <ScalarProperty Name="enquiryid" ColumnName="enquiryid" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="request" ColumnName="request" />
+                <ScalarProperty Name="requestedon" ColumnName="requestedon" />
+                <ScalarProperty Name="response" ColumnName="response" />
+                <ScalarProperty Name="respondedon" ColumnName="respondedon" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_REQUEST_RESPONSE_API_MASTER" FunctionName="ANDAPPModel.Store.SP_REQUEST_RESPONSE_API_MASTER" />
+          <EntitySetMapping Name="COMPANY_WISE_STATE_MASTER">
+            <EntityTypeMapping TypeName="ANDAPPModel.COMPANY_WISE_STATE_MASTER">
+              <MappingFragment StoreEntitySet="COMPANY_WISE_STATE_MASTER">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="compid" ColumnName="compid" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="statename" ColumnName="statename" />
+                <ScalarProperty Name="mstateid" ColumnName="mstateid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_COMPANY_WISE_STATE_MASTER" FunctionName="ANDAPPModel.Store.SP_COMPANY_WISE_STATE_MASTER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_COMPANY_WISE_STATE_MASTER_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mstateid" ColumnName="mstateid" />
+                <ScalarProperty Name="statename" ColumnName="statename" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="compid" ColumnName="compid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Payment_Parameter" FunctionName="ANDAPPModel.Store.SP_Payment_Parameter" />
+          <FunctionImportMapping FunctionImportName="GET_Payment_Parameter" FunctionName="ANDAPPModel.Store.GET_Payment_Parameter">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.GET_Payment_Parameter_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="enq_id" ColumnName="enq_id" />
+                <ScalarProperty Name="com_id" ColumnName="com_id" />
+                <ScalarProperty Name="parameter_name" ColumnName="parameter_name" />
+                <ScalarProperty Name="parameter_value" ColumnName="parameter_value" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="icici_paymenttagging">
+            <EntityTypeMapping TypeName="ANDAPPModel.icici_paymenttagging">
+              <MappingFragment StoreEntitySet="icici_paymenttagging">
+                <ScalarProperty Name="dealid" ColumnName="dealid" />
+                <ScalarProperty Name="PolicyNo" ColumnName="PolicyNo" />
+                <ScalarProperty Name="ProposalNo" ColumnName="ProposalNo" />
+                <ScalarProperty Name="PayerType" ColumnName="PayerType" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="EnqNo" ColumnName="EnqNo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ICICI_PAYMENT_TAGGING" FunctionName="ANDAPPModel.Store.SP_ICICI_PAYMENT_TAGGING" />
+          <FunctionImportMapping FunctionImportName="SP_COMPANY_WISE_STATE_CITY_AREA_MASTER" FunctionName="ANDAPPModel.Store.SP_COMPANY_WISE_STATE_CITY_AREA_MASTER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_COMPANY_WISE_STATE_CITY_AREA_MASTER_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mstateid" ColumnName="mstateid" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="compid" ColumnName="compid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="COMPANY_WISE_STATE_CITY_AREA_MASTER">
+            <EntityTypeMapping TypeName="ANDAPPModel.COMPANY_WISE_STATE_CITY_AREA_MASTER">
+              <MappingFragment StoreEntitySet="COMPANY_WISE_STATE_CITY_AREA_MASTER">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="mcityid" ColumnName="mcityid" />
+                <ScalarProperty Name="mstateid" ColumnName="mstateid" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="areavalue" ColumnName="areavalue" />
+                <ScalarProperty Name="areaname" ColumnName="areaname" />
+                <ScalarProperty Name="cityvalue" ColumnName="cityvalue" />
+                <ScalarProperty Name="cityname" ColumnName="cityname" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="statevalue" ColumnName="statevalue" />
+                <ScalarProperty Name="statename" ColumnName="statename" />
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSPMASTERs">
+            <EntityTypeMapping TypeName="ANDAPPModel.POSPMASTER">
+              <MappingFragment StoreEntitySet="POSPMASTER">
+                <ScalarProperty Name="educationimage" ColumnName="educationimage" />
+                <ScalarProperty Name="pancardimage" ColumnName="pancardimage" />
+                <ScalarProperty Name="aadharcardbackimage" ColumnName="aadharcardbackimage" />
+                <ScalarProperty Name="aadharcarfrontimage" ColumnName="aadharcarfrontimage" />
+                <ScalarProperty Name="pancardnoEncrypted" ColumnName="pancardnoEncrypted" />
+                <ScalarProperty Name="aadharcardnoEncrypted" ColumnName="aadharcardnoEncrypted" />
+                <ScalarProperty Name="secretkey" ColumnName="secretkey" />
+                <ScalarProperty Name="docuploadon" ColumnName="docuploadon" />
+                <ScalarProperty Name="isdocupload" ColumnName="isdocupload" />
+                <ScalarProperty Name="ifsc" ColumnName="ifsc" />
+                <ScalarProperty Name="accountno" ColumnName="accountno" />
+                <ScalarProperty Name="beneficiaryname" ColumnName="beneficiaryname" />
+                <ScalarProperty Name="docreuploadon" ColumnName="docreuploadon" />
+                <ScalarProperty Name="isdocreupload" ColumnName="isdocreupload" />
+                <ScalarProperty Name="reffredtype" ColumnName="reffredtype" />
+                <ScalarProperty Name="reffredbyid" ColumnName="reffredbyid" />
+                <ScalarProperty Name="otpupdatedon" ColumnName="otpupdatedon" />
+                <ScalarProperty Name="otp" ColumnName="otp" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+                <ScalarProperty Name="irdaverifiedon" ColumnName="irdaverifiedon" />
+                <ScalarProperty Name="irdaverifiedby" ColumnName="irdaverifiedby" />
+                <ScalarProperty Name="isirdaverified" ColumnName="isirdaverified" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="addressline2" ColumnName="addressline2" />
+                <ScalarProperty Name="addressline1" ColumnName="addressline1" />
+                <ScalarProperty Name="docverifiedon" ColumnName="docverifiedon" />
+                <ScalarProperty Name="docverifiedby" ColumnName="docverifiedby" />
+                <ScalarProperty Name="isdocverified" ColumnName="isdocverified" />
+                <ScalarProperty Name="iseducationverified" ColumnName="iseducationverified" />
+                <ScalarProperty Name="education" ColumnName="education" />
+                <ScalarProperty Name="ispancardverified" ColumnName="ispancardverified" />
+                <ScalarProperty Name="pancardno" ColumnName="pancardno" />
+                <ScalarProperty Name="isadharbacktverified" ColumnName="isadharbacktverified" />
+                <ScalarProperty Name="isadharfrontverified" ColumnName="isadharfrontverified" />
+                <ScalarProperty Name="adharcardno" ColumnName="adharcardno" />
+                <ScalarProperty Name="emailid" ColumnName="emailid" />
+                <ScalarProperty Name="mobileno" ColumnName="mobileno" />
+                <ScalarProperty Name="isnameverified" ColumnName="isnameverified" />
+                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="middelname" ColumnName="middelname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="salutation" ColumnName="salutation" />
+                <ScalarProperty Name="tmpcodecreatedon" ColumnName="tmpcodecreatedon" />
+                <ScalarProperty Name="tmpcode" ColumnName="tmpcode" />
+                <ScalarProperty Name="pospcode" ColumnName="pospcode" />
+                <ScalarProperty Name="pospid" ColumnName="pospid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UpdatePOSPSecretKey" FunctionName="ANDAPPModel.Store.UpdatePOSPSecretKey" />
+          <EntitySetMapping Name="VW_ExamPassDate_ForAndReport">
+            <EntityTypeMapping TypeName="ANDAPPModel.VW_ExamPassDate_ForAndReport">
+              <MappingFragment StoreEntitySet="VW_ExamPassDate_ForAndReport">
+                <ScalarProperty Name="MaxTime" ColumnName="MaxTime" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_ExamPassDate_ForAndReport_LI">
+            <EntityTypeMapping TypeName="ANDAPPModel.VW_ExamPassDate_ForAndReport_LI">
+              <MappingFragment StoreEntitySet="VW_ExamPassDate_ForAndReport_LI">
+                <ScalarProperty Name="MaxTime" ColumnName="MaxTime" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_TOP_MMV" FunctionName="ANDAPPModel.Store.SP_TOP_MMV" />
+          <EntitySetMapping Name="VW_TOP10MAKE">
+            <EntityTypeMapping TypeName="ANDAPPModel.VW_TOP10MAKE">
+              <MappingFragment StoreEntitySet="VW_TOP10MAKE">
+                <ScalarProperty Name="haslogo" ColumnName="haslogo" />
+                <ScalarProperty Name="makename" ColumnName="makename" />
+                <ScalarProperty Name="MOST_FREQUENT" ColumnName="MOST_FREQUENT" />
+                <ScalarProperty Name="makeid" ColumnName="makeid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_GETTOP10MODELBYMAKEID" FunctionName="ANDAPPModel.Store.SP_GETTOP10MODELBYMAKEID">
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_GETTOP10MODELBYMAKEID">
+                <ScalarProperty Name="modelid" ColumnName="modelid" />
+                <ScalarProperty Name="MOST_FREQUENT" ColumnName="MOST_FREQUENT" />
+                <ScalarProperty Name="modelname" ColumnName="modelname" />
+                <ScalarProperty Name="makeid" ColumnName="makeid" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GETTOP10VARIANTBYMODELID" FunctionName="ANDAPPModel.Store.SP_GETTOP10VARIANTBYMODELID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ANDAPPModel.SP_GETTOP10VARIANTBYMODELID_Result">
+                <ScalarProperty Name="variantid" ColumnName="variantid" />
+                <ScalarProperty Name="MOST_FREQUENT" ColumnName="MOST_FREQUENT" />
+                <ScalarProperty Name="variantname" ColumnName="variantname" />
+                <ScalarProperty Name="modelid" ColumnName="modelid" />
+                <ScalarProperty Name="fueltype" ColumnName="fueltype" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="RTOMASTER_ANDAPP">
+            <EntityTypeMapping TypeName="ANDAPPModel.RTOMASTER_ANDAPP">
+              <MappingFragment StoreEntitySet="RTOMASTER_ANDAPP">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="rtodesc" ColumnName="rtodesc" />
+                <ScalarProperty Name="rtocode" ColumnName="rtocode" />
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+                <ScalarProperty Name="rtoid" ColumnName="rtoid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment_Parameter">
+            <EntityTypeMapping TypeName="ANDAPPModel.Payment_Parameter">
+              <MappingFragment StoreEntitySet="Payment_Parameter">
+                <ScalarProperty Name="parameter_value" ColumnName="parameter_value" />
+                <ScalarProperty Name="parameter_name" ColumnName="parameter_name" />
+                <ScalarProperty Name="com_id" ColumnName="com_id" />
+                <ScalarProperty Name="enq_id" ColumnName="enq_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PospCity_Mapping">
+            <EntityTypeMapping TypeName="ANDAPPModel.PospCity_Mapping">
+              <MappingFragment StoreEntitySet="PospCity_Mapping">
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="rtodesc" ColumnName="rtodesc" />
+                <ScalarProperty Name="rtocode" ColumnName="rtocode" />
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+                <ScalarProperty Name="rtoid" ColumnName="rtoid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_POLICYDETAILSMASTER">
+            <EntityTypeMapping TypeName="ANDAPPModel.VW_POLICYDETAILSMASTER">
+              <MappingFragment StoreEntitySet="VW_POLICYDETAILSMASTER">
+                <ScalarProperty Name="variantname" ColumnName="variantname" />
+                <ScalarProperty Name="modelname" ColumnName="modelname" />
+                <ScalarProperty Name="makename" ColumnName="makename" />
+                <ScalarProperty Name="shortname" ColumnName="shortname" />
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+                <ScalarProperty Name="updatedon" ColumnName="updatedon" />
+                <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+                <ScalarProperty Name="createdon" ColumnName="createdon" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="paymentstatus" ColumnName="paymentstatus" />
+                <ScalarProperty Name="finalpremium" ColumnName="finalpremium" />
+                <ScalarProperty Name="gstvalue" ColumnName="gstvalue" />
+                <ScalarProperty Name="netpremium" ColumnName="netpremium" />
+                <ScalarProperty Name="tppremium" ColumnName="tppremium" />
+                <ScalarProperty Name="odpremium" ColumnName="odpremium" />
+                <ScalarProperty Name="addonpremium" ColumnName="addonpremium" />
+                <ScalarProperty Name="idv" ColumnName="idv" />
+                <ScalarProperty Name="otherdiscount" ColumnName="otherdiscount" />
+                <ScalarProperty Name="ncdpercentagevalue" ColumnName="ncdpercentagevalue" />
+                <ScalarProperty Name="ncdpercentage" ColumnName="ncdpercentage" />
+                <ScalarProperty Name="tenure" ColumnName="tenure" />
+                <ScalarProperty Name="tpenddate" ColumnName="tpenddate" />
+                <ScalarProperty Name="tpstartdate" ColumnName="tpstartdate" />
+                <ScalarProperty Name="policyenddate" ColumnName="policyenddate" />
+                <ScalarProperty Name="policystartdate" ColumnName="policystartdate" />
+                <ScalarProperty Name="policyno" ColumnName="policyno" />
+                <ScalarProperty Name="fueltype" ColumnName="fueltype" />
+                <ScalarProperty Name="chassisno" ColumnName="chassisno" />
+                <ScalarProperty Name="engingno" ColumnName="engingno" />
+                <ScalarProperty Name="cubiccapacity" ColumnName="cubiccapacity" />
+                <ScalarProperty Name="registrationno" ColumnName="registrationno" />
+                <ScalarProperty Name="seatingcapacity" ColumnName="seatingcapacity" />
+                <ScalarProperty Name="manufacturdate" ColumnName="manufacturdate" />
+                <ScalarProperty Name="registrationdate" ColumnName="registrationdate" />
+                <ScalarProperty Name="issuedate" ColumnName="issuedate" />
+                <ScalarProperty Name="variantid" ColumnName="variantid" />
+                <ScalarProperty Name="modelid" ColumnName="modelid" />
+                <ScalarProperty Name="makeid" ColumnName="makeid" />
+                <ScalarProperty Name="zoneid" ColumnName="zoneid" />
+                <ScalarProperty Name="rtoid" ColumnName="rtoid" />
+                <ScalarProperty Name="customermobileno" ColumnName="customermobileno" />
+                <ScalarProperty Name="customerdob" ColumnName="customerdob" />
+                <ScalarProperty Name="customeremailid" ColumnName="customeremailid" />
+                <ScalarProperty Name="customergstno" ColumnName="customergstno" />
+                <ScalarProperty Name="customerpancardno" ColumnName="customerpancardno" />
+                <ScalarProperty Name="customeraddress" ColumnName="customeraddress" />
+                <ScalarProperty Name="customerlastname" ColumnName="customerlastname" />
+                <ScalarProperty Name="customermiddlename" ColumnName="customermiddlename" />
+                <ScalarProperty Name="customerfirstname" ColumnName="customerfirstname" />
+                <ScalarProperty Name="isrenewable" ColumnName="isrenewable" />
+                <ScalarProperty Name="producttype" ColumnName="producttype" />
+                <ScalarProperty Name="policytype" ColumnName="policytype" />
+                <ScalarProperty Name="custmertype" ColumnName="custmertype" />
+                <ScalarProperty Name="pospid" ColumnName="pospid" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="enquiryid" ColumnName="enquiryid" />
+                <ScalarProperty Name="pdid" ColumnName="pdid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_POLICYDETAILSMASTER" FunctionName="ANDAPPModel.Store.SP_POLICYDETAILSMASTER" />
+          <EntitySetMapping Name="COMPANY_WISE_RTO_MASTER">
+            <EntityTypeMapping TypeName="ANDAPPModel.COMPANY_WISE_RTO_MASTER">
+              <MappingFragment StoreEntitySet="COMPANY_WISE_RTO_MASTER">
+                <ScalarProperty Name="andapp_rtoid" ColumnName="andapp_rtoid" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="rto_zone" ColumnName="rto_zone" />
+                <ScalarProperty Name="rtolocationgrpcd" ColumnName="rtolocationgrpcd" />
+                <ScalarProperty Name="rto_loc_name" ColumnName="rto_loc_name" />
+                <ScalarProperty Name="rto_loc_code" ColumnName="rto_loc_code" />
+                <ScalarProperty Name="rtoid" ColumnName="rtoid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

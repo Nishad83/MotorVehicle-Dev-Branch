@@ -1,0 +1,603 @@
+﻿@model List<AndApp.Models.MotorQuoteSharePDF>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <title>AND APP</title>
+    <style type="text/css">
+        @@font-face {
+            font-family: 'Lato-Regular';
+            src: url('fonts/Lato-Regular.ttf');
+        }
+
+        @@page {
+            @@bottom-right {
+                content: counter(page) " of " counter(pages);
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body, .policy-quotation {
+            font-family: 'Lato-Regular';
+            margin: 0;
+            width: 100%;
+            display: block;
+        }
+
+        .p-container {
+            width: 1195px;
+            margin: 1px auto;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+            line-height: 26px;
+        }
+
+        .row-box {
+            display: -ms-flexbox;
+            display: flex;
+            clear: both;
+            width: 100%;
+        }
+
+        .ml-auto {
+            margin-left: auto;
+        }
+
+        .mr-auto {
+            margin-right: auto;
+        }
+
+        .m-auto {
+            margin: 0 auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .p-10 {
+            padding: 10px;
+        }
+
+        .p-25 {
+            padding: 10px 25px;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .br-rad {
+            border: 1px solid #666;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .img-br {
+            width: 135px;
+            height: 135px;
+            border: 1px solid #666;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        .sec-2 {
+            border-color: #ee669d;
+            padding-bottom: 10px;
+        }
+
+        .title1 {
+            font-size: 50px;
+            color: #111;
+            border-bottom: 1px solid #ee669d;
+            line-height: 50px;
+        }
+
+        .title2 {
+            font-size: 40px;
+            color: #111;
+            line-height: 40px;
+        }
+
+        .title3 {
+            font-size: 36px;
+            color: #111;
+            line-height: 36px;
+        }
+
+        .title4 {
+            font-size: 30px;
+            color: #ef3b85;
+            font-weight: bold;
+            padding-bottom: 8px;
+            line-height: 30px;
+        }
+
+        .title5 {
+            font-size: 21px;
+            color: #ef3b85;
+            margin-top: 5px;
+            line-height: 26px;
+        }
+
+        .title6 {
+            font-size: 29px;
+            color: #111;
+            margin: 12px 0;
+            display: block;
+            float: left;
+            width: 100%;
+        }
+
+        .w-f {
+            float: left;
+            width: 170px;
+        }
+
+        .price {
+            font-size: 30px;
+            color: #ef3b85;
+            border-radius: 10px;
+            border: 1px solid #666;
+            padding: 5px 15px;
+            text-align: center;
+            font-weight: bold;
+            line-height: 34px;
+        }
+
+        .w-100 {
+            width: 100%;
+            display: block;
+        }
+
+        .al-center {
+            align-self: center;
+        }
+
+        .col-4 {
+            width: 33.333333%;
+        }
+
+        .col-5 {
+            width: 41.666667%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-2 {
+            width: 16.666667%;
+        }
+
+        .col-8 {
+            width: 66.666667%;
+        }
+
+        .num-box {
+            padding: 3px 12px;
+            float: left;
+        }
+
+        .f-left {
+            float: left;
+        }
+
+        .f-right {
+            float: right;
+        }
+
+        .p-20 {
+            padding: 10px 20px;
+        }
+
+        .text {
+            font-size: 18px;
+            line-height: 23px;
+        }
+
+        .gray {
+            background-color: #efedee;
+        }
+
+        .pl-30 {
+            padding-left: 30px;
+        }
+
+        .pr-30 {
+            padding-right: 30px;
+        }
+
+        .text2 {
+            font-size: 24px;
+            font-style: italic;
+            color: #111;
+        }
+
+        .mt-40 {
+            margin-top: 40px;
+        }
+
+        ul {
+            padding-left: 15px;
+        }
+
+            ul li {
+                font-size: 24px;
+                line-height: 32px;
+                padding-bottom: 10px;
+            }
+
+        .bor-radius {
+            border-radius: 50%;
+            border: 2px solid #ef3b85;
+            width: 193px;
+            height: 193px;
+        }
+
+        .img-rad {
+            border-radius: 50%;
+        }
+
+        .details {
+            border-left: 2px solid #e30b64;
+            margin-left: 28px;
+            padding-left: 28px;
+        }
+
+        .posp {
+            border-color: #ef3b85;
+            margin-top: 20px;
+            padding: 30px;
+        }
+
+        .text4 {
+            font-size: 18px;
+            color: #555;
+            text-align: right;
+        }
+
+        .bottom-sec {
+            border-top: 1px solid #e30b64;
+            padding-top: 10px;
+            padding-bottom: 30px;
+            margin-top: 8px;
+        }
+
+        .text7 {
+            font-size: 16px;
+            color: #111;
+            font-style: italic;
+            text-align: center;
+            padding: 5px 0;
+        }
+
+        .text8 {
+            font-size: 20px;
+            color: #111;
+            text-align: center;
+            padding: 5px 0;
+        }
+
+            .text8 span {
+                font-size: 26px;
+                font-weight: 600;
+            }
+
+        .text9 {
+            font-size: 16px;
+            color: #111;
+            text-align: center;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <section class="policy-quotation">
+
+        <div class="p-container">
+            <div class="p-25 row-box head-sec">
+                <div class="mr-auto al-center"><img style="" src="~/images/logo.png" alt="logo"></div>
+                <div class="ml-auto"><img style="width:30%;float:right" src="~/images/car.png" alt="logo"></div>
+            </div>
+
+            <div class="w-100 br-rad sec-2">
+                <div class="p-25 title1 w-100 text-center">Quotation</div>
+                <div class="p-25 row-box">
+                    <div class="mr-auto al-center"><div class="title2">@Model[0].Model &nbsp;&nbsp; @Model[0].VariantName</div></div>
+                    @*<div class="ml-auto"><img src="~/images/number-plat.png" alt="number-plat"></div>*@
+                    <div class="ml-auto"><div class="title3">Reg. No : @Model[0].RegNo</div></div>
+
+                </div>
+                <div class="p-25 row-box">
+                    <div class="mr-auto"><div class="title3">@Model[0].Fuel &nbsp;&nbsp; @Model[0].ManufactureYear</div></div>
+                    <div class="m-auto"><div class="title3">NCB: @Model[0].NCBRate</div></div>
+                    <div class="ml-auto"><div class="title3">@Model[0].PolicyType</div></div>
+                </div>
+            </div>
+
+            @foreach (var item in Model)
+            {
+                double TotalODAmt = 0; double TotalTPAmt = 0; double TotalAddonAmt = 0; double TotalNetAmt = 0; double GSTAmt = 0;
+
+                <div class="row-box br-rad p-25" style="page-break-inside: avoid">
+                    <div class="col-4 pr-30 al-center">
+                        <div class="row-box text-center">
+                            <div class="col-6">
+                                <div class="img-br"><img src="~/assets/images/@(item.CompanyName).png" alt=@item.CompanyName></div>
+                            </div>
+                            <div class="col-6 al-center">
+                                <div class="title4">IDV</div>
+                                <div class="price">₹ @item.IDV</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="w-100 f-left">
+                            <div class="w-100 num-box">
+                                <div class="w-100 num-box"><div class="title5">Base Cover</div></div>
+
+
+                                @if (@item.BasicODPremium != null && @item.BasicODPremium != 0)
+                                {
+                                    TotalODAmt += Convert.ToDouble(@item.BasicODPremium);
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">Basic Own Damage Premium</div>
+                                        <div class="text f-right">@item.BasicODPremium</div>
+                                    </div>
+                                }
+
+                                @if (@item.EleAccPremium != null && @item.EleAccPremium != 0)
+                                {
+                                    TotalODAmt += Convert.ToDouble(@item.EleAccPremium);
+
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">Electrical Accessory Premium</div>
+                                        <div class="text f-right">@item.EleAccPremium</div>
+                                    </div>
+                                }
+
+                                @if (@item.NonEleAccPremium != null && @item.NonEleAccPremium != 0)
+                                {
+                                    TotalODAmt += Convert.ToDouble(@item.NonEleAccPremium);
+
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">Non-Electrical Accessory Premium</div>
+                                        <div class="text f-right">@item.NonEleAccPremium</div>
+                                    </div>
+                                }
+
+                                @if (@item.CngLpgKitPremium != null && @item.CngLpgKitPremium != 0)
+                                {
+                                    TotalODAmt += Convert.ToDouble(@item.CngLpgKitPremium);
+
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">CNG/LPG Kit Premium</div>
+                                        <div class="text f-right">@item.CngLpgKitPremium</div>
+                                    </div>
+                                }
+
+                                @if (TotalODAmt != 0)
+                                {
+                                    TotalNetAmt += TotalODAmt;
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">Total OD Premium</div>
+                                        <div class="text f-right">@TotalODAmt</div>
+                                    </div>
+                                }
+
+                                <div class="w-100 num-box"><div class="title5">TP Premium</div></div>
+
+                                @if (@item.BasicThirdPartyLiability != null && @item.BasicThirdPartyLiability != 0)
+                                {
+                                    TotalTPAmt += Convert.ToDouble(@item.BasicThirdPartyLiability);
+
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">Basic Third Party Liability</div>
+                                        <div class="text f-right">@item.BasicThirdPartyLiability</div>
+                                    </div>
+                                }
+
+                                @if (@item.PACoverToOwnDriver != null && @item.PACoverToOwnDriver != 0)
+                                {
+                                    TotalTPAmt += Convert.ToDouble(@item.PACoverToOwnDriver);
+
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">PA Cover To Owned Driver</div>
+                                        <div class="text f-right">@item.PACoverToOwnDriver</div>
+                                    </div>
+                                }
+
+                                @if (@item.PAToPaidDriver != null && @item.PAToPaidDriver != 0)
+                                {
+                                    TotalTPAmt += Convert.ToDouble(@item.PAToPaidDriver);
+
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">PA Cover To Paid Driver</div>
+                                        <div class="text f-right">@item.PAToPaidDriver</div>
+                                    </div>
+                                }
+
+                                @if (@item.TPCNGLPGPremium != null && @item.TPCNGLPGPremium != 0)
+                                {
+                                    TotalTPAmt += Convert.ToDouble(@item.TPCNGLPGPremium);
+
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">TP CNG/LPG Kit Premium</div>
+                                        <div class="text f-right">@item.TPCNGLPGPremium</div>
+                                    </div>
+                                }
+
+                                @if (@item.PACoverToUnNamedPerson != null && @item.PACoverToUnNamedPerson != 0)
+                                {
+                                    TotalTPAmt += Convert.ToDouble(@item.PACoverToUnNamedPerson);
+
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">PA Cover for unnamed persons</div>
+                                        <div class="text f-right">@item.PACoverToUnNamedPerson</div>
+                                    </div>
+                                }
+
+                                @if (@item.LLToPaidDriver != null && @item.LLToPaidDriver != 0)
+                                {
+                                    TotalTPAmt += Convert.ToDouble(@item.LLToPaidDriver);
+
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">Legal Liability to Paid Driver</div>
+                                        <div class="text f-right">@item.LLToPaidDriver</div>
+                                    </div>
+                                }
+
+                                @if (@item.LLToPaidEmployee != null && @item.LLToPaidEmployee != 0)
+                                {
+                                    TotalTPAmt += Convert.ToDouble(@item.LLToPaidEmployee);
+
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">Legal Liability Of Employee</div>
+                                        <div class="text f-right">@item.LLToPaidEmployee</div>
+                                    </div>
+                                }
+
+                                @if (TotalTPAmt != 0)
+                                {
+                                    TotalNetAmt += TotalTPAmt;
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">Total TP Premium</div>
+                                        <div class="text f-right">@TotalTPAmt</div>
+                                    </div>
+                                }
+
+                                @*Addon*@
+                                @if (item.TotalAddon > 0)
+                                {
+                                    if (item.lstAddonPremiums != null && item.lstAddonPremiums.Count > 0)
+                                    {
+                                        <div class="w-100 num-box"><div class="title5">Addon</div></div>
+                                        foreach (var objAddon in item.lstAddonPremiums)
+                                        {
+                                            TotalAddonAmt += Convert.ToDouble(@objAddon.AddonVal);
+                                            if (Convert.ToDouble(@objAddon.AddonVal) > 0)
+                                            {
+                                                <div class="gray w-100 num-box">
+                                                    <div class="text f-left">@objAddon.AddonName</div>
+                                                    <div class="text f-right">@objAddon.AddonVal</div>
+                                                </div>
+                                            }
+                                        }
+
+                                    }
+                                }
+                                @if (TotalAddonAmt != 0)
+                                {
+                                    TotalNetAmt += TotalAddonAmt;
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">Total Addon Premium</div>
+                                        <div class="text f-right">@TotalAddonAmt</div>
+                                    </div>
+                                }
+                                @if (item.TotalDiscount > 0)
+                                {
+                                    <div class="w-100 num-box"><div class="title5">Total Discount</div></div>
+                                    if (TotalNetAmt != 0)
+                                    {
+                                        TotalNetAmt = TotalNetAmt - Convert.ToDouble(@item.TotalDiscount);
+                                        <div class="gray w-100 num-box">
+                                            <div class="text f-left">No-Claim Bonus (@item.NCBRate %) </div>
+                                            <div class="text f-right">@item.TotalDiscount</div>
+                                        </div>
+                                    }
+                                }
+                                <div class="w-100 num-box"><div class="title5">Final Premium (inc. GST)</div></div>
+
+                                @if (TotalNetAmt != 0)
+                                {
+                                    //GSTAmt = Math.Round(TotalNetAmt * 0.18);
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">Total Net Premium</div>
+                                        <div class="text f-right">@TotalNetAmt</div>
+                                    </div>
+
+                                    <div class="gray w-100 num-box">
+                                        <div class="text f-left">GST(18%) </div>
+                                        <div class="text f-right">@item.gst</div>
+                                    </div>
+
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3 pl-30 al-center text-center">
+                        <div class="title4">Final Premium</div>
+                        <div class="price">₹ @item.finalprm</div>
+                    </div>
+
+                </div>
+            }
+
+            <div class="text4">Q. No.: @Model[0].QuoteNo</div>
+            @*<div class="text4 al-center">2 of 2</div>*@
+
+            <div class="text2">Quotation generated on @DateTime.Now.ToShortDateString()</div>
+            <div style="page-break-inside: avoid">
+                <div class="title4 mt-40 text-center">Terms and Conditions</div>
+                <ul>
+                    <li>Insurance is the subject matter of the solicitation.</li>
+                    <li>Product information is solely based on the information received from the insures.</li>
+                    <li>For more details on risk factors, associated terms and conditions and exclusions, please read the sales brochure carefully of respective insurer before concluding a sale.</li>
+                </ul>
+            </div>
+
+            <div style="page-break-inside: avoid">
+
+                <div class="title3 mt-40 text-center">In Case of any Query, you can reach me on below contact details</div>
+                <div class="row-box br-rad p-25 posp">
+                    <div class="col-2 al-center">
+                        <img class="bor-radius" src="~/images/logo.png" alt="logo">
+                        @*src="~/images/hemant.jpg" alt="hemant"*@
+                    </div>
+                    <div class="col-8 details al-center">
+                        <div class="title6"><div class="w-f">PoSP Code</div> :@Model[0].PospCode </div>
+                        <div class="title6"><div class="w-f">PoSP Name</div> :@Model[0].PospName</div>
+                        <div class="title6"><div class="w-f">PoSP Phone</div> :@Model[0].PospMobile</div>
+                        <div class="title6"><div class="w-f">PoSP Email</div> : @Model[0].PospEmail</div>
+                    </div>
+                    <div class="col-2 al-center">
+                        <img class="img-rad" src="~/images/iam-logo.png" alt="iam-logo">
+                    </div>
+                </div>
+                <div class="text4">Q. No.: @Model[0].QuoteNo</div>
+                @*<div class="text4 al-center">2 of 2</div>*@
+
+            </div>
+
+            <div class="bottom-sec" style="page-break-inside: avoid">
+                <div class="text7">Privacy Policy Terms & Conditions Disclaimer</div>
+                <div class="text8">Insurance is offered by <span>iAND Insurance Broker Private Limited</span>, Direct Insurance Broker - General and Life</div>
+                <div class="text9">Registered Office: 1106, 11th floor, D & C Dynasty building, C G Road, Near Sardar Patel Stadium Cross roads, Navrangpura, Ahmedabad-380009</div>
+                <div class="text9">CIN: U66000GJ2019PTC111177, IRDAI License No. IRDA/DB 813/20, Registraton No.727, Valid Up To 25th Aug 2023.</div>
+            </div>
+
+        </div>
+
+
+    </section>
+</body>
+</html>

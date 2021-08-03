@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpsBinding_IService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://fglpg001.futuregenerali.in/BO/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://fglpg001.futuregenerali.in/BO/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://fglpg001.futuregenerali.in/BO/Service.svc?xsd=xsd2" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_AgentEnqService_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgentEnqService" />
+  </wsdl:message>
+  <wsdl:message name="IService_AgentEnqService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgentEnqServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreatePolicy_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePolicy" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreatePolicy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateQuotation_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateQuotation" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateQuotation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateQuotationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateProposal_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateProposal" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateProposal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateProposalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateAndUpdateClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAndUpdateClient" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateAndUpdateClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAndUpdateClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateAndUpdateClientMultipleAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAndUpdateClientMultipleAddress" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateAndUpdateClientMultipleAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAndUpdateClientMultipleAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreatePolicyWithPayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePolicyWithPayer" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreatePolicyWithPayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreatePolicyWithPayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ClientAndorsementService_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClientAndorsementService" />
+  </wsdl:message>
+  <wsdl:message name="IService_ClientAndorsementService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClientAndorsementServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateOnlyReceipt_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOnlyReceipt" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateOnlyReceipt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOnlyReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ClaimAndNCB_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClaimAndNCB" />
+  </wsdl:message>
+  <wsdl:message name="IService_ClaimAndNCB_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClaimAndNCBResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RenewalCloningService_InputMessage">
+    <wsdl:part name="parameters" element="tns:RenewalCloningService" />
+  </wsdl:message>
+  <wsdl:message name="IService_RenewalCloningService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RenewalCloningServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_FetchPinCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:FetchPinCode" />
+  </wsdl:message>
+  <wsdl:message name="IService_FetchPinCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FetchPinCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_isClaim_InputMessage">
+    <wsdl:part name="parameters" element="tns:isClaim" />
+  </wsdl:message>
+  <wsdl:message name="IService_isClaim_OutputMessage">
+    <wsdl:part name="parameters" element="tns:isClaimResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_InspectService_InputMessage">
+    <wsdl:part name="parameters" element="tns:InspectService" />
+  </wsdl:message>
+  <wsdl:message name="IService_InspectService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InspectServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ClientEnq_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClientEnq" />
+  </wsdl:message>
+  <wsdl:message name="IService_ClientEnq_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClientEnqResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_FetcheMandateDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:FetcheMandateDetails" />
+  </wsdl:message>
+  <wsdl:message name="IService_FetcheMandateDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FetcheMandateDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_processcovernote_InputMessage">
+    <wsdl:part name="parameters" element="tns:processcovernote" />
+  </wsdl:message>
+  <wsdl:message name="IService_processcovernote_OutputMessage">
+    <wsdl:part name="parameters" element="tns:processcovernoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Pos_MispMaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:Pos_MispMaster" />
+  </wsdl:message>
+  <wsdl:message name="IService_Pos_MispMaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Pos_MispMasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ITGI_InputMessage">
+    <wsdl:part name="parameters" element="tns:ITGI" />
+  </wsdl:message>
+  <wsdl:message name="IService_ITGI_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ITGIResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_HealthRenewal_InputMessage">
+    <wsdl:part name="parameters" element="tns:HealthRenewal" />
+  </wsdl:message>
+  <wsdl:message name="IService_HealthRenewal_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HealthRenewalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetHBZone_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHBZone" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetHBZone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHBZoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CheckDuplicateClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateClient" />
+  </wsdl:message>
+  <wsdl:message name="IService_CheckDuplicateClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_BankaAgentEnqService_InputMessage">
+    <wsdl:part name="parameters" element="tns:BankaAgentEnqService" />
+  </wsdl:message>
+  <wsdl:message name="IService_BankaAgentEnqService_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BankaAgentEnqServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_HealthCombo_InputMessage">
+    <wsdl:part name="parameters" element="tns:HealthCombo" />
+  </wsdl:message>
+  <wsdl:message name="IService_HealthCombo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HealthComboResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RenewalMotorData_InputMessage">
+    <wsdl:part name="parameters" element="tns:RenewalMotorData" />
+  </wsdl:message>
+  <wsdl:message name="IService_RenewalMotorData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RenewalMotorDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="AgentEnqService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AgentEnqService" message="tns:IService_AgentEnqService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AgentEnqServiceResponse" message="tns:IService_AgentEnqService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePolicy">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CreatePolicy" message="tns:IService_CreatePolicy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CreatePolicyResponse" message="tns:IService_CreatePolicy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuotation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateQuotation" message="tns:IService_CreateQuotation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CreateQuotationResponse" message="tns:IService_CreateQuotation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateProposal">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateProposal" message="tns:IService_CreateProposal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CreateProposalResponse" message="tns:IService_CreateProposal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAndUpdateClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateAndUpdateClient" message="tns:IService_CreateAndUpdateClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CreateAndUpdateClientResponse" message="tns:IService_CreateAndUpdateClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAndUpdateClientMultipleAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateAndUpdateClientMultipleAddress" message="tns:IService_CreateAndUpdateClientMultipleAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CreateAndUpdateClientMultipleAddressResponse" message="tns:IService_CreateAndUpdateClientMultipleAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePolicyWithPayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CreatePolicyWithPayer" message="tns:IService_CreatePolicyWithPayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CreatePolicyWithPayerResponse" message="tns:IService_CreatePolicyWithPayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClientAndorsementService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ClientAndorsementService" message="tns:IService_ClientAndorsementService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ClientAndorsementServiceResponse" message="tns:IService_ClientAndorsementService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOnlyReceipt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateOnlyReceipt" message="tns:IService_CreateOnlyReceipt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CreateOnlyReceiptResponse" message="tns:IService_CreateOnlyReceipt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClaimAndNCB">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ClaimAndNCB" message="tns:IService_ClaimAndNCB_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ClaimAndNCBResponse" message="tns:IService_ClaimAndNCB_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RenewalCloningService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RenewalCloningService" message="tns:IService_RenewalCloningService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RenewalCloningServiceResponse" message="tns:IService_RenewalCloningService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FetchPinCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/FetchPinCode" message="tns:IService_FetchPinCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/FetchPinCodeResponse" message="tns:IService_FetchPinCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="isClaim">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/isClaim" message="tns:IService_isClaim_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/isClaimResponse" message="tns:IService_isClaim_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InspectService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/InspectService" message="tns:IService_InspectService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/InspectServiceResponse" message="tns:IService_InspectService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClientEnq">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ClientEnq" message="tns:IService_ClientEnq_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ClientEnqResponse" message="tns:IService_ClientEnq_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FetcheMandateDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/FetcheMandateDetails" message="tns:IService_FetcheMandateDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/FetcheMandateDetailsResponse" message="tns:IService_FetcheMandateDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="processcovernote">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/processcovernote" message="tns:IService_processcovernote_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/processcovernoteResponse" message="tns:IService_processcovernote_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Pos_MispMaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Pos_MispMaster" message="tns:IService_Pos_MispMaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/Pos_MispMasterResponse" message="tns:IService_Pos_MispMaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ITGI">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ITGI" message="tns:IService_ITGI_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ITGIResponse" message="tns:IService_ITGI_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HealthRenewal">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/HealthRenewal" message="tns:IService_HealthRenewal_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/HealthRenewalResponse" message="tns:IService_HealthRenewal_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHBZone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetHBZone" message="tns:IService_GetHBZone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetHBZoneResponse" message="tns:IService_GetHBZone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CheckDuplicateClient" message="tns:IService_CheckDuplicateClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CheckDuplicateClientResponse" message="tns:IService_CheckDuplicateClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BankaAgentEnqService">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/BankaAgentEnqService" message="tns:IService_BankaAgentEnqService_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/BankaAgentEnqServiceResponse" message="tns:IService_BankaAgentEnqService_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HealthCombo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/HealthCombo" message="tns:IService_HealthCombo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/HealthComboResponse" message="tns:IService_HealthCombo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RenewalMotorData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RenewalMotorData" message="tns:IService_RenewalMotorData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RenewalMotorDataResponse" message="tns:IService_RenewalMotorData_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AgentEnqService">
+      <soap:operation soapAction="http://tempuri.org/IService/AgentEnqService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePolicy">
+      <soap:operation soapAction="http://tempuri.org/IService/CreatePolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuotation">
+      <soap:operation soapAction="http://tempuri.org/IService/CreateQuotation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateProposal">
+      <soap:operation soapAction="http://tempuri.org/IService/CreateProposal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAndUpdateClient">
+      <soap:operation soapAction="http://tempuri.org/IService/CreateAndUpdateClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAndUpdateClientMultipleAddress">
+      <soap:operation soapAction="http://tempuri.org/IService/CreateAndUpdateClientMultipleAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePolicyWithPayer">
+      <soap:operation soapAction="http://tempuri.org/IService/CreatePolicyWithPayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientAndorsementService">
+      <soap:operation soapAction="http://tempuri.org/IService/ClientAndorsementService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOnlyReceipt">
+      <soap:operation soapAction="http://tempuri.org/IService/CreateOnlyReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClaimAndNCB">
+      <soap:operation soapAction="http://tempuri.org/IService/ClaimAndNCB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenewalCloningService">
+      <soap:operation soapAction="http://tempuri.org/IService/RenewalCloningService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchPinCode">
+      <soap:operation soapAction="http://tempuri.org/IService/FetchPinCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isClaim">
+      <soap:operation soapAction="http://tempuri.org/IService/isClaim" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InspectService">
+      <soap:operation soapAction="http://tempuri.org/IService/InspectService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientEnq">
+      <soap:operation soapAction="http://tempuri.org/IService/ClientEnq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetcheMandateDetails">
+      <soap:operation soapAction="http://tempuri.org/IService/FetcheMandateDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="processcovernote">
+      <soap:operation soapAction="http://tempuri.org/IService/processcovernote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pos_MispMaster">
+      <soap:operation soapAction="http://tempuri.org/IService/Pos_MispMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ITGI">
+      <soap:operation soapAction="http://tempuri.org/IService/ITGI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HealthRenewal">
+      <soap:operation soapAction="http://tempuri.org/IService/HealthRenewal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHBZone">
+      <soap:operation soapAction="http://tempuri.org/IService/GetHBZone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateClient">
+      <soap:operation soapAction="http://tempuri.org/IService/CheckDuplicateClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BankaAgentEnqService">
+      <soap:operation soapAction="http://tempuri.org/IService/BankaAgentEnqService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HealthCombo">
+      <soap:operation soapAction="http://tempuri.org/IService/HealthCombo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenewalMotorData">
+      <soap:operation soapAction="http://tempuri.org/IService/RenewalMotorData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpsBinding_IService" type="tns:IService">
+    <wsp:PolicyReference URI="#BasicHttpsBinding_IService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AgentEnqService">
+      <soap:operation soapAction="http://tempuri.org/IService/AgentEnqService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePolicy">
+      <soap:operation soapAction="http://tempuri.org/IService/CreatePolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateQuotation">
+      <soap:operation soapAction="http://tempuri.org/IService/CreateQuotation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateProposal">
+      <soap:operation soapAction="http://tempuri.org/IService/CreateProposal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAndUpdateClient">
+      <soap:operation soapAction="http://tempuri.org/IService/CreateAndUpdateClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAndUpdateClientMultipleAddress">
+      <soap:operation soapAction="http://tempuri.org/IService/CreateAndUpdateClientMultipleAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePolicyWithPayer">
+      <soap:operation soapAction="http://tempuri.org/IService/CreatePolicyWithPayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientAndorsementService">
+      <soap:operation soapAction="http://tempuri.org/IService/ClientAndorsementService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOnlyReceipt">
+      <soap:operation soapAction="http://tempuri.org/IService/CreateOnlyReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClaimAndNCB">
+      <soap:operation soapAction="http://tempuri.org/IService/ClaimAndNCB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenewalCloningService">
+      <soap:operation soapAction="http://tempuri.org/IService/RenewalCloningService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetchPinCode">
+      <soap:operation soapAction="http://tempuri.org/IService/FetchPinCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isClaim">
+      <soap:operation soapAction="http://tempuri.org/IService/isClaim" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InspectService">
+      <soap:operation soapAction="http://tempuri.org/IService/InspectService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientEnq">
+      <soap:operation soapAction="http://tempuri.org/IService/ClientEnq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FetcheMandateDetails">
+      <soap:operation soapAction="http://tempuri.org/IService/FetcheMandateDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="processcovernote">
+      <soap:operation soapAction="http://tempuri.org/IService/processcovernote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pos_MispMaster">
+      <soap:operation soapAction="http://tempuri.org/IService/Pos_MispMaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ITGI">
+      <soap:operation soapAction="http://tempuri.org/IService/ITGI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HealthRenewal">
+      <soap:operation soapAction="http://tempuri.org/IService/HealthRenewal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHBZone">
+      <soap:operation soapAction="http://tempuri.org/IService/GetHBZone" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicateClient">
+      <soap:operation soapAction="http://tempuri.org/IService/CheckDuplicateClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BankaAgentEnqService">
+      <soap:operation soapAction="http://tempuri.org/IService/BankaAgentEnqService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HealthCombo">
+      <soap:operation soapAction="http://tempuri.org/IService/HealthCombo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenewalMotorData">
+      <soap:operation soapAction="http://tempuri.org/IService/RenewalMotorData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="BasicHttpBinding_IService" binding="tns:BasicHttpBinding_IService">
+      <soap:address location="http://fglpg001.futuregenerali.in/BO/Service.svc" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpsBinding_IService" binding="tns:BasicHttpsBinding_IService">
+      <soap:address location="https://mumhoiecomuat.fgi.ad/BO/Service.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

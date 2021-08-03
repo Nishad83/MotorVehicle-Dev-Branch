@@ -1,0 +1,7 @@
+﻿{
+  "applicationId":"V2DB410862F09D6EFCCDF9878719C0AE3623AFE832B5ADD61E052C0D5FE732C0BD0857D167A74CF59DA67F90D331D94DBE",
+  "cancelReturnUrl":"http://103.254.244.86:84/Motor/PrivateCar/sort",
+  "successReturnUrl":"http://103.254.244.86:84/Motor/PrivateCar/sort"
+}
+
+

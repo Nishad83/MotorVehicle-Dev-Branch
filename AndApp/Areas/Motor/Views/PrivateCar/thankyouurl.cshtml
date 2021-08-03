@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "thankyouurl";
+
+    
+}
+
+
+
+
+<section class="padding-sm succ-pay gray-bg m-top2">
+    <div class="container">
+        <div class="row row justify-content-center">
+            <div class="col-md-4 col-lg-3">
+                <div class="p-box succ-left">
+                    <div class="p-4 align-self-center">
+                        @*<a href="@Url.Action("cardet class="btn btn-pink">New Quote</a>
+                            <a href="#" class="btn btn-pink">My Policy</a>
+                            <a href="@Url.Action("Quotat class="btn btn-pink">My Quote</a>*@
+                        <a href="@Url.Action("CarDetails","PrivateCar")" class="btn btn-pink">Dashboard</a>
+                        <a href="@Url.Action("MyPolicy","PrivateCar")" class="btn btn-pink">My Policy</a>
+                        <a href="@Url.Action("QuotationList", "QuotationList")" class="btn btn-pink">My Quote</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-7">
+                <div class="p-box p-4">
+                    <div class="row-box succ-head">
+                        <div class="left-icon">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i> <h5>@ViewBag.payment</h5>
+                        </div>
+
+                    </div>
+                    @if (ViewBag.payment == "Payment Successful")
+                    {
+
+
+
+                        <div class="succ-cont">
+                            <p>Dear @ViewBag.pospname</p>
+                            <p>Thank you for doing Business with ANDAPP.</p>
+                           
+                            @if (ViewBag.pdfurl == "serviceerror")
+                            {
+                                <p>Click Here to download the Policy copy <a href="#" onclick="Pdferror('serviceerror');" class="pink-color">Download Policy PDF</a></p>
+                            }
+                            else if (ViewBag.pdfurl == "error" || ViewBag.pdfurl == "")
+                            {
+                                <p>Click Here to download the Policy copy <a  href="#" onclick="Pdferror('error');" class="pink-color">Download Policy PDF</a></p>
+                            }
+                            else
+                            {
+                                <p>Click Here to download the Policy copy <a href="@ViewBag.pdfurl" class="pink-color">Download Policy PDF</a></p>
+                            }
+
+                            @*<p>Commission amount of 25000 is credited to your account bearing the account number xxxxxx890.</p>*@
+                        </div>
+                        <div class="row-box succ-foot">
+                            <a href="http://andapp.in/" class="gray-color">www.andapp.in/help</a>
+                          
+                        </div>}
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</section>
+
+<script type="text/javascript">
+
+    if ('@ViewBag.company' == 'ICICI') {
+
+        window.location.href = '@Url.Action("ICICPDF", "PrivateCar")';
+    }
+    function Pdferror(status) {
+        if (status == "serviceerror")
+            alert("Digit Internal Service is not working");
+        else
+            alert("This Policy is under Inspection");
+    }
+</script>
+
+

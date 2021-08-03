@@ -1,0 +1,151 @@
+﻿<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/animate.min.css" />
+    <link href="~/assets/css/date-picker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/style.css" />
+    <link href="~/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <title>AND APP</title>
+    <script src="~/assets/js/jquery.js"></script>
+    <script src="~/assets/js/date-picker.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+</head>
+<body>
+    <header class="row-box">
+        <div class="head-left">
+            <div class="dropdown ins-pro">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Click Here !
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" id="myprofile" href="#">MY Profile</a>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="logo"><img src="images/logo.png" alt=""></a>
+        <div class="head-right">
+            <a href="#" class="btn btn-br">Login</a>
+            <a href="#" class="btn btn-br">Become a Digital Insurance Advisor (PoSP)</a>
+        </div>
+    </header>
+    <section class="padding ins-sec m-top">
+        <div class="container">
+            @RenderBody()
+            @*<div class="row">
+                    <div class="col-md-12 col-lg-6 align-self-center">
+                        <img class="img-fluid vect-img" src="images/car-insurance.png" alt="car-insurance">
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <div class="br-box text-center">
+                            <div class="padd">
+                                <h2 class="mb-4">No Documents Required</h2>
+                                <div class="form-group">
+                                    <label>Enter the Registration Number</label>
+                                    <input type="text" name="number" class="form-control fullWidht text-center" placeholder="Enter Your Car Number (Example DL1AB1234)" required="">
+                                </div>
+                                <a href="#" class="btn btn-pink btn-fw mt-4">View Instant Quotes</a>
+                            </div>
+                            <div class="box-bottom">
+                                <span class="or">or</span>
+                                <div class="padd">
+                                    <a href="screen2.html" class="btn btn-br btn-fw">Proceed without car Number</a>
+                                    <a href="#" class="btn b-link mt-3">New Vehicle</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+    </section>
+
+    <footer class="page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h6>links</h6>
+                    <ul>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6>Call Us</h6>
+                    <p>+91 9033028000</p>
+                </div>
+                <div class="col-md-3">
+                    <h6>Mail Us</h6>
+                    <p>hello@andapp.in</p>
+                </div>
+                <div class="col-md-3">
+                    <h6>Follow Us</h6>
+                    <div class="row-box follo-icon">
+                        <a href="https://www.facebook.com/andapp.in" target="_blank" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/andapp_in" target="_blank" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/andapp.in/" target="_blank" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="https://www.linkedIn.com/andapp.in/" target="_blank" title="LinkedIn"><i class="fa fa-linkedIn" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row middle-f">
+                <div class="col-md-12 text-center">
+                    <h4>iAND INSURANCE BROKER PRIVATE LIMITED</h4>
+                    <h6>Registered & Corporate Office</h6>
+                    <p>10, Swati Own Asso. Jagabhai Park,, B/h- L G Hospital, Maninagar, AHMEDABAD, Ahmedabad, Gujarat, India, 380008</p>
+                    <p>CIN: U66000GJ2019PTC111177</p>
+                    <h6>Registered With IRDAI As Direct Broker- Life And General</h6>
+                    <p>IRDAI License No. IRDA/DB 813/20, Registraton No.727, Valid Up To 25th Aug 2023.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <section class="footer-bottom">
+        <div class="container">
+            <div class="row-box">
+                <p class="left">Copyright © 2020 andapp.in. All rights reserved.</p>
+                <p class="right">Powered by: <a href="#">Dezine Brainz</a></p>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+
+    <script src="~/assets/js/script.min.js"></script>
+    @*<script src="~/assets/js/jquery.scrollme.min.js"></script>*@
+
+
+</body>
+</html>
+<script type="text/javascript">
+
+    $("#myprofile").click(function (e) {
+
+        $.ajax({
+            type: "POST",
+            url: '/Home/Getguid/',
+            data: {
+                id: 2,
+            },
+            success: function(result) {
+                window.location.href = "http://103.254.244.86:81/Login/Login?" + result + ""
+            },
+            error: function(result) {
+                alert('error');
+            }
+        });
+    });
+
+</script>

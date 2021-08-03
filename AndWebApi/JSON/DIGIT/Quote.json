@@ -1,0 +1,244 @@
+﻿{
+  "enquiryId": "7W454O6RC6VL6UD07MPAAN2VJLCAFsdfAFQ6G2OBVBANHP9DMC1",
+  "contract": {
+    "insuranceProductCode": "20101",
+    "subInsuranceProductCode":"31",
+    "startDate": "2021-01-30",
+    "endDate": "2022-01-30",
+    "policyHolderType": "INDIVIDUAL",
+    "externalPolicyNumber": "PARTNER_POL_NO",
+    "isNCBTransfer": null,
+    "coverages": {
+      "voluntaryDeductible": "ZERO",
+      "thirdPartyLiability": {
+        "isTPPD": false
+      },
+      "ownDamage": {
+        "discount": {
+          "userSpecialDiscountPercent": 0,
+          "discounts": []
+        },
+        "surcharge": {
+          "loadings": []
+        }
+      },
+      "personalAccident": {
+        "selection": true,
+        "coverTerm": 0,
+        "coverAvailability": "AVAILABLE",
+        "netPremium": "INR 330.00"
+      },
+      "accessories": {
+        "cng": {
+          "selection": false,
+          "insuredAmount": 0
+        },
+        "electrical": {
+          "selection": null,
+          "insuredAmount": null
+        },
+        "nonElectrical": {
+          "selection": null,
+          "insuredAmount": null
+        }
+      },
+      "addons": {
+        "partsDepreciation": {
+          "claimsCovered": "ONE",
+          "selection": false
+        },
+        "roadSideAssistance": {
+          "selection": false
+        },
+        "engineProtection": {
+          "selection": false
+        },
+        "tyreProtection": {
+          "selection": false
+        },
+        "rimProtection": {
+          "selection": false
+        },
+        "returnToInvoice": {
+          "selection": false
+        },
+        "consumables": {
+          "selection": false
+        },
+        "keyAndLockProtect": {
+          "selection": false
+        },
+        "personalBelonging": {
+          "selection": false
+        }
+      },
+      "legalLiability": {
+        "paidDriverLL": {
+          "selection": null,
+          "insuredCount": null
+        },
+        "employeesLL": {
+          "selection": true,
+          "insuredCount": 1
+        },
+        "unnamedPaxLL": {
+          "selection": null,
+          "insuredCount": null
+        },
+        "cleanersLL": {
+          "selection": null,
+          "insuredCount": null
+        },
+        "nonFarePaxLL": {
+          "selection": null,
+          "insuredCount": null
+        },
+        "workersCompensationLL": {
+          "selection": null,
+          "insuredCount": null
+        }
+      },
+      "unnamedPA": {
+        "unnamedPax": {
+          "selection": null,
+          "insuredAmount": null,
+          "insuredCount": 1
+        },
+        "unnamedPaidDriver": {
+          "selection": null,
+          "insuredAmount": null,
+          "insuredCount": null
+        },
+        "unnamedHirer": {
+          "selection": null,
+          "insuredAmount": null,
+          "insuredCount": null
+        },
+        "unnamedPillionRider": {
+          "selection": null,
+          "insuredAmount": null,
+          "insuredCount": null
+        },
+        "unnamedCleaner": {
+          "selection": null,
+          "insuredAmount": null,
+          "insuredCount": null
+        },
+        "unnamedConductor": {
+          "selection": null,
+          "insuredAmount": null,
+          "insuredCount": null
+        }
+      }
+    }
+  },
+  "vehicle": {
+    "isVehicleNew": true,
+    "vehicleMaincode": "1111610503",
+    "licensePlateNumber":"GJ01",
+    "vehicleIdentificationNumber": "asdfghjk123467qwedsfrssdfs4546",
+    "engineNumber": null,
+    "manufactureDate":"2020-01-01",
+    "registrationDate": "2021-01-29",
+   "vehicleIDV": {
+"idv": null
+},
+    "usageType": null,
+    "permitType": null,
+    "motorType": "OB"
+  },
+  "previousInsurer": {
+    "isPreviousInsurerKnown": false,
+    "previousInsurerCode": null,
+    "previousPolicyNumber": null,
+    "previousPolicyExpiryDate": null,
+    "isClaimInLastYear": null,
+    "originalPreviousPolicyType": null,
+    "previousPolicyType": null,
+    "previousNoClaimBonus": null,
+    "currentThirdPartyPolicy": {
+      "isCurrentThirdPartyPolicyActive": null,
+      "currentThirdPartyPolicyInsurerCode": null,
+      "currentThirdPartyPolicyNumber": null,
+      "currentThirdPartyPolicyStartDateTime": null,
+      "currentThirdPartyPolicyExpiryDateTime": null
+    }
+  },
+  "persons": [
+    {
+      "personType": "INDIVIDUAL",
+      "addresses": [
+        {
+          "addressType": "PRIMARY_RESIDENCE",
+          "flatNumber": null,
+          "streetNumber": null,
+          "street": "",
+          "district": "",
+          "state": "",       //27
+          "city": "",       //Pune
+          "country": "IN",
+          "pincode": ""        //411001
+        }
+      ],
+      "communications": [
+        {
+          "communicationType": "MOBILE",
+          "communicationId": "",   //9834523452
+          "isPrefferedCommunication": true
+        },
+        {
+          "communicationType": "EMAIL",
+          "communicationId": "",             //zcxz@gmail.com
+          "isPrefferedCommunication": true
+        }
+      ],
+      "identificationDocuments": [
+        {
+          "identificationDocumentId": "",
+          "documentType": "AADHAR_CARD",
+          "documentId": "",
+          "issuingAuthority": "",
+          "issuingPlace": "",
+          "issueDate": "2019-11-22",
+          "expiryDate": "2019-11-22"
+        }
+      ],   
+      "isPolicyHolder": true,
+      "isVehicleOwner": true,
+      "firstName": "asdadas",
+      "middleName": null,
+      "lastName": ".",
+      "dateOfBirth": "1991-01-01",
+      "gender": "MALE",
+      "isDriver": false,
+      "isInsuredPerson": true
+    }
+  ],
+  "nominee": {
+    "firstName": "",
+    "middleName": "",
+    "lastName": "",
+    "dateOfBirth": "",
+    "relation": "",
+    "personType": "INDIVIDUAL"
+  },          
+  "pospInfo": {
+    "isPOSP": true,
+    "pospName": "Alex Ferguson",
+    "pospUniqueNumber": "vfdsg43fdgwae",
+    "pospLocation": "Bangalore",
+    "pospPanNumber": "DVSSR3453E",
+    "pospAadhaarNumber": "2534663324543",
+    "pospContactNumber": "68576465363"
+  },
+  "dealer": {
+    "dealerName": "",
+    "city": "",
+    "deliveryDate": null
+  },
+  "motorQuestions": {
+    "furtherAgreement": "",
+    "selfInspection": false,
+    "financer": ""
+  }
+}

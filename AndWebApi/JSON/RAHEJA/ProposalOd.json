@@ -1,0 +1,352 @@
+﻿{
+  "Discount": "",
+  "Loading": "",
+  "ContactNumber": "7019898477",
+  "mailid": "ashique.gm@inubesolutions.com",
+  "objVehicleDetails": {
+    "MakeModelVarient": "MARUTI SUZUKI|1000|AC|970CC",
+    "RtoLocation": "MUMBAI ANDHERI|MH02",
+    "RegistrationDate": "2020-06-08",
+    "Registration_Number1": "MH",
+    "Registration_Number2": "02",
+    "Registration_Number3": "ww",
+    "Registration_Number4": "5552",
+    "ManufacturingYear": "2020",
+    "ManufacturingMonth": "05",
+    "FuelType": "Petrol",
+    "IsForeignEmbassy": "2",
+    "ModifiedIDV": "448157",
+    "EngineNumber": "667sdwtrtyr5",
+    "ChassisNumber": "3432433hjwg77",
+    "AverageVehicleUsageId": "1530",
+    "VehicleColorID": "",
+    "Sector": "1",
+    "TaxExemption": "1",
+    "PUCNumber": "",
+    "PUCEndDate": ""
+  },
+  "objClientAddress": {
+    "Address1": "A",
+    "Address2": "B",
+    "Address3": "C",
+     "Area":"Amgachi B.O",
+    "City": "BENGALURU",
+    "State": "KARNATAKA",
+    "Country": "INDIA",
+    "Pincode": "000000"
+  },
+  "objRegistrationAddress": {
+    "Address1": "BN",
+    "Address2": "JO",
+    "Address3": "KI",
+     "Area":"Amgachi B.O",
+    "City": "BENGALURU",
+    "State": "KARNATAKA",
+    "Country": "INDIA",
+    "Pincode": "560076"
+  },
+  "objClientDetails": {
+    "ClientType": "0",
+    "Client_FirstName": "juhi",
+    "LastName": "",
+    "Client_DOB": "1994-01-01",
+    "MobileNumber": "8779645102",
+    "EmailId": "sushmita.pathak@qualitykiosk.com",
+    "InsuredOccupation": "sakh",
+    "Gender": "21",
+    "Salutation": "9",
+    "CorporateName": "",
+    "Client_ForAttention": "",
+    "TIN": "",
+    "PANNumber": "",
+    "GSTINNumber": "",
+    "OtherInformationOne": "fdfgdgf",
+    "OtherInformationTwo": "ghfhfg",
+    "IsEIANoExists": "true",
+    "EIANo": "1234567890123456789012345601"
+  },
+  "objVehicleHypoth": {
+    "FinancierType": "1",
+    "Financier_Address": "1234567890asdfghjklm1234567890asdfghjklm1234567890asdfghjklm",
+    "Financier_Name": "2986"
+  },
+
+  "objPolicy": {
+    "QuoteID": "149060",
+    "QuoteNo": "QUOT_MOT_000051498_12062020",
+    "Policyid": "140575",
+    "PolicyStartDate": "2020-06-12",
+    "PolicyEndDate": "2023-06-11",
+    "strODEndDate": "2021-06-11",
+    "TPSourceName": "1013",
+    "ProductCode": "2367",
+    "ProductName": "MOTOR PRIVATE CAR BUNDLED POLICY(2367)",
+    "TraceID": "TAPI120620014121",
+    "UserName": "1009298",
+    "BusinessTypeID": "24",
+    "CoverType": "1473",
+    "Tennure": 101,
+    "IsVehicleHypothicated": true,
+    "IsRegAddressSameasCorrAddress": false,
+    "TPPolicyStartDate": "",
+    "TPPolicyEndDate": "",
+    "TPPolicyNo": "",
+    "TPInsurerID": "",
+    "TPInsurerAddress": ""
+
+  },
+    "objPreviousInsurance": 
+  {
+    "PrevPolicyType": "1",
+    "PrevPolicyStartDate": "2020-06-10",
+    "PrevPolicyEndDate": "2021-06-09",
+    "ProductCode": "2311",
+    "PrevInsuranceCompanyID": "9",
+    "PrevNCB": "20",
+    "IsClaimedLastYear": "2",
+    "PrevPolicyNo": "prvpolicy1234",
+    "PrevInsurerAddress": "Addresssff",
+    "NatureOfLoss": "",
+    "prevPolicyCoverType": "COMPREHENSIVE",
+    "CurrentNCBHidden": "25"
+  },
+  "objCovers": [
+    {
+      "CoverID": "9",
+      "CoverName": "Basic - OD",
+      "CoverType": "ODPackage",
+      "PackageName": "ODPackage",
+      "IsChecked": true,
+      "objCoverDetails": null
+
+    },
+    {
+      "CoverID": "41",
+      "CoverName": "Geographical Extension - OD",
+      "CoverType": "ODPackage",
+      "PackageName": "ODPackage",
+      "IsChecked": false,
+      "objCoverDetails": null
+
+    },
+   
+    {
+      "CoverID": "39",
+      "CoverName": "Fibre Tank",
+      "CoverType": "ODPackage",
+      "PackageName": "ODPackage",
+      "IsChecked": false,
+      "objCoverDetails": null
+
+    },
+   
+
+   
+
+   
+    {
+      "CoverID": "20",
+      "CoverName": "CNG Kit - OD",
+      "CoverType": "ODPackage",
+      "PackageName": "ODPackage",
+      "IsChecked": false,
+      "objCoverDetails": {
+        "PHNumericFeild1": "100000"
+
+
+
+      }
+    },
+   
+    {
+      "CoverID": "57",
+      "CoverName": "LPG kit - OD",
+      "CoverType": "ODPackage",
+      "PackageName": "ODPackage",
+      "IsChecked": false,
+      "objCoverDetails": {
+        "PHNumericFeild1": "100000"
+
+
+
+      }
+    },
+  
+
+  
+   
+   
+    {
+      "CoverID": "91",
+      "CoverName": "Voluntary Deductibles",
+      "CoverType": "Discount",
+      "PackageName": "Discount",
+      "IsChecked": false,
+      "objCoverDetails": {
+        "PHNumericFeild1": "5000"
+
+
+      }
+
+    },
+
+    {
+      "CoverID": "33",
+      "CoverName": "Electrical or electronic accessories",
+      "CoverType": "ODPackage",
+      "PackageName": "ODPackage",
+      "IsChecked": false,
+      "objCoverDetails": {
+        "PHNumericFeild1": 1000,
+        "PHVarcharFeild1": "Test",
+        "PHNumericFeild2": "1000",
+        "PHVarcharFeild2": "ggg"
+
+      }
+
+    },
+    {
+      "CoverID": "70",
+      "CoverName": "Non Electrical Accessories",
+      "CoverType": "ODPackage",
+      "PackageName": "ODPackage",
+      "IsChecked": false,
+      "objCoverDetails": {
+        "PHNumericFeild1": "2000",
+        "PHVarcharFeild1": "Testnonelectrical"
+
+      }
+
+    },
+    {
+      "CoverID": "37",
+      "CoverName": "Engine Protect",
+      "CoverType": "AddOnCovers",
+      "PackageName": "AddOnCovers",
+      "IsChecked": false,
+      "objCoverDetails": {
+        "PHVarcharFeild2": "Geared"
+
+      }
+
+    },
+    {
+      "CoverID": "24",
+      "CoverName": "Consumable Expenses",
+      "CoverType": "AddOnCovers",
+      "PackageName": "AddOnCovers",
+      "IsChecked": false,
+      "objCoverDetails": null
+
+    },
+    {
+      "CoverID": "80",
+      "CoverName": "Return To Invoice",
+      "CoverType": "AddOnCovers",
+      "PackageName": "AddOnCovers",
+      "IsChecked": false,
+      "objCoverDetails": null
+
+    },
+    {
+      "CoverID": "97",
+      "CoverName": "Zero Depreciation",
+      "CoverType": "AddOnCovers",
+      "PackageName": "AddOnCovers",
+      "IsChecked": false,
+      "objCoverDetails": {
+        "PHVarcharFeild1": "2",
+        "PHVarcharFeild2": "Yes"
+
+      }
+
+    },
+    {
+      "CoverID": "99",
+      "CoverName": "NCB Retention",
+      "CoverType": "AddOnCovers",
+      "PackageName": "AddOnCovers",
+      "IsChecked": false,
+      "objCoverDetails": null
+
+    },
+    {
+      "CoverID": "100",
+      "CoverName": "Key Protect",
+      "CoverType": "AddOnCovers",
+      "PackageName": "AddOnCovers",
+      "IsChecked": false,
+      "objCoverDetails": null
+
+    },
+    {
+      "CoverID": "101",
+      "CoverName": "Loss of Personal Belongings",
+      "CoverType": "AddOnCovers",
+      "PackageName": "AddOnCovers",
+      "IsChecked": false,
+      "objCoverDetails": {
+        "PHVarcharFeild1": "25000"
+      }
+
+    },
+    {
+      "CoverID": "102",
+      "CoverName": "Daily Conveyance Benefit",
+      "CoverType": "AddOnCovers",
+      "PackageName": "AddOnCovers",
+      "IsChecked": false,
+      "objCoverDetails": {
+        "PHintFeild1": "3",
+        "PHVarcharFeild1": "500",
+        "PHintFeild2": "10"
+
+      }
+
+    },
+    {
+      "CoverID": "104",
+      "CoverName": "Tyre And Rim Protector",
+      "CoverType": "AddOnCovers",
+      "PackageName": "AddOnCovers",
+      "IsChecked": false,
+      "objCoverDetails": {
+        "PHVarcharFeild1": "hjgjjhhhghg4544564665"
+      }
+
+    }
+
+  ],
+  "ListGeoExtCountryList":[
+      {
+         "ChkId":33,
+         "ChkName":"PAKISTAN",
+         "SelectedValue":false
+      },
+      {
+         "ChkId":34,
+         "ChkName":"BHUTAN",
+         "SelectedValue":false
+      },
+      {
+         "ChkId":35,
+         "ChkName":"NEPAL",
+         "SelectedValue":false
+      },
+      {
+         "ChkId":36,
+         "ChkName":"MALDIVES",
+         "SelectedValue":false
+      },
+      {
+         "ChkId":37,
+         "ChkName":"SRILANKA",
+         "SelectedValue":false
+      },
+      {
+         "ChkId":38,
+         "ChkName":"BANGLADESH",
+         "SelectedValue":false
+      }
+   ]
+}

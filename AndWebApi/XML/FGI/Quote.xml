@@ -1,0 +1,484 @@
+﻿<Root>
+
+  <Uid>201231319</Uid>
+
+  <VendorCode>webagg</VendorCode>
+
+  <VendorUserId>webagg</VendorUserId>
+
+
+  <PolicyHeader>
+
+    <PolicyStartDate>10/05/2021</PolicyStartDate>
+
+    <PolicyEndDate>09/05/2024</PolicyEndDate>
+
+    <AgentCode>60001464</AgentCode>
+
+    <BranchCode>10</BranchCode>
+
+    <MajorClass>MOT</MajorClass>
+
+    <ContractType>P13</ContractType>
+
+    <METHOD>ENQ</METHOD>
+
+    <PolicyIssueType>I</PolicyIssueType>
+
+    <PolicyNo/>
+
+    <ClientID/>
+
+    <ReceiptNo/>
+
+  </PolicyHeader>
+
+
+  <POS_MISP>
+
+    <Type/>
+
+    <PanNo/>
+
+  </POS_MISP>
+
+
+  <Client>
+
+    <ClientType>I</ClientType>
+
+    <CreationType>C</CreationType>
+
+    <Salutation>MR</Salutation>
+
+    <FirstName>GANESH</FirstName>
+
+    <LastName>MISAL</LastName>
+
+    <DOB>1980-06-01</DOB>
+
+    <Gender>M</Gender>
+
+    <MaritalStatus>Single</MaritalStatus>
+
+    <Occupation>SVCM</Occupation>
+
+    <PANNo/>
+
+    <GSTIN/>
+
+    <AadharNo/>
+
+    <CKYCNo/>
+
+    <EIANo/>
+
+
+    <Address1>
+
+      <AddrLine1>MUMBAI</AddrLine1>
+
+      <AddrLine2>MUMBAI</AddrLine2>
+
+      <AddrLine3>MUMBAI</AddrLine3>
+
+      <Landmark/>
+
+      <Pincode>400078</Pincode>
+
+      <City>MUMBAI</City>
+
+      <State>MAHARASHTRA</State>
+
+      <Country>IND</Country>
+
+      <AddressType>R</AddressType>
+
+      <HomeTelNo/>
+
+      <OfficeTelNo/>
+
+      <FAXNO/>
+
+      <MobileNo/>
+
+      <EmailAddr>ganesh.misal@futuregenerali.in</EmailAddr>
+
+    </Address1>
+
+
+    <Address2>
+
+      <AddrLine1/>
+
+      <AddrLine2/>
+
+      <AddrLine3/>
+
+      <Landmark/>
+
+      <Pincode/>
+
+      <City/>
+
+      <State/>
+
+      <Country/>
+
+      <AddressType/>
+
+      <HomeTelNo/>
+
+      <OfficeTelNo/>
+
+      <FAXNO/>
+
+      <MobileNo/>
+
+      <EmailAddr/>
+
+    </Address2>
+
+    <VIPFlag>N</VIPFlag>
+
+    <VIPCategory/>
+
+  </Client>
+
+
+  <Receipt>
+
+    <UniqueTranKey></UniqueTranKey>
+
+    <CheckType/>
+
+    <BSBCode/>
+
+    <TransactionDate></TransactionDate>
+
+    <ReceiptType>IVR</ReceiptType>
+
+    <Amount></Amount>
+
+    <TCSAmount/>
+
+    <TranRefNo></TranRefNo>
+
+    <TranRefNoDate></TranRefNoDate>
+
+  </Receipt>
+
+
+  <Risk>
+
+    <RiskType>F13</RiskType>
+
+    <Zone>Zone A</Zone>
+
+    <Cover>CO</Cover>
+
+
+    <Vehicle>
+
+      <TypeOfVehicle/>
+
+      <VehicleClass/>
+
+      <RTOCode>DL01</RTOCode>
+
+      <Make>HONDA</Make>
+
+      <ModelCode>HO0009</ModelCode>
+
+      <RegistrationNo/>
+
+      <RegistrationDate>25/04/2021</RegistrationDate>
+
+      <ManufacturingYear>2021</ManufacturingYear>
+
+      <FuelType>P</FuelType>
+
+
+      <CNGOrLPG>
+
+        <InbuiltKit>N</InbuiltKit>
+
+        <IVDOfCNGOrLPG>10000</IVDOfCNGOrLPG>
+
+      </CNGOrLPG>
+
+      <BodyType>SOLO</BodyType>
+
+      <EngineNo>GAN111111</EngineNo>
+
+      <ChassiNo>000000000GAN111111</ChassiNo>
+
+      <CubicCapacity>2400</CubicCapacity>
+
+      <SeatingCapacity>5</SeatingCapacity>
+
+      <IDV>0</IDV>
+
+      <GrossWeigh/>
+
+      <CarriageCapacityFlag/>
+
+      <ValidPUC>Y</ValidPUC>
+
+      <TrailerTowedBy/>
+
+      <TrailerRegNo/>
+
+      <NoOfTrailer/>
+
+      <TrailerValLimPaxIDVDays/>
+
+      <TrailerChassisNo/>
+
+      <TrailerMfgYear/>
+
+      <SchoolBusFlag/>
+
+    </Vehicle>
+
+
+    <InterestParty>
+
+      <Code/>
+
+      <BankName/>
+
+    </InterestParty>
+
+
+    <AdditionalBenefit>
+
+      <Discount>0.00000</Discount>
+
+      <ElectricalAccessoriesValues>10000</ElectricalAccessoriesValues>
+
+      <NonElectricalAccessoriesValues>10000</NonElectricalAccessoriesValues>
+
+      <FibreGlassTank/>
+
+      <GeographicalArea/>
+
+      <PACoverForUnnamedPassengers>200000</PACoverForUnnamedPassengers>
+
+      <LegalLiabilitytoPaidDriver>1</LegalLiabilitytoPaidDriver>
+
+      <LegalLiabilityForOtherEmployees>1</LegalLiabilityForOtherEmployees>
+
+      <LegalLiabilityForNonFarePayingPassengers/>
+
+      <UseForHandicap/>
+
+      <AntiThiefDevice/>
+
+      <NCB>0</NCB>
+
+      <RestrictedTPPD/>
+
+      <PrivateCommercialUsage/>
+
+      <CPAYear>3</CPAYear>
+
+      <CPADisc/>
+
+      <IMT23/>
+
+      <CPAReq>Y</CPAReq>
+
+
+      <CPA>
+        <CPANomName>GANESH</CPANomName>
+        <CPANomAge>27</CPANomAge>
+        <CPANomAgeDet>Y</CPANomAgeDet>
+        <CPANomPerc>100</CPANomPerc>
+        <CPARelation>BROT</CPARelation>
+        <CPAAppointeeName />
+        <CPAAppointeRel />
+      </CPA>
+
+      <NPAReq>N</NPAReq>
+
+
+      <NPA>
+
+        <NPAName/>
+
+        <NPALimit/>
+
+        <NPANomName/>
+
+        <NPANomAge/>
+
+        <NPANomAgeDet/>
+
+        <NPARel/>
+
+        <NPAAppinteeName/>
+
+        <NPAAppinteeRel/>
+
+      </NPA>
+
+      <ZNCBRSRCV/>
+
+      <ZNOFEMPLY/>
+
+      <ZLMTPERPD/>
+
+      <ZADDLPAPD/>
+
+      <ZTPPER/>
+
+      <ZCMPTPPA/>
+
+      <ZLMTTPPD/>
+
+      <ZPREMISE/>
+
+      <ZVINTAGE/>
+
+      <XCESSLAB/>
+
+      <XCESCDE/>
+
+      <ZSCARSI/>
+
+      <ZSCARIND/>
+
+      <ZAANO/>
+
+      <ZEMBASSY/>
+
+      <ZSPECRAL/>
+
+      <ZRALTRAIL/>
+
+      <ZDRVTTN/>
+
+      <EXPDTE/>
+
+      <ZOVRTFLG/>
+
+      <ZIMT44ID/>
+
+      <ZPAPDPRM/>
+
+      <ZNOPPM/>
+
+      <ZIMT34ID/>
+
+    </AdditionalBenefit>
+
+    <AddonReq>N</AddonReq>
+    <Addon>
+      <CoverCode>PLAN1</CoverCode>
+    </Addon>
+    <PreviousTPInsDtls>
+
+      <PreviousInsurer/>
+
+      <TPPolicyNumber/>
+
+      <TPPolicyEffdate/>
+
+      <TPPolicyExpiryDate/>
+
+    </PreviousTPInsDtls>
+
+
+    <PreviousInsDtls>
+
+      <UsedCar>N</UsedCar>
+
+
+      <UsedCarList>
+
+        <PurchaseDate/>
+
+        <InspectionRptNo/>
+
+        <InspectionDt/>
+
+      </UsedCarList>
+
+      <RollOver>N</RollOver>
+
+
+      <RollOverList>
+
+        <PolicyNo/>
+
+        <InsuredName/>
+
+        <PreviousPolExpDt/>
+
+        <ClientCode/>
+
+        <Address1>MUMBAI</Address1>
+
+        <Address2>MUMBAI</Address2>
+
+        <Address3>MUMBAI</Address3>
+
+        <Address4>MUMBAI</Address4>
+
+        <Address5>MAHARASHTRA</Address5>
+
+        <PinCode>400078</PinCode>
+
+        <InspectionRptNo/>
+
+        <InspectionDt/>
+
+        <NCBDeclartion>N</NCBDeclartion>
+
+        <ClaimInExpiringPolicy>N</ClaimInExpiringPolicy>
+
+        <NCBInExpiringPolicy>0</NCBInExpiringPolicy>
+
+        <PreviousPolStartDt/>
+
+        <TypeOfDoc/>
+
+        <NoOfClaims/>
+
+      </RollOverList>
+
+      <NewVehicle>Y</NewVehicle>
+
+
+      <NewVehicleList>
+
+        <InspectionRptNo/>
+
+        <InspectionDt/>
+
+      </NewVehicleList>
+
+    </PreviousInsDtls>
+
+    <ZLLOTFLG/>
+
+    <GARAGE/>
+
+    <ZREFRA/>
+
+    <ZREFRB/>
+
+    <ZIDVBODY/>
+
+    <COVERNT/>
+
+    <CNTISS/>
+
+    <ZCVNTIME/>
+
+    <AddressSeqNo/>
+
+  </Risk>
+
+</Root>

@@ -1,0 +1,306 @@
+﻿
+@{
+    ViewBag.Title = "ReviewAndPay";
+}
+
+<div>
+    <div ng-app="myApp">
+        <div id="" ng-controller="myReviewCtrl">
+            <section class="padding-sm proposal light-bg cont-w owner-deatl m-top2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-5 plan-summ">
+                            <div class="p-box">
+                                <div class="p-4">
+                                    <div class="head-sec mt-4">
+                                        <div class="plan-box mt-2 mb-3">
+                                            <span class="mr-4"><img style="width:35%" class="image img-fluid" src="/assets/images/{{proposalresponse.CompanyName}}.png" /></span>
+                                            <span>Private Car Insurance</span>
+                                        </div>
+                                        <h6 class="mb-2" style="background-color:#ef3b85;color:white;height:35px;line-height:2">Policy Holder Detail</h6>
+                                        <div class="plan-box mt-1 mb-1">
+                                            <span>Name :</span>
+                                            <b class="mr-4"> {{salutationText}}  {{proposaldetail.ClientDetails.FirstName}} {{proposaldetail.ClientDetails.MiddleName}} {{proposaldetail.ClientDetails.LastName}}<b id="prm_OD"></b> </b>
+                                            <span>Gender : </span>
+                                            <b>{{proposaldetail.ClientDetails.Gender}} </b>
+                                        </div>
+                                        <div class="plan-box mt-1 mb-1">
+
+                                            <span>BirthDate :</span>
+                                            <b class="mr-4">{{proposaldetail.ClientDetails.DateOfBirth |date :"dd-MM-y"}} </b>
+                                            <span>Occupation :</span>
+                                            <b>{{occupationText}}</b>
+                                        </div>
+                                        <div class="plan-box mt-1 mb-1">
+                                            <span>Email :</span>
+                                            <b class="mr-4">{{proposaldetail.ClientDetails.EmailId}} </b>
+                                            <span>Contact Number :</span>
+                                            <b>{{proposaldetail.ClientDetails.MobileNo}}</b>
+                                        </div>
+                                        <div class="plan-box mt-1 mb-1">
+                                            <span>Communication Address</span><br />
+                                            <b>{{proposaldetail.CustomerAddressDetails.Address1}} {{proposaldetail.CustomerAddressDetails.Address2}} {{proposaldetail.CustomerAddressDetails.Address3}} {{proposaldetail.CustomerAddressDetails.City}} {{stateText}}  {{proposaldetail.CustomerAddressDetails.Pincode}}</b>
+                                        </div>
+                                        <div class="plan-box mt-1 mb-1">
+                                            <span>Registration Address</span><br />
+                                            <b>{{proposaldetail.VehicleAddressDetails.Address1}} {{proposaldetail.VehicleAddressDetails.Address2}} {{proposaldetail.VehicleAddressDetails.Address3}} {{proposaldetail.VehicleAddressDetails.City}} {{stateText}}  {{proposaldetail.VehicleAddressDetails.Pincode}}</b>
+                                        </div>
+                                        <h6 class="mb-2" style="background-color:#ef3b85;color:white;height:35px;line-height:2">Nominee Detail</h6>
+                                        <div class="plan-box mt-1 mb-1">
+                                            <span>Name :</span>
+                                            <b class="mr-4">{{proposaldetail.NomineeName}} </b>
+                                            <span>Gender :</span>
+                                            <b>{{proposaldetail.NomineeGender}} </b>
+                                        </div>
+                                        <div class="plan-box mt-1 mb-1">
+                                            <span>Relation :</span>
+                                            <b class="mr-4">{{nomineerelationText}} </b>
+                                            <span>BirthDate :</span>
+                                            <b>{{proposaldetail.NomineeDateOfBirth | date: "dd-MM-y"}} </b>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-7">
+                            <div class="p-box">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="p-4">
+                                            <div class="row-box">
+                                                <img class="image img-fluid" src="/assets/images/car-icon.png" />
+                                                &nbsp;<span>Vehice Details</span>
+                                                <div class="head-sec mt-4">
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Policy Start Date :</span>
+                                                        <b>{{proposaldetail.PolicyStartDate|date :  "dd-MM-y"}}</b>
+                                                    </div>
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Policy End Date :</span>
+                                                        <b>{{proposaldetail.PolicyEndDate|date :  "dd-MM-y"}}</b>
+                                                    </div>
+                                                    <div class="plan-box mt-1 mb-1 tpdateforhdfc">
+                                                        <span class="mr-2">TP Start Date :</span>
+                                                        <b>{{proposalresponse.TPStartDate|date :  "dd-MM-y"}}</b>
+                                                    </div>
+                                                    <div class="plan-box mt-1 mb-1 tpdateforhdfc">
+                                                        <span class="mr-2">TP End Date :</span>
+                                                        <b>{{proposalresponse.TPEndDate|date :  "dd-MM-y"}}</b>
+                                                    </div>
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Registration Number :</span>
+                                                        <b>{{registrationno}}</b>
+                                                    </div>
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Purchase Date :</span>
+                                                        <b>{{proposaldetail.VehicleDetails.PurchaseDate | date : "dd-MM-y"}}</b>
+                                                    </div>
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Vehicle Model :</span>
+                                                        <b>{{proposaldetail.VehicleDetails.MakeName}} | {{proposaldetail.VehicleDetails.ModelName}} | {{proposaldetail.VehicleDetails.VariantName}} | {{proposaldetail.VehicleDetails.Fuel}}</b>
+                                                    </div>
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Customer Type :</span>
+                                                        <b>{{proposaldetail.CustomerType}}</b>
+                                                    </div>
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Engine Number :</span>
+                                                        <b>{{proposaldetail.VehicleDetails.EngineNumber}}</b>
+                                                    </div>
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Chassis Number :</span>
+                                                        <b>{{proposaldetail.VehicleDetails.ChassisNumber}}</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-4">
+                                            <div class="row-box">
+                                                <img class="image img-fluid" src="/assets/images/car-icon.png" />
+                                                &nbsp;<span>Premium Details</span>
+                                                <div class="head-sec mt-4">
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Enquiry Number :</span>
+                                                        <b>{{proposaldetail.enquiryid}}</b>
+                                                    </div>
+                                                    @*<div class="plan-box mt-1 mb-1">
+                                                            <span class="mr-2">Policy Number :</span>
+                                                            <b>{{proposalresponse.PolicyNo}}</b>
+                                                        </divs>*@
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">IDV :</span>
+                                                        <b>{{proposaldetail.IDV}}</b>
+                                                    </div>
+                                                    @*<div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Premium Year :</span>
+                                                        <b>{{proposalyear}} Year</b>
+                                                    </div>*@
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Net Premium :</span>
+                                                        <b>{{proposalresponse.PremiumBreakUpDetails.NetPremium|number:0}}</b>
+                                                    </div>
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">GST :</span>
+                                                        <b>{{proposalresponse.PremiumBreakUpDetails.ServiceTax|number:0}}</b>
+                                                    </div>
+                                                    <div class="plan-box mt-1 mb-1">
+                                                        <span class="mr-2">Final Premium :</span>
+                                                        <b>{{proposalresponse.FinalPremium|number:0}}</b>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center padd">
+                                    <a href="#" class="btn btn-pink btn-lg" ng-click="MakePayment()">Now Pay Securely</a>
+                                    <a href="#" class="btn btn-pink btn-lg" ng-click="copylink()">Copy Payment Url To ClipBoard</a>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+<script src="~/assets/js/angular.min.js"></script>
+<script src="~/assets/js/ngStorage.min.js"></script>
+<script src="~/assets/js/angular-filter.js"></script>
+<script type="text/javascript">
+   
+
+
+     var app = angular.module("myApp", ["ngStorage", "angular.filter"]);
+
+    app.controller("myReviewCtrl", function ($scope, $http, $window, $compile, $sessionStorage, $filter) {
+
+      
+        $scope.salutationText = $sessionStorage.salutationText;
+        $scope.nomineerelationText = $sessionStorage.nominerelText;
+        $scope.occupationText = $sessionStorage.occupationText;
+        $scope.stateText = $sessionStorage.stateText;
+      
+        $scope.proposaldetail = !angular.isUndefined($scope.proposalreq) ? (angular.copy($scope.proposalreq)) : $sessionStorage.proposalreq;
+        $scope.proposalresponse = !angular.isUndefined($scope.proposalresponse) ? (angular.copy($scope.proposalresponse)) : $sessionStorage.proposalresponse;
+        $scope.registrationno = $scope.proposaldetail.PolicyType == "New" ? "New" : $scope.proposaldetail.VehicleDetails.RegistrationNumber;
+        console.log($scope.proposaldetail);
+        
+   
+        if ($scope.proposalresponse.CompanyName == "HDFC" && $scope.proposalresponse.PlanName != "ODOnly") {
+            $(".tpdateforhdfc").show();
+        }
+    else {
+            $(".tpdateforhdfc").hide();
+    }
+        
+        $scope.proposalyear = new Date($scope.proposalresponse.PolicyEndDate).getFullYear() - new Date($scope.proposalresponse.PolicyStartDate).getFullYear();
+
+        $sessionStorage.propres = $scope.proposalresponse;
+        var paymetnmodel = {
+            "enquiryno": $scope.proposaldetail.enquiryid,
+            "quotationno":"abc",
+            "CompanyName": $scope.proposaldetail.CompanyName,
+            "FirstName":$scope.proposaldetail.ClientDetails.FirstName ,
+            "MiddleName":$scope.proposaldetail.ClientDetails.MiddleName ,
+            "LastName":$scope.proposaldetail.ClientDetails.LastName ,
+            "EmailId":$scope.proposaldetail.ClientDetails.EmailId ,
+            "MobileNo":$scope.proposaldetail.ClientDetails.MobileNo ,
+            "NetPremium": $scope.proposaldetail.PremiumDetails.NetPremiumAmount,
+            "ServiceTax": $scope.proposaldetail.PremiumDetails.TaxAmount,
+            "FinalPremium": $scope.proposalresponse.FinalPremium,
+
+            "CompanyDetail":{
+                "applicationId": $scope.proposalresponse.CompanyWiseRefference.applicationId,
+                "CorrelationId": $scope.proposalresponse.CompanyWiseRefference.CorrelationId,
+                "QuoteNo": $scope.proposalresponse.CompanyWiseRefference.QuoteNo,
+                "OrderNo": $scope.proposalresponse.CompanyWiseRefference.OrderNo
+            }
+        }
+
+        var paymentparameter = "";
+        $scope.MakePayment = function () {
+
+
+
+
+            if ($scope.proposalresponse.CompanyName == "HDFC") {
+                trno = $scope.proposalresponse.CompanyWiseRefference.OrderNo;
+                enquiryid = $scope.proposaldetail.enquiryid;
+                paymentparameter = '/Payment/HDFCPayment?transactionno=' + trno + '&enquiryid=' + enquiryid;
+                $window.location.href = '/Payment/HDFCPayment?transactionno=' + trno + '&enquiryid=' + enquiryid;
+            }
+            else if ($scope.proposalresponse.CompanyName == "FGI") {
+                //$window.location.href = '/Payment/FuturePayment?reqModel=' + paymetnmodel;
+
+
+                $http({
+                    url: '/Payment/setdata',
+                    method: "POST",
+                    data: { reqModel: paymetnmodel }
+                }).then(function (resFGI) {
+                    paymentparameter = resFGI.data;
+                    if (!angular.isUndefined(resFGI && resFGI.data.length > 0)) {
+                        console.log(paymentparameter);
+                        //alert(paymentparameter);
+                        $window.location.href = '/Payment/FuturePayment?reqModel=' + paymetnmodel;
+                    }
+                })
+
+            }
+            else {
+                $http({
+                    url: '/PrivateCar/MakePayment',
+                    method: "POST",
+                    data: { model: paymetnmodel }
+                }).then(function (response) {
+                    paymentparameter = response.data;
+                    if (!angular.isUndefined(response && response.data.length > 0)) {
+                        console.log(paymentparameter);
+                        $window.location.href = paymentparameter;
+                    }
+                })
+            }
+            //setTimeout(function () {
+            //}, 5000);
+        }
+        $scope.copylink = function () {
+
+
+            if ($scope.proposalresponse.CompanyName == "HDFC") {
+
+
+                trno = $scope.proposalresponse.CompanyWiseRefference.OrderNo;
+                //paymentparameter = 'http://localhost:14264/Payment/HDFCPayment?transactionno=' + trno;
+                paymentparameter = 'http://192.168.2.4.86:85/Payment/HDFCPayment?transactionno=' + trno;
+
+                var tempInput = $("<textarea>");
+                $("body").append(tempInput);
+                tempInput.val(paymentparameter).select();
+                document.execCommand("copy");
+                tempInput.remove();
+            }
+            else {
+                $http({
+                    url: '/PrivateCar/MakePayment',
+                    method: "POST",
+                    data: { model: paymetnmodel }
+                }).then(function (response) {
+                    paymentparameter = response.data;
+                    if (!angular.isUndefined(response && response.data.length > 0)) {
+                        var tempInput = $("<textarea>");
+                        $("body").append(tempInput);
+                        tempInput.val(paymentparameter).select();
+                        document.execCommand("copy");
+                        tempInput.remove();
+                    }
+                })
+            }
+        }
+    });
+</script>

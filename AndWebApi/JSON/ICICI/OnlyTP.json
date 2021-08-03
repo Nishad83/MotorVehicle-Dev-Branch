@@ -1,0 +1,53 @@
+﻿{
+
+    "BusinessType": "Roll Over",
+    "CorrelationId" : "",
+    "VehicleMakeCode": 121,
+    "VehicleModelCode": 11289,  
+    "RTOLocationCode": 8,
+    "ExShowRoomPrice": 0,
+    "DealId": "DL-3001/A/1484630",
+    "PolicyStartDate": "2021-06-10",
+    "PolicyEndDate": "2022-06-09",
+    "GSTToState": "MAHARASHTRA",
+
+    "CustomerType": "INDIVIDUAL",
+
+    "ManufacturingYear": "2017",
+
+    "DeliveryOrRegistrationDate": "2017-01-10",
+
+    "IsNoPrevinsurance": false,
+
+    "IsVehicleHaveCNG": false,
+
+    "SIVehicleHaveLPG_CNG": "",
+
+    "IsLegalLiabilityToPaidDriver": false,
+
+    "IsPACoverUnnamedPassenger": false,
+
+    "SIPACoverUnnamedPassenger": 0,
+
+    "IsValidDrivingLicense": false,
+
+    "noOfDriver": "1",
+
+     //"extensionCountryName" : "Bhutan, Bangladesh, Nepal, Pakistan, Maldives, SriLanka",
+
+    "PreviousPolicyDetails": {
+
+        "previousPolicyStartDate": "2020-06-10",
+
+        "previousPolicyEndDate": "2021-06-09",
+
+        "ClaimOnPreviousPolicy": 0,
+
+        "PreviousPolicyType": "Comprehensive Package",
+
+        "PeviousInsureName": "tata",
+
+        "PreviousPolicyNumber": "223344"
+
+    }
+}

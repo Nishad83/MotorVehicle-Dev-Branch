@@ -1,0 +1,129 @@
+﻿@model DAL.QA_LOGIN_MASTER
+@{
+    ViewBag.Title = "OTP";
+    Layout = null;
+}
+<link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/assets/css/style.css" rel="stylesheet" />
+
+@using (Html.BeginForm("OTP", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.mobileno)
+    <div class="login_section" style="padding-top:10%">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-4 login_fix_box">
+                    <div class="logo_sec text-center">
+                        <img class="img-fluid" src="~/assets/images/logo.png" alt="Logo">
+                    </div>
+                    <div class="logoin_title_box">
+                        <div class="otpTxt text-center">
+                            <span>An OTP has been sent to +91 @Session["MobileNo"] Enter OTP to sign in.</span>
+                            <div class="">
+                                OR
+                            </div>
+                            <div class="changeNo"><a href="@Url.Action("POSPLOGIN", "Home")"><h5><i class="fa fa-edit"></i> Edit Mobile Number</h5></a></div>
+
+                            @*<div class="changeno"><a href="#">otp :- @TempData["otp"]</a></div>*@
+                        </div>
+                    </div>
+
+                    <div style="width:100%" class="form-group otp_box">
+                        <label for="">OTP</label>
+                        @Html.TextBoxFor(x => x.otp, new { @class = "form-control", @maxlength = 5, @id = "txtotp", @style = "text-align:center;", @onkeypress = "return isNumber(event)" })
+                        <p style="color:red;font-style:italic" id="v_otp"></p>
+                    </div>
+                    <div class="form-group">
+                        <input id="btnContinue" type="button" class="btn btn-br btn-fw" onclick="OTP();" value="Verify" />
+                    </div>
+
+                    <div class="dintReceive text-center">
+                        <span>Didn’t receive the OTP? </span><br>
+                        <span class="resend"><a style="color:#ef3b85" onclick="Resendotp()">Resend OTP</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/Login/bootstrap.min.js"></script>
+<script src="~/Scripts/Login/jquery-3.5.1.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        if ('@ViewBag.errormsg' == '200') {
+            document.getElementById('v_otp').innerHTML = "Please Enter Valid OTP...";
+        }
+    });
+
+
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
+    function Resendotp() {
+        debugger
+        $.ajax({
+            url: '/Home/ResendOTP',
+            type: "POST",
+            contentType: false,
+            processData: false,
+            data: "",
+            success: function (result) {
+                location.reload();
+            },
+            error: function (err) {
+            }
+        });
+    }
+
+    function OTP() {
+        var OTP = $("#txtotp").val();
+
+        if (OTP != "") {
+            if (OTP.length != 5) {
+                document.getElementById('v_otp').innerHTML = "Please Enter Valid OTP...";
+                return false;
+            }
+            else {
+                $.ajax({
+                    url: '/Home/SendOTP?OTP=' + OTP,
+                    type: "POST",
+                    contentType: false,
+                    processData: false,
+                    // data: "",
+                    success: function (result) {
+                        if (result == 0) {
+                            document.getElementById('v_otp').innerHTML = "Incorrect OTP....!!";
+                            $("#txtotp").val("");
+                            return false;
+                        }
+                        else if (result > 0) {
+                            document.getElementById('v_otp').innerHTML = "";
+                            window.location.href = "@Url.Action("CarDetails", "Motor/PrivateCar")";
+                        }
+                        else {
+                            document.getElementById('v_otp').innerHTML = "";
+                        }
+                    },
+                    error: function (err) {
+                    }
+                });
+            }
+        }
+        else {
+            document.getElementById('v_otp').innerHTML = "Please Enter OTP...";
+            return false;
+        }
+    };
+
+
+
+</script>

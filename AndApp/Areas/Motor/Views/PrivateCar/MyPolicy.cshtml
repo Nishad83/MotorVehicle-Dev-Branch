@@ -1,0 +1,462 @@
+﻿@model AndApp.Models.SearchCriteria.QuotaionSearchCriteria
+@using AndApp.Utilities
+@{
+    ViewBag.Title = "MyPolicy";
+}
+
+<style>
+    #select2-drop {
+        z-index: 111111111111111111111 !important;
+    }
+
+    td, th {
+        font-size: 12px;
+    }
+
+    a,
+    a label {
+        cursor: pointer;
+    }
+
+    .table {
+        margin-bottom: 0px;
+    }
+
+    th, td {
+        white-space: nowrap;
+    }
+
+    div.dataTables_wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .dataTables_scrollBody {
+        overflow-x: auto;
+    }
+
+        .dataTables_scrollBody::-webkit-scrollbar {
+            width: 3px;
+            height: 13px;
+            background-color: #fff;
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+        }
+
+        .dataTables_scrollBody::-webkit-scrollbar-thumb {
+            background-color: #ef3b85;
+            outline: 1px solid slategrey;
+        }
+</style>
+<style>
+    #pageloader {
+        /*background: rgba( 255, 255, 255, 0.8 );*/
+        display: none;
+        height: 100%;
+        position: fixed;
+        width: 100%;
+        z-index: 9999;
+    }
+
+        #pageloader img {
+            left: 38%;
+            margin-left: -50px;
+            margin-top: -32px;
+            position: absolute;
+            top: 20%;
+        }
+</style>
+<link href="~/assets/datatable/datatables.css" rel="stylesheet" />
+<link href="~/assets/select2/select2.css" rel="stylesheet" />
+<link href="~/assets/css/date-picker.min.css" rel="stylesheet" />
+
+@*<link href="cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />*@
+<br /><br /><br />
+<div class="container-full">
+    <div class="">
+        @using (Html.BeginForm("MyPolicy", "PrivateCar", FormMethod.Post))
+        {
+            <div class="container-full">
+                <div id="pageloader">
+                    <img src="~/assets/images/loader_3.gif" alt="processing..." />
+                </div>
+
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-12">
+                            <button type="button" class="btn btn-br" id="btnshowmodal" style="margin-left:5%;">Search</button>
+                            <button type="button" id="btnrefresh" class="btn btn-br" onclick="location.href='@Url.Action("MyPolicy", "PrivateCar")'">Reset</button>
+                            <br />
+                            <br />
+                            <br />
+
+                            <div class="table-responsive{-sm|-md|-lg|-xl}">
+                                <table id="policylist" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                                    <thead>
+                                        <tr>
+                                            <th>Enq No</th>
+                                            <th>Policy Type</th>
+                                            <th>Customer Name</th>
+                                            <th>Registration No</th>
+                                            <th>Make</th>
+                                            <th>Model</th>
+                                            <th>Variant</th>
+                                            <th>Company Name</th>
+                                            <th>Policy Start / End Date</th>
+                                            <th>Payment Status</th>
+                                            <th>Premium</th>
+                                            <th>Policy No</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @if (ViewBag.PolicyData != null)
+                                        {
+                                            foreach (var item in ViewBag.PolicyData)
+                                            {
+                                                <tr>
+                                                    <td>@item.enquiryid</td>
+                                                    <td>@item.policytype</td>
+                                                    <td>@item.customerfirstname</td>
+                                                    <td>@item.policytype</td>
+                                                    <td>@item.makename</td>
+                                                    <td>@item.modelname</td>
+                                                    <td>@item.variantname</td>
+                                                    <td>@item.shortname</td>
+                                                    <td>@item.policystartdate.ToString("dd-MM-yyyy") / @item.policyenddate.ToString("dd-MM-yyyy")</td>
+                                                    @if (item.paymentstatus == true)
+                                                    {
+                                                        <td>Paid</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        if (item.createdon.ToString("dd-MM-yyyy") == DateTime.Now.Date.ToString("dd-MM-yyyy"))
+                                                        {
+                                                            <td><a id="" href="#" onclick="RegeratePaymentLink('@item.enquiryid','@item.companyid')">Unpaid - Get Payment Link</a></td>
+                                                        }
+                                                        else if (item.updatedon != null && item.paymentstatus == false)
+                                                        {
+                                                            <td>Fail</td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>Link Expired</td>
+                                                        }
+
+                                                    }
+                                                    <td>@item.finalpremium</td>
+                                                    @if (!string.IsNullOrEmpty(item.policyno))
+                                                    {
+                                                        <td><a href="@Url.Action("DownloadMyPolicy", "PrivateCar", new { policyno = item.policyno,companyid=item.companyid })">@item.policyno</a></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td></td>
+                                                    }
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="modal fade col-sm-12" id="cmpltadminModal-5" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" style="width: 65%">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Search Criteria</h4>
+                            </div>
+                            <div class="modal-body">
+                                <label id="lblerror" style="color:red"></label>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label>Make</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.DropDownListFor(x => x.makeid, new SelectList(ViewBag.FillMakeName, "makeid", "makename"), "Select Make", new { @class = "form-control select2" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>Model</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.DropDownListFor(m => m.modelid, new SelectList(Enumerable.Empty<SelectListItem>(), "modelid", "modelname"), "Select Model", new { @class = "form-control select2" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>Variant</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.DropDownListFor(m => m.variantid, new SelectList(Enumerable.Empty<SelectListItem>(), "variantid", "variantname"), "Select Variant", new { @class = "form-control select2" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>Insurance</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.DropDownListFor(x => x.insurancename, new SelectList(ViewBag.FillInsuranceCompany, "id", "companyname"), "Select Company", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <label>From Date</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.TextBoxFor(x => x.fromdate, "{0:dd/MMM/yyyy}", new { @class = "form-control ", @data_format = "dd-M-yyyy", @placeholder = "From Date", @type = "date" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>To Date</label>
+
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.TextBoxFor(x => x.todate, "{0:dd/MMM/yyyy}", new { @class = "form-control ", @placeholder = "To Date", @type = "date" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>Registration No</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.TextBoxFor(x => x.registrationno, new { @class = "form-control", @placeholder = "Registration No" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label>Policy No</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.TextBoxFor(x => x.policyno, new { @class = "form-control", @placeholder = "Policy No" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-sm-3">
+                                        <label>Quotation No</label>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                @Html.TextBoxFor(x => x.quotationno, new { @class = "form-control", @placeholder = "Quotation No" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label>Policy Status</label>
+                                                @Html.DropDownListFor(x => x.paymentstatus,
+                                new SelectList(new List<SelectListItem> {
+                                new SelectListItem { Text = "Select Payment Status", Value = ""},
+                                new SelectListItem { Text = "Payment Success", Value = "1"},
+                                new SelectListItem { Text = "Payment Fail", Value = "0"},
+                                }, "Value", "Text"), new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-br" id="btnsearch">Search</button>
+                                <button type="button" class="btn btn-br" id="btnmodalclose">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+<script src="~/assets/select2/select2.js"></script>
+<script src="~/assets/js/jquery.mask.min.js"></script>
+@*<script src="~/assets/js/date-picker.min.js"></script>*@
+<script src="~/assets/datatable/datatables.js"></script>
+@*<script src="~/assets/js/jquery.js"></script>*@
+<script src="~/assets/datatable/datatables.min.js"></script>
+<script type="text/javascript">
+
+
+    function RegeratePaymentLink(enqid, compid) {
+      
+        if (compid == "9" || compid == "22" || compid == "6" || compid == "16") {
+          //  alert(enqid);
+            $.ajax('/PrivateCar/RgeneratePayment?enqid=' + enqid + '&companyid=' + compid,
+           {
+               success: function (response) {
+                   if (response=="200") {
+                       alert("Service Is Down. Please Try again after some time.");
+                   }
+                   else {
+                       window.location.href = response;
+                   }
+                   
+               }
+
+
+           });
+            //window.location.href = '/PrivateCar/RgeneratePayment?enqid=' + enqid + '&companyid=' + compid;
+        }
+        else if (compid == "8") {
+            window.location.href = '/Payment/HDFCPayment?transactionno=' + "" + '&enquiryid=' + enqid;
+        }
+
+        //else if (compid == "16") {
+        //    window.location.href = '/PrivateCar/RgeneratePayment?enqid=' + enqid + '&companyid=' + compid;
+        //}
+        else if (compid == "5") {
+            window.location.href = '/PrivateCar/FutureRegenerate?enqid=' + enqid + '&companyid=' + compid;
+
+        }
+    }
+
+
+    $('#policylist').DataTable(
+        {
+            "paging": true,
+            "iDisplayLength": 10,
+            "ordering": false,
+            "info": false,
+            "scrollY": 385,
+            "scrollX": false,
+            "searching": false, dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excel',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11]
+                    }
+                , title: 'My Policy List'
+                },
+                {
+                    extend: 'pdf',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11]
+                    }, title: 'My Policy List'
+                },
+            ]
+        });
+
+
+
+
+
+
+    $('#btnshowmodal').click(function () {
+        debugger;
+        ////$('#pagechange').val('Y');
+        //$("input:tex  //$("#makeid,#modelid,#variantid").select2("val", "");
+        //$('#lblerror').html('');
+        //$('#lblerror').hide();
+        $('#cmpltadminModal-5').modal('show');
+    });
+
+    $('#btnmodalclose').click(function () {
+        $('#cmpltadminModal-5').modal('hide');
+    })
+
+    $("#makeid").change(function () {
+        var makeid = $('#makeid').val();
+        GetModel(makeid);
+    });
+    function GetModel(makeid) {
+        debugger;
+        var url = '@Url.Action("GetModel", "QuotationList")';
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "JSON",
+            data: { MakeId: makeid },
+            success: function (fillmodel) {
+                debugger;
+                $("#modelid").html(""); // clear before appending new list
+                var v = "<option value>Select Model</option>";
+                $.each(fillmodel, function (i, modelname) {
+                    //if (modelname.makeid == makeid) {
+                    //    v += "<option selected value='" + modelname.modelid + "'>" + modelname.modelname + "</option>"
+                    //}
+                    //else {
+                    v += "<option value='" + modelname.modelid + "'>" + modelname.modelname + "</option>"
+                    //}
+                });
+                $("#modelid").append(v);
+            }
+        });
+    }
+
+    $("#modelid").change(function () {
+        var modelid = $('#modelid').val();
+        GetVariant(modelid);
+    });
+    function GetVariant(modelid) {
+        debugger;
+        var url = '@Url.Action("GetVariant", "QuotationList")';
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "JSON",
+            data: { Modelid: modelid },
+            success: function (fillVariant) {
+                debugger;
+                $("#variantid").html(""); // clear before appending new list
+                var v = "<option value>Select Variant</option>";
+                $.each(fillVariant, function (i, variantname) {
+                    //if (fillVariant.modelid == modelid) {
+                    //    v += "<option selected value='" + variantname.variantid + "'>" + variantname.variantname + "</option>"
+                    //}
+                    //else {
+                    v += "<option value='" + variantname.variantid + "'>" + variantname.variantname + "</option>"
+                    //}
+                });
+                $("#variantid").append(v);
+
+            }
+        });
+    }
+    $('#btnsearch').click(function () {
+
+        $('#lblerror').html('');
+        var errstr = "";
+
+        var variantid = $('#variantid').val();
+        var fromdate = $('#fromdate').val();
+        var todate = $('#todate').val();
+
+        if (fromdate != "" || todate != "") {
+            if (fromdate == "") {
+                errstr += "Please Enter from Date";
+
+            } else if (todate == "") {
+                errstr += "Please Enter Todate";
+
+            }
+
+        }
+
+        if (errstr != "") {
+            $('#lblerror').show();
+            $('#lblerror').html(errstr);
+            return false;
+        }
+
+        if (errstr == "") {
+            return true;
+        }
+
+    });
+</script>
+
+

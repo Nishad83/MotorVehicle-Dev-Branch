@@ -1,0 +1,333 @@
+﻿{
+  "Discount": "",
+  "Loading": "",
+  "objClientDetails": {
+    "MobileNumber": "9876543210",
+    "EmailId": "abc@gmail.com",
+    "ClientType": 0
+  },
+  "objVehicleDetails": {
+    "MakeModelVarient": "HONDA|BRIO|V MT|1198CC",
+    "RtoLocation": "AHMEDABAD|GJ01",
+    "RegistrationDate": "2021-03-24",
+    "Registration_Number1": "GJ",
+    "Registration_Number2": "01",
+    "Registration_Number3": "",
+    "Registration_Number4": "",
+    "ManufacturingYear": "2020",
+    "ManufacturingMonth": "03",
+    "FuelType": "PETROL",
+    "IsForeignEmbassy": "2",
+    "ModifiedIDV": "533578"
+  },
+  "objPolicy": {
+    "QuoteID": "144907",
+    "QuoteNo": "QUOT_MOT_000045370_21052020",
+    "TraceID": "TAPI240321164006",
+    "UserName": "1009298",
+    "TPSourceName": "1013",
+    "SessionID": "",
+    "ProductCode": "2311",
+    "ProductName": "MOTOR - PRIVATE CAR PACKAGE POLICY(2311)",
+    "PolicyStartDate": "2021-03-24",
+    "PolicyEndDate": "2022-03-23",
+    "BusinessTypeID": "24",
+    "CoverType": "1471",
+    "TPPolicyStartDate": "2020-05-18",
+    "TPPolicyEndDate": "2023-05-17",
+    "Tennure": 102
+  },
+   "objCovers":[
+      {
+         "CoverID":"9",
+         "CoverName":"Basic - OD",
+         "CoverType":"ODPackage",
+         "PackageName":"ODPackage",
+         "IsChecked":true,
+         "objCoverDetails":null
+      },
+      {
+         "CoverID":"10",
+         "CoverName":"Basic - TP",
+         "CoverType":"LiabilityPackage",
+         "PackageName":"LiabilityPackage",
+         "IsChecked":true,
+         "objCoverDetails":null
+      },
+      {
+         "CoverID":"41",
+         "CoverName":"Geographical Extension - OD",
+         "CoverType":"ODPackage",
+         "PackageName":"ODPackage",
+         "IsChecked":false,
+         "objCoverDetails":null
+      },
+      {
+         "CoverID":"42",
+         "CoverName":"Geographical Extension - TP",
+         "CoverType":"LiabilityPackage",
+         "PackageName":"LiabilityPackage",
+         "IsChecked":false,
+         "objCoverDetails":null
+      },
+      {
+         "CoverID":"39",
+         "CoverName":"Fibre Tank",
+         "CoverType":"ODPackage",
+         "PackageName":"ODPackage",
+         "IsChecked":false,
+         "objCoverDetails":null
+      },
+      {
+         "CoverID":"49",
+         "CoverName":"Legal Liability to Paid Driver",
+         "CoverType":"LiabilityPackage",
+         "PackageName":"LiabilityPackage",
+         "IsChecked":false,
+         "objCoverDetails":null
+      },
+      { 
+         "CoverID":"73",
+         "CoverName":"PA - Owner",
+         "CoverType":"LiabilityPackage",
+         "PackageName":"LiabilityPackage",
+         "IsChecked":true,
+         "objCoverDetails":{ 
+            "PHintFeild1":"17",
+            "PHVarcharFeild1":"ashique",
+            "PHVarcharFeild2":"1547",
+            "PHNumericFeild2":"100000",
+            "PHNumericFeild1":"1",
+            "PHVarcharFeild4":"jujihdf",
+            "PHVarcharFeild5":"1134",
+            "PHBooleanField1":"false",
+				"PHBooleanField2":"false"
+         }
+      },
+      {
+         "CoverID":"21",
+         "CoverName":"CNG Kit - TP",
+         "CoverType":"LiabilityPackage",
+         "PackageName":"LiabilityPackage",
+         "IsChecked":false
+      },
+      {
+         "CoverID":"20",
+         "CoverName":"CNG Kit - OD",
+         "CoverType":"ODPackage",
+         "PackageName":"ODPackage",
+         "IsChecked":false,
+        "objCoverDetails":
+         { "PHNumericFeild1": "0" }
+      },
+      {
+         "CoverID":"87",
+         "CoverName":"TPPD",
+         "CoverType":"LiabilityPackage",
+         "PackageName":"LiabilityPackage",
+         "IsChecked":false,
+         "objCoverDetails":null
+      },
+      {
+         "CoverID":"76",
+         "CoverName":"Paid Driver",
+         "CoverType":"LiabilityPackage",
+         "PackageName":"LiabilityPackage",
+         "IsChecked":false,
+         "objCoverDetails":{
+            "PHVarcharFeild1":"0",
+            "PHNumericFeild1":"0"
+         }
+      },
+      {
+         "CoverID":"94",
+         "CoverName":"PA - Unnamed Person",
+         "CoverType":"LiabilityPackage",
+         "PackageName":"LiabilityPackage",
+         "IsChecked":false,
+         "objCoverDetails":{
+            "PHVarcharFeild1":"0",
+            "PHNumericFeild1":"0"
+         }
+      },
+      {
+         "CoverID":"106",
+         "CoverName":"PA - Named Person",
+         "CoverType":"LiabilityPackage",
+         "PackageName":"LiabilityPackage",
+         "IsChecked":false,
+         "objCoverDetails":{
+            "PHVarcharFeild1":"testash",
+            "PHintFeild1":"17",
+            "PHNumericFeild2":"0"
+         }
+      },
+      {
+         "CoverID":"91",
+         "CoverName":"Voluntary Deductibles",
+         "CoverType":"Discount",
+         "PackageName":"Discount",
+         "IsChecked":false,
+         "objCoverDetails":{
+            "PHNumericFeild1":"0"
+         }
+      },
+      {
+         "CoverID":"33",
+         "CoverName":"Electrical or electronic accessories",
+         "CoverType":"ODPackage",
+         "PackageName":"ODPackage",
+         "IsChecked":false,
+         "objCoverDetails":{
+            "PHNumericFeild1":"0",
+            "PHVarcharFeild1":"Test",
+            "PHNumericFeild2":"0",
+            "PHVarcharFeild2":"Test"
+         }
+      },
+      {
+         "CoverID":"70",
+         "CoverName":"Non Electrical Accessories",
+         "CoverType":"ODPackage",
+         "PackageName":"ODPackage",
+         "IsChecked":false,
+         "objCoverDetails":{
+            "PHNumericFeild1":"0",
+            "PHVarcharFeild1":"Test",
+            "PHVarcharFeild2":"Test",
+            "PHNumericFeild2":"0"
+         }
+      },
+      {
+         "CoverID":"37",
+         "CoverName":"Engine Protect",
+         "CoverType":"AddOnCovers",
+         "PackageName":"AddOnCovers",
+         "IsChecked":false,
+         "objCoverDetails":{
+            "PHVarcharFeild2":"Geared"
+         }
+      },
+      {
+         "CoverID":"24",
+         "CoverName":"Consumable Expenses",
+         "CoverType":"AddOnCovers",
+         "PackageName":"AddOnCovers",
+         "IsChecked":false,
+         "objCoverDetails":null
+      },
+      {
+         "CoverID":"80",
+         "CoverName":"Return To Invoice",
+         "CoverType":"AddOnCovers",
+         "PackageName":"AddOnCovers",
+         "IsChecked":false,
+         "objCoverDetails":null
+      },
+      { 
+         "CoverID":"97",
+         "CoverName":"Zero Depreciation",
+         "CoverType":"AddOnCovers",
+         "PackageName":"AddOnCovers",
+         "IsChecked":false,
+         "objCoverDetails":{ 
+         	"PHVarcharFeild1":"2",
+            "PHVarcharFeild2":"Yes"
+         
+}
+      },
+      {
+         "CoverID":"99",
+         "CoverName":"NCB Retention",
+         "CoverType":"AddOnCovers",
+         "PackageName":"AddOnCovers",
+         "IsChecked":false,
+         "objCoverDetails":null
+      },
+      {
+         "CoverID":"100",
+         "CoverName":"Key Protect",
+         "CoverType":"AddOnCovers",
+         "PackageName":"AddOnCovers",
+         "IsChecked":false,
+         "objCoverDetails":null
+      },
+     
+      { 
+         "CoverID":"101",
+         "CoverName":"Loss of Personal Belongings",
+         "CoverType":"AddOnCovers",
+         "PackageName":"AddOnCovers",
+         "IsChecked":false,
+         "objCoverDetails":{ 
+            "PHVarcharFeild1":"25000"
+}
+      },
+      { 
+         "CoverID":"102",
+         "CoverName":"Daily Conveyance Benefit",
+         "CoverType":"AddOnCovers",
+         "PackageName":"AddOnCovers",
+         "IsChecked":false,
+         "objCoverDetails":{ 
+            "PHintFeild1":"3",
+            "PHVarcharFeild1":"500",
+            "PHintFeild2":"10"
+         
+}
+      },
+    {
+      "CoverID": "104",
+      "CoverName": "Tyre And Rim Protector",
+      "CoverType": "AddOnCovers",
+      "PackageName": "AddOnCovers",
+      "IsChecked": false,
+      "objCoverDetails": {
+        "PHVarcharFeild1": "hjgjjhhhghg4544564665"
+      }
+    },
+    { 
+         "CoverID":105,
+         "CoverName":"Legal Liability Employees",
+         "CoverType":"LiabilityPackage",
+         "PackageName":"LiabilityPackage",
+         "IsChecked":false,
+         "objCoverDetails":{ 
+            "PHNumericFeild1":"2"
+}
+      
+}
+   ],
+  "ListGeoExtCountryList":[
+      {
+         "ChkId":33,
+         "ChkName":"PAKISTAN",
+         "SelectedValue":false
+      },
+      {
+         "ChkId":34,
+         "ChkName":"BHUTAN",
+         "SelectedValue":false
+      },
+      {
+         "ChkId":35,
+         "ChkName":"NEPAL",
+         "SelectedValue":false
+      },
+      {
+         "ChkId":36,
+         "ChkName":"MALDIVES",
+         "SelectedValue":false
+      },
+      {
+         "ChkId":37,
+         "ChkName":"SRILANKA",
+         "SelectedValue":false
+      },
+      {
+         "ChkId":38,
+         "ChkName":"BANGLADESH",
+         "SelectedValue":false
+      }
+   ]
+}

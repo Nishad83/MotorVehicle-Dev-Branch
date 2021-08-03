@@ -1,0 +1,7 @@
+﻿{
+ 
+    "TransactionId":"",
+    "Amount":"",
+    "ApplicationId":"179",
+    "ReturnUrl":"http://localhost:14264/Motor/PrivateCar/thankyouurl?company=icici"
+}

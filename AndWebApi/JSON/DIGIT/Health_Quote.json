@@ -1,0 +1,83 @@
+﻿{
+    "enquiryId": "",
+    "partnerName": "AGENT",
+    "payment": {
+        "paymentType": "ONLINE",
+        "paymentDate": "2021-02-21"
+    },
+    "contract": {
+        "policyType": "NONFLOATER",
+       
+        "startDate": "2021-02-21",
+        "policyNumber": "",
+       "subInsuranceProductCode": "HLCP",
+        "nonAbsproductCode": "DDO01",
+        "policyPeriod": 2
+    },
+    "persons": [
+        {
+            "personType": "NATURALPERSON",
+            "uniqueIdentifier": null,
+            "addresses": [
+                {
+                    "flatNumber": null,
+                    "streetNumber": null,
+                    "street": "uytf jhvhv hjgy",
+                    "pincode": "110011"
+                }
+            ],
+            "communications": [
+                {
+                    "communicationType": "EMAIL",
+                    "communicationId": "dfgd@gfg.com",
+                    "isPrefferedCommunication": true
+                },
+                {
+                    "communicationType": "MOBILE",
+                    "communicationId": "7654345678",
+                    "isPrefferedCommunication": true
+                }
+            ],
+            "identificationDocuments": [
+                {
+                    "documentType": "PAN_CARD",
+                    "documentId": "hfsdf3456c",
+                    "issueDate": "2019-10-15"
+                }
+            ],
+            "isPrimaryInsuredPerson": true,
+            "nominee": {
+                "firstName": "Njbhv ",
+                "middleName": null,
+                "lastName": "Hyt",
+                "dateOfbirth": "2019-11-1",
+                "profession": null,
+                "gender": "MALE",
+                "relationship": "FATHER"
+            },
+            "firstName": "Test ",
+            "middleName": null,
+            "lastName": "Ft",
+            "dateOfbirth": "1982-10-28",
+            "profession": null,
+            "gender": "MALE",
+            "relationship": "SELF",
+            "maritalStatus": "V",
+            "physicalCharacteristics": {
+                "height": "175.26",
+                "weight": "67"
+            },
+            "coverages": [
+                {
+                    "coverType": "48717",
+                    "sumInsuredAmount": "1000000"
+                },
+                {
+                    "coverType": "48718",
+                    "sumInsuredAmount": "1000000"
+                }
+            ]
+           
+        }
+    ]
+}

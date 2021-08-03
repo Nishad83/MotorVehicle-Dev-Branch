@@ -1,0 +1,11 @@
+﻿{
+	"TxnNo":"C010620013214",
+	"objPolicy": {
+			"TPSourceName":"1013",
+			"QuoteNo": "QUOT_MOT_000047230_01062020",
+			"PaymentStatus":"Success",
+			"TraceID":"TAPI010620010715",
+			"UserName": "1009298"
+		
+		}
+}	

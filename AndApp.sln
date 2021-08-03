@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndApp", "AndApp\AndApp.csproj", "{22BD4FB9-61D6-42FD-ABC3-B6944970AF2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{4CD14E96-A9ED-4854-9590-A1EE49D1F6DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndWebApi", "AndWebApi\AndWebApi.csproj", "{3E6851DB-A15F-4DA3-AD7A-33D5EF46DEE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22BD4FB9-61D6-42FD-ABC3-B6944970AF2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22BD4FB9-61D6-42FD-ABC3-B6944970AF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22BD4FB9-61D6-42FD-ABC3-B6944970AF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22BD4FB9-61D6-42FD-ABC3-B6944970AF2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CD14E96-A9ED-4854-9590-A1EE49D1F6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CD14E96-A9ED-4854-9590-A1EE49D1F6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CD14E96-A9ED-4854-9590-A1EE49D1F6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CD14E96-A9ED-4854-9590-A1EE49D1F6DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E6851DB-A15F-4DA3-AD7A-33D5EF46DEE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E6851DB-A15F-4DA3-AD7A-33D5EF46DEE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E6851DB-A15F-4DA3-AD7A-33D5EF46DEE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E6851DB-A15F-4DA3-AD7A-33D5EF46DEE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

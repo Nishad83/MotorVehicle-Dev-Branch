@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+    Layout = null;
+}
+
+<form action="https://uatpg.hdfcergo.com/PaymentGateway/Payments.aspx" method="post" target="_blank">
+    <label for="Trnsno">TransactionID:</label>
+    <input type="text" id="Trnsno" name="Trnsno"><br><br>
+
+    <label for="FeatureID">FeatureID:</label>
+    <input type="text" id="FeatureID" name="FeatureID"><br><br>
+
+    <label for="CheckSum">CheckSum:</label>
+    <input type="text" id="Checksum" name="CheckSum"><br><br>
+
+    <input type="submit" value="Submit">
+</form>

@@ -1,0 +1,1852 @@
+﻿@model AndApp.Models.CarDetails
+@{
+    ViewBag.Title = "CarDetails";
+
+
+}
+
+<style>
+    #pageloader {
+        /*background: rgba( 255, 255, 255, 0.8 );truptigohel1243*/
+        display: none;
+        height: 100%;
+        position: fixed;
+        width: 100%;
+        z-index: 9999;
+    }
+
+        #pageloader img {
+            left: 38%;
+            margin-left: -50px;
+            margin-top: -32px;
+            position: absolute;
+            top: 20%;
+        }
+
+
+</style>
+<link href="~/assets/select2/select2.css" rel="stylesheet" />
+<link href="~/assets/css/date-picker.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<div ng-app="myApp">
+
+    <div ng-controller="myCtrl">
+        <section class="padding ins-sec m-top">
+            <div class="container">
+                <div id="pageloader">
+                    <img src="~/assets/images/loader_3.gif" alt="processing..." />
+                </div>
+                <input id="hdf_step" type="hidden" />
+
+                @Html.HiddenFor(m => m.policytype)
+                @Html.HiddenFor(m => m.makeid)
+                @Html.HiddenFor(m => m.modelid)
+                @Html.HiddenFor(m => m.variantid)
+                @Html.HiddenFor(m => m.stateid)
+
+                @Html.HiddenFor(m => m.policystartdate)
+                @Html.HiddenFor(m => m.policyenddate)
+                @Html.HiddenFor(m => m.claimtaken)
+                @Html.HiddenFor(m => m.existingpolicyexpired)
+
+
+                <form id="cardetails" name="cardetails" novalidate>
+
+
+
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6 align-self-center">
+                            <img class="img-fluid vect-img" src="~/assets/images/car-insurance.png" alt="car-insurance">
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div id="div_vhinfo" class="fadeIn animated br-box text-center" ng-show="divinfo">
+
+                                <div class="padd">
+                                    @*<form name="registrationform" novalidate>
+                                    *@
+                                    <div class="form-group">
+                                        <label>Enter the Registration Number</label>
+                                        <input type="text" id="regno" name="regno" class="form-control fullWidht text-center" ng-pattern="/^[A-Z|a-z]{2}[-]{1}[0-9]{2}[-]{1}[A-Z|a-z]{0,2}[-]{1}[0-9]{1,4}$/" ng-model="RegiNo" placeholder="Enter Your Car Number (Example DL01AB1234)" required />
+                                        <p style="color:red;font-style:" id="v_regno"></p>
+                                        @*<p ng-show="cardetails.regno.$touched && cardetails.regno.$error.pattern" class="errorblock" style="color:red;">Invalid registration number.Sample: DL-01-KY-3053</p>*@
+                                        <p class="errorblock" style="color:red;" ng-show="cardetails.regno.$dirty && cardetails.regno.$error.pattern ">Please Enter Valid RegistrationNo (Sample: DL-01-AB-3053)</p>
+                                        <p class="errorblock" style="color:red;" ng-show="submitregistno && cardetails.regno.$error.required">This is required Field</p>
+                                    </div>
+                                    <a href="#" ng-click="GetRegistrationNo()" class="btn btn-pink btn-fw mt-4">View Instant Quotes</a>
+                                    @*
+                                        </form>*@
+                                </div>
+                                <div class="box-bottom">
+                                    <span class="or">or</span>
+                                    <div class="padd">
+                                        <a ng-click="selectVinfo('Rollover')" class="btn btn-br btn-fw">Proceed without car Number</a>
+                                        <a ng-click="selectVinfo('New')" class="btn b-link mt-3">New Vehicle</a>
+                                        @*<a ng-click="enqnobtn()" class="btn b-link mt-3">By Enquiry No</a>*@
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div id="div_enq" class="fadeIn animated br-box text-center" ng-show="divenq">
+
+                                <div class="padd">
+
+                                    <div class="form-group">
+                                        <label>Enter Enquiry No</label>
+                                        <input type="text" id="enqno" name="enqno" class="form-control fullWidht text-center" ng-model="enqno" placeholder="ENQ0000000000" style="text-align:center" />
+                                        <p style="color:red;font-style:" id="v_enqno"></p>
+                                    </div>
+
+                                </div>
+                                <div class="box-bottom">
+
+                                    <div class="padd">
+                                        <a ng-click="selectenqinfo('Back')" class="btn b-link mt-3">GO To Back</a>
+                                        <a ng-click="selectenqinfo('Submit')" class="btn b-link mt-3">Submit</a>
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div id="div_state" class="fadeIn animated br-box" ng-show="divstate">
+                                <div class="padd">
+                                    <div class="row-box ins-box-head">
+                                        <span class="left-arrow" id="btnprev_divstate" ng-click="PrevStep();"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                        <h5>Select State</h5>
+                                        <span class="right-arrow" id="btnnext_divstate" ng-click="NextStep();" style="display:none;"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                    </div>
+                                    <div class="form-group search-other">
+                                        <input id="statetext" type="text" ng-model="SearchState" class="form-control fullWidht search-input" placeholder="Search State ">
+                                    </div>
+                                    <div class="row model-list">
+                                        <div class="col-md-6" ng-repeat="item in dataState =(statelist|filter:SearchState)">
+                                            <span class="model-b state" id="state_{{item.stateid}}" ng-click="selectState(item.stateid,item.statename)"><b>{{item.statename}}</b></span>
+                                        </div>
+                                        <span class="model-b state" ng-show="dataState.length == 0">
+                                            State Not Found
+
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="box-bottom">
+                                    <div class="padd">
+                                        <button class="btn btn-br btn-fw" ng-click="SetFocus('statetext')">Others</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="div_city" class="fadeIn animated br-box" ng-show="divcity">
+                                <div class="padd">
+                                    <div class="row-box ins-box-head">
+                                        <span class="left-arrow" id="btnprev_divrto" ng-click="PrevStep();"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                        <h5>Select City</h5>
+                                        <span class="right-arrow" id="btnnext_divrto" ng-click="NextStep();" style="display:none;"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                    </div>
+                                    <div class="form-group search-other">
+                                        <input id="rtocode" type="text" ng-model="SearchCity" class="form-control fullWidht search-input" placeholder="Search RTO (E.g. MH02 Or Mumbai)">
+                                    </div>
+                                    <div id="accordion" class="acc-city">
+                                        <div ng-repeat="item in datacity =(citylist|filter:SearchCity)" ng-init="current = $parent.start+1; $parent.start=$parent.start+1;">
+                                            <div class="card">
+                                                <div class="card-header" id="heading_{{item.stateid}}_{{current}}">
+                                                    <button class="btn btn-accor collapsed" ng-click="getrto(item.rtodesc,current)" data-toggle="collapse" data-target="#collapse_{{item.stateid}}_{{current}}" aria-expanded="true" aria-controls="collapseOne">
+                                                        {{item.rtodesc}}
+                                                    </button>
+                                                </div>
+
+                                                <div id="collapse_{{item.stateid}}_{{current}}" class="collapse" aria-labelledby="heading_{{item.stateid}}_{{current}}" data-parent="#accordion">
+                                                    <div class="card-body">
+
+                                                        <ul class="sec-nm" id="divrto_{{item.stateid}}_{{current}}"></ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="card" ng-show="datacity.length == 0">
+                                            City Not found
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="box-bottom">
+                                    <div class="padd">
+                                        <button class="btn btn-br btn-fw" ng-click="SetFocus('rtocode')">Others</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="div_make" class="fadeIn animated br-box" ng-show="divmake">
+                                <div class="padd">
+                                    <div class="row-box ins-box-head">
+                                        <span class="left-arrow" id="btnprev_divmake" ng-click="PrevStep();"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                        <h5>Select Car Brand</h5>
+                                        <span class="right-arrow" id="btnnext_divmake" ng-click="NextStep();" style="display:none;"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                    </div>
+                                    <div class="form-group search-other">
+                                        @Html.DropDownList("ddlmake", (IEnumerable<SelectListItem>)ViewBag.makelist, "", new { @class = "form-control fullWidht  ", @placeholder = "Search Car Brand" })
+                                    </div>
+                                    <div class="row brand-sec">
+                                        <div class="col-sm-3 col-xs-6" ng-repeat="item in makelist">
+                                            <span class="brand model-b make" id="make_{{item.makeid}}">
+                                                <img style="height:50px" class="img-fluid" src="~/assets/makelogo/{{item.makename}}.png" alt="{{item.makename}}" ng-click="selectMake(item.makeid,item.makename)">
+                                                <b>{{item.makename}}</b>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-bottom">
+                                    <div class="padd">
+                                        <button class="btn btn-br btn-fw" ng-click="SetFocus('ddlmake')">Others</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="div_model" class="fadeIn animated br-box" ng-show="divmodel">
+                                <div class="padd">
+                                    <div class="row-box ins-box-head">
+                                        <span class="left-arrow" id="btnprev_divmodel" ng-click="PrevStep();"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                        <h5>Select Car Model</h5>
+                                        <span class="right-arrow" id="btnnext_divmodel" ng-click="NextStep();" style="display:none;"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                    </div>
+                                    <div class="form-group search-other">
+                                        <input id="modeltext" type="text" ng-model="SearchModel" class="form-control fullWidht search-input" placeholder="Search Model ">
+                                    </div>
+                                    <div class="row model-list">
+                                        <div class="col-md-6" ng-repeat="item in datamodel =(modellist|filter:SearchModel)">
+                                            <span class="model-b model" id="model_{{item.modelid}}" ng-click="selectModel(item.modelid,item.modelname)"><b>{{item.modelname}}</b></span>
+                                        </div>
+                                        <span class="model-b model" ng-show="datamodel.length == 0">
+                                            Model Not found
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div class="box-bottom">
+                                    <div class="padd">
+                                        <button class="btn btn-br btn-fw" ng-click="SetFocus('modeltext')">Others</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fadeIn animated br-box" id="div_FuelDetials" ng-show="divfueltype">
+                                <div class="padd">
+                                    <div class="row-box ins-box-head">
+                                        <span class="left-arrow" id="btnprev_divfueltype" ng-click="PrevStep();"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                        <h5>Select Car Fuel Type</h5>
+                                        <span class="right-arrow" id="btnnext_divfueltype" style="display:none;" ng-click="NextStep();"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                    </div>
+                                    <div class="form-group search-other">
+                                        <input id="fueltypeid" type="text" name="fueltypeid" class="form-control fullWidht search-input" placeholder="Select Fuel Type" )">
+                                    </div>
+                                    <div class="row justify-content-center model-list">
+
+                                        <div ng-repeat="item in fuellist">
+                                            <div class="col-md-12"><span class="model-b fuel" id="fuel_{{item.fueltype}}" ng-click="GetFuel(item.fueltype)"><b>{{item.fueltype}}</b></span></div>
+
+                                        </div>
+                                        @*<div class="col-md-12"><span class="model-b fuel" ng-click="GetFuel($event,'Diesel')"><b>Diesel</b></span></div>
+                                            <div class="col-md-12"><span class="model-b fuel" ng-click="GetFuel($event,'Petrol')"><b>Petrol</b></span></div>
+                                            <div class="col-md-12"><span class="model-b fuel" ng-click="GetFuel($event,'CNG')"><b>External CNG Kit</b></span></div>
+                                            <div class="col-md-12"><span class="model-b fuel" ng-click="GetFuel($event,'LPG')"><b>External LPG Kit</b></span></div>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fadeIn animated br-box" id="div_VariantDetails" ng-show="divvariant">
+                                <div class="padd">
+                                    <div class="row-box ins-box-head">
+                                        <span class="left-arrow" id="btnprev_divvariant" ng-click="PrevStep();"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                        <h5>Select Car Variant</h5>
+                                        <span class="right-arrow" id="btnnext_divvariant" style="display:none;" ng-click="NextStep();"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                    </div>
+
+                                    <div class="form-group search-other">
+                                        <input id="varianttext" type="text" ng-model="SearchVariant" class="form-control fullWidht search-input" placeholder="Search Variant ">
+                                    </div>
+                                    <div class="row model-list">
+                                        <div class="col-md-6" ng-repeat="item in datavariant =(variantlist|filter:SearchVariant)">
+                                            <span class="model-b variant" id="variant_{{item.variantid}}" ng-click="selectVariant(item.variantid,item.variantname,item.cc)"><b>{{item.variantname}}</b></span>
+
+                                        </div>
+                                        <span class="model-b variant" ng-show="datavariant.length == 0">
+                                            Variant Not found
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="box-bottom">
+                                    <div class="padd">
+                                        <button class="btn btn-br btn-fw" ng-click="SetFocus('varianttext')">Others</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="fadeIn animated br-box" id="div_manufactureyear" ng-show="divmanufactureyear">
+                                <div class="padd">
+                                    <div class="row-box ins-box-head">
+                                        <span class="left-arrow" id="btnprev_divmanufactureyear" ng-click="PrevStep();"><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                                        <h5>Select Car Manufacturing Year</h5>
+                                        <span class="right-arrow" id="btnnext_divmanufactureyear" style="display:none;" ng-click="NextStep();"><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                                    </div>
+                                    <div class="form-group search-other">
+                                        <input id="manufacturingyear" name="manufacturingyear" type="text" ng-model="SearchYear" class="form-control fullWidht search-input" placeholder="Search ManufacturingYear">
+                                    </div>
+                                    <div class="row justify-content-center year-list">
+                                        <div class="col-md-4" ng-repeat="item in datamanuf =(myearlist|filter:SearchYear)"><span class="model-b" ng-click="SelectMyear(item.Value)"><b>{{item.Text}}</b></span></div>
+                                        <span class="model-b" ng-show="datamanuf.length==0">
+                                            Manufacturing Year Not  Found
+                                        </span>
+                                    </div>
+                                    <div class="box-bottom">
+                                        <div class="padd">
+                                            @*<input type="submit" ng-click="QualifyCompany();" value="submit">*@
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal modal-popup fade" id="modal-popup" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>*@
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div id="div_policy_type" ng-show="div_policy_type">
+                                                        <h5 class="text-left">Required Policy Type</h5>
+                                                        <div ng-click="policy_type($event,'Comprehensive');">
+                                                            <input class="form-check-input" type="radio" name="ptype" id="policytypecomprehensive" value="Comprehensive" checked>
+                                                            <label class="form-check-label" for="policytypecomprehensive">
+                                                                Comprehensive Policy?
+                                                            </label>
+                                                        </div>
+                                                        <div ng-click="policy_type($event,'ODOnly');">
+                                                            <input class="form-check-input" type="radio" name="ptype" id="policytypeODOnly" value="ODOnly">
+                                                            <label class="form-check-label" for="policytypeODOnly">
+                                                                OD Only?
+                                                            </label>
+                                                        </div>
+                                                        <div ng-click="policy_type($event,'TPOnly');">
+                                                            <input class="form-check-input" type="radio" name="ptype" id="policytypeTPOnly" value="TPOnly">
+                                                            <label class="form-check-label" for="policytypeTPOnly">
+                                                                Third Party?
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div id="div_prv_policy_rem" ng-show="div_policy_type">
+                                                        @*<a class="back" ng-click="KnowExpDate();"><span class="arrow"><i class="fa fa-arrow-circle-left"></i></span></a>
+                                                            <p class="gry-t mb-2">Your quotes are loading! Just two more step to go...</p>*@
+                                                        <h5 class="text-left">Do you remember previous policy details?</h5>
+                                                        <div ng-click="prv_policy_rem($event,'Yes');">
+                                                            <input class="form-check-input" type="radio" name="radios" id="prvpolicyremyes" value="Yes" checked>
+                                                            <label class="form-check-label" for="prvpolicyremyes">
+                                                                Yes
+                                                            </label>
+                                                        </div>
+                                                        <div ng-click="prv_policy_rem($event,'No');">
+                                                            <input class="form-check-input" type="radio" name="radios" id="prvpolicyremno" value="No">
+                                                            <label class="form-check-label" for="prvpolicyremno">
+                                                                No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="mb-4 mt-4">
+                                            <div ng-show="!DontKnowPreviousInsurer">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div id="div_existing_policy_expire">
+                                                            <h5 class="mb-3">Has your existing policy expired?</h5>
+                                                            <div class="b-rad">
+                                                                <div class="form-group form-check w-100 pl-0 mb-0" ng-click="existing_policy_status($event,'notexpire');">
+                                                                    <input class="form-check-input" type="radio" name="notexpire" id="notexpire" value="notexpire" checked>
+                                                                    <label class="form-check-label" for="notexpire">
+                                                                        Policy Not Expired Yet
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="b-rad mt-3">
+                                                                <div class="form-group form-check w-100 pl-0 mb-0" ng-click="existing_policy_status($event,'60-90Days');">
+                                                                    <input class="form-check-input" type="radio" name="notexpire" id="60-90Days" value="60-90Days">
+                                                                    <label class="form-check-label" for="60-90Days">
+                                                                        Policy Expired  within 60-90 days
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="b-rad mt-3">
+                                                                <div class="form-group form-check w-100 pl-0 mb-0" ng-click="existing_policy_status($event,'Beyond90Days');">
+                                                                    <input class="form-check-input" type="radio" name="notexpire" id="Beyond90Days" value="Beyond90Days">
+                                                                    <label class="form-check-label" for="Beyond90Days">
+                                                                        Policy Expired Beyond  90 Days
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="b-rad mt-3">
+                                                                <div class="form-group form-check w-100 pl-0 mb-0" ng-click="existing_policy_status($event,'oldcar');">
+                                                                    <input class="form-check-input" type="radio" name="notexpire" id="oldcar" value="oldcar">
+                                                                    <label class="form-check-label" for="oldcar">
+                                                                        I Bought Old Car
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div id="div_existing_policy_expire">
+                                                            <h5 class="mb-3">Previous Policy Type</h5>
+                                                            <div class="b-rad">
+                                                                <div class="form-group form-check w-100 pl-0 mb-0" ng-click="prv_policy_type($event,'Comprehensive');">
+                                                                    <input class="form-check-input" type="radio" name="prv_policy_type" id="prvpolicytypecomprehensive" value="Comprehensive" checked>
+                                                                    <label class="form-check-label" for="prvpolicytypecomprehensive">
+                                                                        Comprehensive
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="b-rad mt-3" ng-show="!IsODOnly">
+                                                                <div class="form-group form-check w-100 pl-0 mb-0" ng-click="prv_policy_type($event,'TP');">
+                                                                    <input class="form-check-input" type="radio" name="prv_policy_type" id="prvpolicytypeTPOnly" value="TPOnly">
+                                                                    <label class="form-check-label" for="prvpolicytypeTPOnly">
+                                                                        Third Party
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="b-rad mt-3" ng-show="IsODOnly">
+                                                                <div class="form-group form-check w-100 pl-0 mb-0" ng-click="prv_policy_type($event,'OD');">
+                                                                    <input class="form-check-input" type="radio" name="prv_policy_type" id="prvpolicytypeODOnly" value="ODOnly">
+                                                                    <label class="form-check-label" for="prvpolicytypeODOnly">
+                                                                        OD Only
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="mb-4 mt-4">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div id="div_date">
+                                                            <h5 class="text-left" ng-show="!IsODOnly">When does your policy expire?</h5>
+                                                            <h5 class="text-left" ng-show="IsODOnly">When does your od policy expire?</h5>
+                                                            <input readonly="readonly" ng-model="expdate" ng-change='changetpdate()' class="expdate form-control datepicker" placeholder="Select Date" autocomplete="off" />
+                                                            <p style="color:red;" id="v_prvexpdate"></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h5 class="text-left" ng-show="!IsODOnly">Previous Insurer</h5>
+                                                        <h5 class="text-left" ng-show="IsODOnly">OD Previous Insurer</h5>
+                                                        <select name="ddlprvinsurer" class="form-control" ng-model="prvinsurer" ng-options="PRV.companyname for PRV in prvInsurComlist track by PRV.id">
+                                                            <option value="" disabled="" class="" selected="selected">Select Previous insurer</option>
+                                                        </select>
+                                                        <p style="color:red;" id="v_prvcomp"></p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" ng-show="IsODOnly">
+                                                    <div class="col-md-6">
+                                                        <div id="div_tpdate">
+                                                            <h5 class="text-left">When does your TP policy expire?</h5>
+                                                            <input ng-model="tpexpdate" ng-change='changedate()' class="tpexpdate form-control datepicker" />
+                                                        </div>
+                                                        <p style="color:red;" id="v_tpexpdate"></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <h5 class="text-left">TP Previous Insurer</h5>
+                                                        <select name="ddltpprvinsurer" class="form-control" ng-model="tpprvinsurer" ng-options="PRV.companyname for PRV in prvInsurComlist track by PRV.id">
+                                                            <option value="" disabled="" class="" selected="selected">Select TP Previous insurer</option>
+                                                        </select>
+                                                        <p style="color:red;" id="v_tpcomp"></p>
+                                                    </div>
+                                                </div>
+                                                <hr class="mb-4 mt-4">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div ng-show="div_make_claim_existing_policy" id="div_make_claim_existing_policy">
+                                                            <h5 class="mb-3">Did you make a claim in your existing policy?</h5>
+                                                            <div class="b-rad">
+                                                                <div class="form-group form-check w-100 pl-0 mb-0" ng-click="claim_taken_existing_policy($event,'yes');">
+                                                                    <input class="form-check-input" type="radio" name="claim" id="yes" value="yes">
+                                                                    <label class="form-check-label" for="yes">
+                                                                        Yes
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="b-rad mt-3">
+                                                                <div class="form-group form-check w-100 pl-0 mb-0" ng-click="claim_taken_existing_policy($event,'no');">
+                                                                    <input class="form-check-input" type="radio" name="claim" id="no" value="no" checked>
+                                                                    <label class="form-check-label" for="no">
+                                                                        No
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr class="mb-4 mt-4">
+                                            </div>
+                                            <div style="text-align:center">
+                                                <span style="float:right; width:20%" class="model-b" id="callQualifyCompany"><b class="ng-binding">Submit</b></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+
+
+<script src="~/assets/js/angular.min.js"></script>
+<script src="~/assets/js/ngStorage.min.js"></script>
+<script src="~/assets/select2/select2.js"></script>
+<script src="~/assets/js/jquery.mask.min.js"></script>
+@*
+    <script src="~/assets/js/date-picker.min.js"></script>*@
+
+<script>
+    var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+    var d = new Date();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var day = d.getDate();
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#hdf_step').val('0');
+        $("#ddlmake").select2({
+            minimumInputLength: 0,
+        });
+
+        $("#ddlprvinsurer").select2({
+            minimumInputLength: 0,
+        });
+        //$('#regno').mask('AA-00-AA-0000');
+        $('#enqno').mask('ENQ0000000000');
+    });
+
+</script>
+<script type="text/javascript">
+    debugger
+    sessionStorage.clear();
+   
+    var app = angular.module("myApp", ["ngStorage"]);
+    app.controller("myCtrl", function ($scope, $http, $window, $compile, $sessionStorage, $filter) {
+
+     
+        delete $sessionStorage.FirstQuote;
+        delete $sessionStorage.PCQuotation;
+        delete $sessionStorage.PCQuotationResPonse;
+        delete $sessionStorage.CoverageDetails
+        delete $sessionStorage.RegistrationDate;
+        delete $sessionStorage.ManufaturingDate;
+        delete $sessionStorage.modelid;
+        delete $sessionStorage.variantid;
+        delete $sessionStorage.isidvupdate;
+        delete $sessionStorage.updatedidv;
+        delete $sessionStorage.CustomIDV;
+        delete $sessionStorage.isbrekin;
+        delete $sessionStorage.proposalresponse;
+        delete $sessionStorage.proposalreq;
+        delete $sessionStorage.selectedaccessory;
+        $(document).ready(function () {
+            $(function () {
+                SetDateValues("notexpire");
+            })
+        });
+
+        function SetDateValues(datediff) {
+            debugger
+
+            var start = new Date();
+            var end = new Date();
+
+            var tpstartdate = new Date();
+            var tpenddate = new Date();
+            tpenddate.setFullYear(tpenddate.getFullYear() + 1);
+
+            $('.tpexpdate').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd-mm-yy',
+                minDate: tpstartdate,
+                maxDate: tpenddate,
+                yearRange: tpstartdate.getFullYear() + ':' + tpenddate.getFullYear()
+				 ,
+                beforeShow: function (input, inst) {
+                    $(document).off('focusin.bs.modal');
+                }
+            });
+
+            if (datediff == "notexpire") {
+                var start = new Date();
+                var end = new Date();
+                end.setFullYear(end.getFullYear() + 1);
+                $('.expdate').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'dd-mm-yy',
+                    minDate: start,
+                    maxDate: end,
+                    yearRange: start.getFullYear() + ':' + end.getFullYear()
+					 ,
+                beforeShow: function (input, inst) {
+                    $(document).off('focusin.bs.modal');
+                }
+                });
+            }
+
+            if (datediff == "60-90Days") {
+                $(".expdate").datepicker("destroy");
+                var start = new Date();
+                var end = new Date();
+                start.setFullYear(start.getFullYear() - 2);
+                end.setDate(end.getDate() - 60);
+
+                $('.expdate').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'dd-mm-yy',
+                    minDate: start,
+                    maxDate: end,
+                    yearRange: start.getFullYear() + ':' + end.getFullYear()
+					 ,
+                beforeShow: function (input, inst) {
+                    $(document).off('focusin.bs.modal');
+                }
+                });
+            }
+
+            if (datediff == "Beyond90Days") {
+                $(".expdate").datepicker("destroy");
+                var start = new Date();
+                var end = new Date();
+                start.setFullYear(start.getFullYear() - 2);
+                end.setDate(end.getDate() - 90);
+
+                $('.expdate').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'dd-mm-yy',
+                    minDate: start,
+                    maxDate: end,
+                    yearRange: start.getFullYear() + ':' + end.getFullYear()
+					 ,
+                beforeShow: function (input, inst) {
+                    $(document).off('focusin.bs.modal');
+                }
+                });
+            }
+        }
+
+
+
+
+
+        const date = new Date();
+        const newDate = addDays(date, 365);
+        var a = new Date(today)
+
+        $scope.tpexpdate = $filter('date')(newDate, "dd-MM-yyyy");
+
+
+        $scope.expdate;
+        $scope.$watch("expdate", function (newValue, oldValue) {
+            // alert(newValue); // this is  selected exp date value....
+            $scope.div_date = false;
+            $scope.div_make_claim_existing_policy = true;
+
+            //$scope.expdate = newValue;
+            const dateTime = newValue;
+            const parts = dateTime.split(/[- :]/);
+            const wanted = `${parts[1]}/${parts[0]}/${parts[2]}`;
+            FirstQuote.prvexpdate = new Date(wanted);
+
+            const date = new Date(wanted);
+            const newDate = addDays(date, 365);
+            var a = new Date(today)
+
+            $scope.tpexpdate = $filter('date')(newDate, "dd-MM-yyyy");
+        });
+        $scope.$watch("tpexpdate", function (newValue, oldValue) {
+            // alert(newValue);
+            $scope.div_tpdate = false;
+            $scope.div_make_claim_existing_policy = true;
+
+            //$scope.expdate = newValue;
+            const dateTime = newValue;
+            const parts = dateTime.split(/[- :]/);
+            const wanted = `${parts[1]}/${parts[0]}/${parts[2]}`;
+            FirstQuote.prvtpexpdate = new Date(wanted);
+        });
+
+        $scope.isState = false;
+        $scope.divinfo = true;
+        //$scope.PolicyType = "Rollover";
+        //var APIURL = 'http://localhost:17676/api/PrivateCar/';
+        $scope.chkClaimed = false;
+        $scope.chkVehicleOwnerChange = false;
+        $scope.ddlNCB = "0";
+
+
+
+        $scope.selectenqinfo = function (enq) {
+
+            if (enq == "Back") {
+                $scope.divinfo = true;
+                $scope.divenq = false;
+
+            }
+            else {
+
+                var enqno = $('#enqno').val();
+
+                if (enqno == '') {
+                    $('#v_enqno').text("Please Enter Enquiry No.");
+                    return false;
+                }
+                else if (enqno.length != 13) {
+                    $('#v_enqno').text("Enquiry No Is Not Valid");
+                    return false;
+                }
+                else {
+                    $('#v_enqno').text("");
+                }
+
+
+                $http({
+                    url: '/PrivateCar/GetQuoteByEnquiryNo',
+                    method: "POST",
+                    data: { enqno: enqno }
+                }).then(function (response) {
+
+                    if (!angular.isUndefined(response && response.data)) {
+
+
+                        $sessionStorage.PCQuotationResPonse = angular.copy(JSON.parse(response.data.enquiryresponse));
+                        $sessionStorage.PCQuotation = angular.copy(JSON.parse(response.data.enquiryrequest));
+                        //$scope.Cbbbb = angular.copy($filter('unique')($sessionStorage.PCQuotation, 'StateName'));
+                        $scope.idx = $sessionStorage.PCQuotation.length - 1;
+                        //alert($scope.idx);
+                        var FirstQ = {
+                            "StateName": $sessionStorage.PCQuotation[$scope.idx]["StateName"],
+                            "RTOCode": $sessionStorage.PCQuotation[$scope.idx]["RTOCode"],
+                            "MakeName": $sessionStorage.PCQuotation[$scope.idx]["MakeName"],
+                            "ModelName": $sessionStorage.PCQuotation[$scope.idx]["ModelName"],
+                            "Fuel": $sessionStorage.PCQuotation[$scope.idx]["Fuel"],
+                            "VariantId": $sessionStorage.PCQuotation[$scope.idx]["VariantId"],
+                            "VariantName": $sessionStorage.PCQuotation[$scope.idx]["VariantName"],
+                            "ManufactureYear": $sessionStorage.PCQuotation[$scope.idx]["ManufactureYear"],
+                            "EnqId": $sessionStorage.PCQuotation[$scope.idx]["EnqId"]
+                        };
+                        $sessionStorage.GetQByEnquiry = true;
+                        $sessionStorage.FirstQuote = angular.copy(FirstQ);
+                        window.location.href = '/Motor/PrivateCar/PolicyDetails';
+                        //return false;
+                        //angular.forEach(JSON.parse(response.data.enquiryrequest), function (companywisequote) {
+                        //    console.log(companywisequote)
+
+                        //    $scope.QuoteResponse = [];
+                        //    var newQuote = {};
+
+
+
+                        //    $http({
+                        //        url: '/PrivateCar/GetQuoteCompanyWise',
+                        //        method: "POST",
+                        //        data: JSON.stringify(companywisequote)
+                        //    }).then(function (response) {
+                        //        if (!angular.isUndefined(response && response.data.length > 0)) {
+                        //            $scope.ProgressCount++;
+                        //            $scope.CompanyResData = response.data;
+
+                        //            if (response.data.Status === 1) {
+                        //                $scope.QuoteResponse.push(response.data);
+                        //            }
+
+                        //            //   console.log($scope.CompanyResData);
+
+                        //            if ($scope.ProgressTotal == $scope.ProgressCount) {
+
+                        //                $sessionStorage.PCQuotation = angular.copy($scope.QuoteReqModel);
+                        //                $sessionStorage.PCQuotationResPonse = angular.copy($scope.QuoteResponse);
+                        //                window.location.href = '/Motor/PrivateCar/PolicyDetails';
+                        //            }
+                        //        }
+                        //        else {
+                        //        }
+                        //    }, function (error) {
+                        //    });
+
+                        //    //}
+
+                        //});//f
+                    }
+                    else {
+                        //growl.error('Error while fetching state details!!!');
+                    }
+
+                }, function (error) {
+                });
+            }
+        };
+        $scope.selectVinfo = function (Policy) {
+            delete $sessionStorage.FirstQuote;
+            delete $sessionStorage.PCQuotation;
+            delete $sessionStorage.PCQuotationResPonse;
+            delete $sessionStorage.CoverageDetails
+            delete $sessionStorage.RegistrationDate;
+            delete $sessionStorage.ManufaturingDate;
+            delete $sessionStorage.modelid;
+            delete $sessionStorage.variantid;
+            delete $sessionStorage.isidvupdate;
+            delete $sessionStorage.updatedidv;
+            delete $sessionStorage.CustomIDV;
+            delete $sessionStorage.isbrekin;
+            delete $sessionStorage.proposalresponse;
+            delete $sessionStorage.proposalreq;
+            delete $sessionStorage.selectedaccessory;
+            $("#policytype").val(Policy);
+            $scope.PolicyType = Policy;
+            $scope.divstate = true;
+            $scope.divinfo = false;
+            $('.right-arrow').hide();
+            $('.model-b').removeClass('active');
+            FirstQuote.PolicyType = $scope.PolicyType;
+            // FirstQuote.RegistrationNo = String($scope.RegiNo).replace("-", "");
+            if (!angular.isUndefined($scope.PolicyType) && ($scope.PolicyType != "New")) {
+                $http({
+                    url: '/PrivateCar/GetPrvInsurerSelect',
+                    method: "POST"
+                })
+                      .then(function (result) {
+                          $scope.prvInsurComlist = result.data.data;
+                      })
+
+            }
+            $('.search-input').val("");
+            $('#hdf_step').val('2');
+        };
+
+
+        $scope.enqnobtn = function () {
+            $scope.divinfo = false;
+            $scope.divenq = true;
+        };
+
+        $scope.prvInsurComlist = [];
+
+
+        //alert($scope.selectedName);
+        $scope.statelist = [];
+        $scope.makelist = [];
+        $scope.citylist = [];
+        $scope.modellist = [];
+        $scope.fuellist = [];
+        $scope.variantlist = [];
+        $scope.myearlist = [];
+        $http({
+            url: '/PrivateCar/Getstate',
+            method: "POST"
+        })
+            .then(function (result) {
+
+                $scope.statelist = result.data;
+
+            })
+        $http({
+            url: '/PrivateCar/GetMake',
+            method: "POST"
+        })
+            .then(function (result) {
+
+                $scope.makelist = result.data;
+
+            })
+        $scope.selectState = function (stateid, statename) {
+            $('.state').removeClass('active');
+            $("#state_" + stateid).addClass('active');
+            $("#stateid").val(stateid);
+            $('#statetext').val(statename);
+            $('#cityname').val("");
+            $('#rtocode').val("");
+            $('#btnnext_divstate').hide();
+            $('#btnnext_divrto').hide();
+            $('#hdf_step').val('3');
+            FirstQuote.StateName = statename;
+            $scope.divstate = false;
+            $scope.divcity = true;
+            GetCity(stateid);
+        }
+        function GetCity(stateid) {
+
+            var url = '@Url.Action("GetRtoCity", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { stateid: stateid },
+            })
+            .then(function (data) {
+                //  console.log(data.data);
+                $scope.citylist = data.data;
+            })
+
+        }
+        $scope.getrto = function (rtodesc, id) {
+            var stateid = $("#stateid").val();
+            $("#cityname").val(rtodesc);
+            $('#divrto_' + stateid + "_" + id).html("");
+            var url = '@Url.Action("GetRto","PrivateCar")';
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: { stateid: stateid, rtodesc: rtodesc },
+                success: function (data) {
+                    var html = "";
+                    $.each(data, function (k) {
+                        html += '<li ><span class="spanrto" rtoid=' + data[k].rtoid + ' rtocode=' + data[k].rtocode + ' ng-click="SelectRTO($event)" >' + data[k].rtocode + '</span></li>';
+                    });
+
+                    $htmlstr = $(html).appendTo('#divrto_' + stateid + "_" + id);
+                    $compile($htmlstr)($scope);
+                }
+            });
+            FirstQuote.RTOCode = rtodesc;
+
+        }
+
+
+
+        //$scope.QuoteReqModel = [];
+
+        var FirstQuote = {};
+
+        function QualifyCompany() {
+
+            $("#pageloader").fadeIn();
+            var objQalifyCom = {
+                "IsBreakin": 1,
+                "VariantId": 12,
+                "RtoId": 205
+            };
+            $http({
+                url: '/PrivateCar/QualifyCom',
+                method: "POST",
+                data: JSON.stringify(objQalifyCom)
+            }).then(function (response) {
+
+                if (!angular.isUndefined(response && response.data)) {
+                    $scope.QualifyCompanyResData = response.data.data;
+                    FirstQuote.prvinsurername = !angular.isUndefined($scope.prvinsurer) ? $scope.prvinsurer.companyname : undefined;
+                    FirstQuote.prvinsurerid = !angular.isUndefined($scope.prvinsurer) ? $scope.prvinsurer.id : undefined;
+                    FirstQuote.tpprvinsurername = !angular.isUndefined($scope.tpprvinsurer) ? $scope.tpprvinsurer.companyname : undefined;
+                    FirstQuote.tpprvinsurerid = !angular.isUndefined($scope.tpprvinsurer) ? $scope.tpprvinsurer.id : undefined;
+                    FirstQuote.EnqId = response.data.enquiryid;
+
+
+
+
+
+                    $scope.ProgressTotal = $scope.QualifyCompanyResData.length;
+                    $scope.ProgressCount = 0;
+                    $sessionStorage.FirstQuote = angular.copy(FirstQuote);
+                    $sessionStorage.QualifyCompanyResData = $scope.QualifyCompanyResData;
+
+
+
+                    window.location.href = '/Motor/PrivateCar/PolicyDetails';
+                }
+                else {
+                    //growl.error('Error while fetching state details!!!');
+                }
+            }, function (error) {
+                //growl.error('error');
+            });
+
+        }
+        $scope.SelectRTO = function ($event) {
+            var code = ($event.target).attributes["rtocode"].value;
+            FirstQuote.RTOCode = code;
+            FirstQuote.RegistrationNo = code;
+            //!angular.isUndefined($scope.RegiNo) ? String($scope.RegiNo).replace("-", "") : code + "SG1234";
+            var rtoid = ($event.target).attributes["rtoid"].value;
+            $(".spanrto").removeClass('active');
+            $(event.target).addClass('active');
+
+            $('#rtocode').val(code);
+            @*@Model.rtocode = code;*@
+            $scope.divcity = false;
+            $scope.divmake = true;
+            $('#hdf_step').val('4');
+        };
+        $scope.selectMake = function (makeid, makename) {
+
+            $('.make').removeClass('active');
+            $("#make_" + makeid).addClass('active');
+            $("#makeid").val(makeid);
+            $('#ddlmake').val(makeid);
+            $('#select2-chosen-1').html(makename);
+            FirstQuote.MakeName = makename;
+            $('#modeltext').val("");
+            $('#fueltypeid').val("");
+            $('#varianttext').val("");
+            $('#btnnext_divvariant').hide();
+            $('#btnnext_divfueltype').hide();
+            $('#btnnext_divmodel').hide();
+            $('#btnnext_divmake').hide();
+            $('#hdf_step').val('5');
+            $scope.divmake = false;
+            $scope.divmodel = true;
+            GetModel(makeid);
+
+        };
+        $scope.selectModel = function (modelid, modelname) {
+
+            $scope.modelid = modelid
+            $sessionStorage.modelid = modelid;
+
+
+            $('.model').removeClass('active');
+            $("#model_" + modelid).addClass('active');
+            $("#modelid").val(modelid);
+            $('#modeltext').val(modelname);
+            FirstQuote.ModelName = modelname;
+            $('#fueltypeid').val("");
+            $('#varianttext').val("");
+            $('#btnnext_divvariant').hide();
+            $('#btnnext_divfueltype').hide();
+            $('#btnnext_divmodel').hide();
+            $scope.divmodel = false;
+            $scope.divfueltype = true;
+            GetFuel(modelid);
+            $('#hdf_step').val('6');
+        };
+        function GetModel(makeid) {
+
+
+            $scope.makeid = makeid
+            var url = '@Url.Action("GetModel", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { makeid: makeid }
+            })
+            .then(function (result) {
+                //  console.log(result.data.model);
+                $scope.modellist = result.data.model;
+            })
+
+        }
+        function GetFuel(modelid) {
+
+            var url = '@Url.Action("GetFuel", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { modelid: modelid }
+            })
+            .then(function (result) {
+
+                //  console.log(result.data.model);
+                $scope.fuellist = result.data.fuel;
+            })
+
+        }
+        $("#ddlmake").change(function () {
+            debugger;
+            var makeid = $('#ddlmake').val();
+            $("#makeid").val(makeid);
+            $('.make').removeClass('active');
+            $("#make_" + makeid).addClass('active');
+            $('#modeltext').val("");
+            $('#fueltypeid').val("");
+            $('#varianttext').val("");
+            $('#btnnext_divvariant').hide();
+            $('#btnnext_divfueltype').hide();
+            $('#btnnext_divmodel').hide();
+            $('#btnnext_divmake').hide();
+            $('#hdf_step').val('5');
+            $scope.divmake = false;
+            $scope.divmodel = true;
+            GetModel(makeid);
+
+        });
+        $scope.GetFuel = function (fueltype) {
+            debugger;
+            @*'@Model.fueltype' = fueltype;*@
+            $('#fueltypeid').val(fueltype);
+            $('.fuel').removeClass('active');
+            $('#fuel_' + fueltype).addClass('active');
+            // $(event.target).addClass('active');
+            FirstQuote.Fuel = fueltype;
+            $('#varianttext').val("");
+            $('#btnnext_divvariant').hide();
+            $('#btnnext_divfueltype').hide();
+            $scope.divfueltype = false;
+            $scope.divvariant = true;
+            GetVariant(fueltype);
+            $('#hdf_step').val('7');
+        }
+        function GetVariant(fueltype) {
+            var modelid = $('#modelid').val();
+            var url = '@Url.Action("GetVariant", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { modelid: modelid, fueltype: fueltype }
+            })
+            .then(function (result) {
+                $scope.variantlist = result.data.variant;
+            })
+        }
+        $scope.selectVariant = function (variantid, variantname,cc) {
+            $scope.variantid = variantid
+            $sessionStorage.variantid = variantid;
+            $('.variant').removeClass('active');
+            $('#variant_' + variantid).addClass('active');
+            // $(event.target).addClass('active');
+            $("#variantid").val(variantid);
+            $('#varianttext').val(variantname);
+            FirstQuote.VariantId = variantid;
+            FirstQuote.VariantName = variantname;
+            FirstQuote.CC = cc;
+            $scope.divvariant = false;
+            $scope.divmanufactureyear = true;
+            GetManufacturingYear();
+            $('#hdf_step').val('8');
+        }
+        function GetManufacturingYear() {
+            debugger
+            var policy = $('#policytype').val();
+            //if ($('#policytype').val() == 'New') {
+            // var year = new Date().getFullYear();
+            // //$('#manufacturingyear').val(year);
+            // FirstQuote.ManufactureYear = year;
+            // $scope.myearlist = year;
+            //}
+            //else {
+            var url = '@Url.Action("GetManufacturingYear", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { policytype: policy }
+            })
+            .then(function (result) {
+                // console.log(result.data);
+                $scope.myearlist = result.data;
+            })
+            //}
+        }
+
+        $scope.ChangeNCBValue = function (ncb) {
+            $scope.ddlNCB = ncb;
+        }
+
+        $scope.GetApplicableNCB = function () {
+
+            if (new Date(FirstQuote.ManufactureYear).getFullYear() <= new Date().getFullYear()) {
+                $scope.ddlNCB = "0";
+                $scope.CurrentNcb = "20";
+            }
+            if (new Date(FirstQuote.ManufactureYear).getFullYear() < new Date().getFullYear() - 1) {
+                $scope.ddlNCB = "20";
+                $scope.CurrentNcb = "25";
+            }
+            if (new Date(FirstQuote.ManufactureYear).getFullYear() < new Date().getFullYear() - 2) {
+                $scope.ddlNCB = "25";
+                $scope.CurrentNcb = "35";
+            }
+            if (new Date(FirstQuote.ManufactureYear).getFullYear() < new Date().getFullYear() - 3) {
+                $scope.ddlNCB = "35";
+                $scope.CurrentNcb = "45";
+            }
+            if (new Date(FirstQuote.ManufactureYear).getFullYear() < new Date().getFullYear() - 4) {
+                $scope.ddlNCB = "45";
+                $scope.CurrentNcb = "50";
+            }
+            if (new Date(FirstQuote.ManufactureYear).getFullYear() < new Date().getFullYear() - 5) {
+                $scope.ddlNCB = "50";
+                $scope.CurrentNcb = "50";
+            }
+            if (new Date(FirstQuote.ManufactureYear).getFullYear() < new Date().getFullYear() - 6) {
+                $scope.ddlNCB = "65";
+                $scope.CurrentNcb = "50";
+            }
+            FirstQuote.ddlNCB = $scope.ddlNCB;
+            //if (!angular.equals($scope.ddlNCB, $scope.ApplicableNCB)) {
+            //    $scope.ddlNCB = angular.copy($scope.ApplicableNCB);
+            //    //if (angular.isUndefined($scope.ddlNCB)) {
+            //    //  $scope.ddlNCB = angular.copy($scope.ApplicableNCB);
+            //    //} else {
+            //    //  $scope.ddlNCB = angular.copy($scope.ddlNCB);
+            //    //}
+            //}
+        }
+
+        $scope.SelectMyear = function (year) {
+            debugger
+
+            //alert($scope.makeid);
+            //alert($scope.modelid);
+            //alert($scope.variantid);
+            $.ajax({
+                type: "POST",
+                url: "/PrivateCar/top_make_model_variant/",
+                data: {
+                    make:$scope.makeid,
+                    model: $scope.modelid,
+                    variant: $scope.variantid
+                },
+                success: function(result) {
+
+                },
+                error: function(result) {
+
+                }
+            });
+
+
+            $('#manufacturingyear').val(year);
+            FirstQuote.ManufactureYear = year;
+
+            $scope.GetApplicableNCB();
+
+            var policytype = $("#policytype").val();
+            if (policytype != "New") {
+                $("#modal-popup").modal('show');
+                $scope.div_policy_type = true;
+                $scope.div_date = true;
+                $scope.div_existing_policy_expire = false;
+                $scope.div_make_claim_existing_policy = true;
+
+                const date = new Date();
+                $scope.expdate = $filter('date')(date, "dd-MM-yyyy");
+            }
+            else {
+                QualifyCompany();
+            }
+        }
+        $scope.SetFocus = function (element) {
+
+            if (element == 'ddlmake')
+                $('#' + element).select2("open");
+            else
+                $('#' + element).focus();
+        }
+        $scope.PrevStep = function () {
+            debugger;
+            var stepval = $('#hdf_step').val();
+            stepval = stepval - 1;
+            if (stepval == 3 && $('#regno').val()) {
+                stepval = 1;
+            }
+            $('#hdf_step').val(stepval);
+            if (stepval == 1) {
+                $scope.divstate = false;
+                $scope.divcity = false;
+                $scope.divmake = false;
+                $scope.divmodel = false;
+                $scope.divvariant = false;
+                $scope.divfueltype = false;
+                $scope.divmanufactureyear = false;
+                $scope.divinfo = true;
+            }
+            else if (stepval == 2) {
+                $scope.divinfo = false;
+                $scope.divcity = false;
+                $scope.divmake = false;
+                $scope.divmodel = false
+                $scope.divfueltype = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = false;
+                $scope.divstate = true;
+                $('#btnnext_divstate').show();
+            }
+            else if (stepval == 3) {
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divmake = false;
+                $scope.divcity = false;
+                $scope.divmodel = false;
+                $scope.divfueltype = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = false;
+                $scope.divcity = true;
+                $('#btnnext_divrto').show();
+            }
+            else if (stepval == 4) {
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divcity = false;
+                $scope.divcity = false;
+                $scope.divmodel = false;
+                $scope.divfueltype = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = false;
+                $scope.divmake = true;
+                $('#btnnext_divmake').show();
+            }
+            else if (stepval == 5) {
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divfueltype = false;
+                $scope.divcity = false;
+                $scope.divmake = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = false;
+                $scope.divmodel = true;
+                $('#btnnext_divmodel').show();
+            }
+            else if (stepval == 6) {
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divcity = false;
+                $scope.divmake = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = false;
+                $scope.divmodel = false;
+                $scope.divfueltype = true;
+                $('#btnnext_divfueltype').show();
+            }
+            else if (stepval == 7) {
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divcity = false;
+                $scope.divmake = false;
+                $scope.divmodel = false;
+                $scope.divfueltype = false;
+                $scope.divmanufactureyear = false;
+                $scope.divvariant = true;
+                $('#btnnext_divvariant').show();
+            }
+            else if (stepval == 8) {
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divcity = false;
+                $scope.divmake = false;
+                $scope.divmodel = false;
+                $scope.divfueltype = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = true;
+                $('#btnnext_divmanufactureyear').show();
+            }
+        }
+
+        $scope.NextStep = function () {
+            debugger;
+            var stepval = $('#hdf_step').val();
+            stepval = parseInt(stepval) + 1;
+
+            $('#hdf_step').val(stepval);
+            if (stepval == 1) {
+                $scope.divstate = false;
+                $scope.divcity = false;
+                $scope.divmake = false;
+                $scope.divmodel = false;
+                $scope.divvariant = false;
+                $scope.divfueltype = false;
+                $scope.divmanufactureyear = false;
+                $scope.divinfo = true;
+            }
+            else if (stepval == 2) {
+                $scope.divcity = false;
+                $scope.divmake = false;
+                $scope.divmodel = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = false;
+                $scope.divfueltype = false;
+                $scope.divinfo = false;
+                $scope.divstate = true;
+            }
+            else if (stepval == 3) {
+                $scope.divmake = false;
+                $scope.divmodel = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = false;
+                $scope.divfueltype = false;
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divcity = true;
+            }
+            else if (stepval == 4) {
+                $scope.divcity = false;
+                $scope.divmodel = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = false;
+                $scope.divfueltype = false;
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divmake = true;
+            }
+            else if (stepval == 5) {
+                $scope.divcity = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = false;
+                $scope.divfueltype = false;
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divmake = false;
+                $scope.divmodel = true;
+            }
+            else if (stepval == 6) {
+                $scope.divcity = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = false;
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divmake = false;
+                $scope.divmodel = false;
+                $scope.divfueltype = true;
+            }
+            else if (stepval == 7) {
+                $scope.divcity = false;
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divmake = false;
+                $scope.divmodel = false;
+                $scope.divfueltype = false;
+                $scope.divmanufactureyear = false;
+                $scope.divvariant = true;
+            }
+            else if (stepval == 8) {
+                $scope.divcity = false;
+                $scope.divinfo = false;
+                $scope.divstate = false;
+                $scope.divmake = false;
+                $scope.divmodel = false;
+                $scope.divfueltype = false;
+                $scope.divvariant = false;
+                $scope.divmanufactureyear = true;
+            }
+        }
+
+        $scope.GetRegistrationNo = function () {
+            delete $sessionStorage.FirstQuote;
+            delete $sessionStorage.PCQuotation;
+            delete $sessionStorage.PCQuotationResPonse;
+            delete $sessionStorage.CoverageDetails
+            delete $sessionStorage.RegistrationDate;
+            delete $sessionStorage.ManufaturingDate;
+            delete $sessionStorage.modelid;
+            delete $sessionStorage.variantid;
+            delete $sessionStorage.isidvupdate;
+            delete $sessionStorage.updatedidv;
+            delete $sessionStorage.CustomIDV;
+            delete $sessionStorage.isbrekin;
+            delete $sessionStorage.proposalresponse;
+            delete $sessionStorage.proposalreq;
+            delete $sessionStorage.selectedaccessory;
+            $scope.submitregistno = true;
+            if ($scope.cardetails.$valid) {
+                $("#policytype").val("Rollover");
+                $scope.PolicyType = "Rollover";
+
+                var regino = String($scope.RegiNo).toUpperCase();
+                regino = regino.replace(/-/g, "");
+                var isvalid = true;
+                // FirstQuote.RegistrationNo = regino.replace(/-/g, "");
+                $http({
+                    url: '/PrivateCar/CheckValidRTO',
+                    method: "POST",
+                    data: { rto: regino }
+                })
+            .then(function (result) {
+                isvalid = result.data;
+                if (!isvalid) {
+                    $scope.selectVinfo("Rollover");
+                    $scope.divinfo = false;
+
+                }
+                else {
+                    FirstQuote.PolicyType = $scope.PolicyType;
+                    FirstQuote.RegistrationNo = regino.replace(/-/g, "");
+                    FirstQuote.RTOCode = String(FirstQuote.RegistrationNo).substring(0, 4);
+                    $('.right-arrow').hide();
+                    $('.model-b').removeClass('active');
+                    $('#ddlmake').val("");
+                    $scope.divmake = true;
+                    $('#hdf_step').val('2');
+                    $scope.divinfo = false;
+
+                }
+            });
+
+
+
+
+
+
+                if (!angular.isUndefined($scope.PolicyType) && ($scope.PolicyType != "New")) {
+                    $http({
+                        url: '/PrivateCar/GetPrvInsurerSelect',
+                        method: "POST"
+                    })
+                    .then(function (result) {
+                        $scope.prvInsurComlist = result.data.data;
+                    })
+
+                }
+            }
+        }
+
+        $scope.notKnowExpDate = function () {
+            $scope.div_date = false;
+            $scope.div_make_claim_existing_policy = false;
+            $scope.div_existing_policy_expire = true;
+        }
+        $scope.KnowExpDate = function () {
+            $scope.div_existing_policy_expire = false;
+            $scope.div_make_claim_existing_policy = false;
+            $scope.div_date = true;
+        }
+        FirstQuote.DontKnowPreviousInsurer = false;
+        FirstQuote.PrvPolicyType = "Comprehensive";
+        FirstQuote.chkClaimed = false;
+        $scope.prv_policy_rem = function ($event, prepolicyrem) {
+
+            if (prepolicyrem === "Yes") {
+                FirstQuote.DontKnowPreviousInsurer = false;
+                $scope.DontKnowPreviousInsurer = false;
+            }
+            else {
+                Date.prototype.addDays = function (days) {
+                    var date = new Date(this.valueOf());
+                    date.setDate(date.getDate() + days);
+                    return date;
+                }
+                var date = new Date();
+
+                FirstQuote.prvexpdate = date.addDays(-2);
+
+
+
+                FirstQuote.DontKnowPreviousInsurer = true;
+                $scope.DontKnowPreviousInsurer = true;
+                $sessionStorage.isbrekin = true;
+            }
+        }
+        $sessionStorage.isComprehensive = true;
+        $scope.prv_policy_type = function ($event, prvpolicytype) {
+
+
+
+            if (prvpolicytype === "Comprehensive") {
+                FirstQuote.PreviousPolicyType = "Comprehensive";
+                $sessionStorage.isbrekin = false;
+            }
+            else if (prvpolicytype === "TP") {
+
+                if ($sessionStorage.isComprehensive == true) {
+                    $sessionStorage.isbrekin = true;
+                    alert("Inspection of vehicle is required");
+
+                }
+                FirstQuote.PrvPolicyType = "TP";
+            }
+            else if (prvpolicytype === "OD") {
+           
+                FirstQuote.PrvPolicyType = "OD";
+            }
+
+        }
+        $sessionStorage.$sessionStorage = true;
+        $scope.policy_type = function ($event, policytype) {
+            FirstQuote.prv_insur = $scope.prv_insur;
+            //$("#prvpolicytype").val(policytype);
+            if (policytype == "Comprehensive") {
+                $sessionStorage.isComprehensive = true;
+            }
+            else {
+                $sessionStorage.isComprehensive = false;
+            }
+            if (policytype === "ODOnly") {
+                
+                @*var url ="@Url.Action("chkod", "PrivateCar")"
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: { manufYear: $("#manufacturingyear").val() },
+                    success: function (data) {
+                       
+                        alert(data);
+                         
+                    }
+                });*@
+
+
+
+                var d = new Date();
+                var n = d.getMonth();
+                 
+                var myregdate = new Date(n + "/" + 01 + "/" + $("#manufacturingyear").val());
+
+
+               
+
+                if (myregdate>=new Date("09/01/2018") )
+                {
+                    
+                }
+                else {
+                    alert("Only Od is not available before September 2018");
+                }
+                $sessionStorage.isComprehensive = false;
+                $scope.IsODOnly = true;
+                $scope.IsThirdPartyOnly = false;
+            }
+            else if (policytype === "TPOnly") {
+
+                $sessionStorage.isComprehensive = false;
+                $scope.IsODOnly = false;
+                $scope.IsThirdPartyOnly = true;
+            }
+            else {
+                $scope.IsThirdPartyOnly = false;
+                $scope.IsODOnly = false;
+            }
+            FirstQuote.IsODOnly = $scope.IsODOnly;
+            FirstQuote.IsThirdPartyOnly = $scope.IsThirdPartyOnly;
+            //FirstQuote.IsComprehensive = true;
+
+        }
+        function addDays(date, days) {
+            const copy = new Date(Number(date))
+            copy.setDate(date.getDate() + days)
+            return copy
+        }
+        $scope.existing_policy_status = function ($event, policyexisting) {
+            debugger
+            const date = new Date();
+            const newDate = addDays(date, -60);
+            const newDate90 = addDays(date, -90);
+            var a = new Date(today)
+
+
+
+            //FirstQuote.prvexpdate= $scope.expdate;
+            $("#existingpolicyexpired").val(policyexisting);
+            $scope.div_date = false;
+            $scope.div_existing_policy_expire = false;
+
+            if (policyexisting == "notexpire") {
+                $scope.div_make_claim_existing_policy = true;
+                FirstQuote.ExistingPolicyExpireStatus = "notexpire";
+                $scope.expdate = $filter('date')(a, "dd-MM-yyyy");
+                SetDateValues("notexpire");
+            }
+            else if (policyexisting == "60-90Days") {
+                $scope.div_make_claim_existing_policy = true;
+                FirstQuote.ExistingPolicyExpireStatus = "60-90Days";
+                $sessionStorage.isbrekin = true;
+                $scope.expdate = $filter('date')(newDate, "dd-MM-yyyy");
+                SetDateValues("60-90Days");
+            }
+            else if (policyexisting == "Beyond90Days") {
+                $scope.div_make_claim_existing_policy = false;
+                FirstQuote.ExistingPolicyExpireStatus = "Beyond90Days";
+                $sessionStorage.isbrekin = true
+                FirstQuote.ddlNCB = "0";
+                $scope.CurrentNcb = "0";
+                FirstQuote.CurrentNcb = "0";
+                $scope.expdate = $filter('date')(newDate90, "dd-MM-yyyy");
+                SetDateValues("Beyond90Days");
+            }
+            else if (policyexisting == "oldcar") {
+                $scope.div_make_claim_existing_policy = false;
+                FirstQuote.ExistingPolicyExpireStatus = "oldcar";
+                $sessionStorage.isbrekin = true
+                FirstQuote.ddlNCB = "0";
+                $scope.CurrentNcb = "0";
+                FirstQuote.CurrentNcb = "0";
+                $scope.expdate = $filter('date')(newDate, "dd-MM-yyyy");
+                SetDateValues("60-90Days");
+            }
+            else {
+                $("#modal-popup").modal('hide');
+            }
+
+        }
+        $scope.claim_taken_existing_policy = function ($event, claimtaken) {
+            //alert(claimtaken);
+            $("#claimtaken").val(claimtaken);
+            //$("#modal-popup").modal('hide');
+            if (claimtaken === 'yes') {
+                $scope.chkClaimed = true;
+                $scope.CurrentNcb = "0";
+                FirstQuote.ddlNCB = "0";
+            }
+            else {
+                $scope.chkClaimed = false;
+                $scope.GetApplicableNCB();
+
+            }
+            FirstQuote.chkClaimed = $scope.chkClaimed;
+
+        }
+
+        $("#callQualifyCompany").click(function () {
+
+
+            debugger;
+            $('#v_tpexpdate').text("");
+            $('#v_prvexpdate').text("");
+            $('#v_prvcomp').text("");
+            $('#v_tpcomp').text("");
+            //if ($scope.DontKnowPreviousInsurer) {
+            //    alert("This is a Breakin Case,We'll come back soon with this functionality!!");
+            //}
+
+
+            //else {
+            var flag = true;
+            var prvcomp = !angular.isUndefined($scope.prvinsurer) ? $scope.prvinsurer.id : undefined;
+            var prvexpdate = FirstQuote.prvexpdate;
+            if (!$scope.DontKnowPreviousInsurer) {
+                if (angular.isUndefined(prvcomp)) {
+                    $('#v_prvcomp').text("Please Select Previous Insurance Company");
+                    flag = false;
+                }
+                else
+                    $('#v_prvcomp').text("");
+                if (angular.isUndefined(prvexpdate)) {
+                    $('#v_prvexpdate').text("Please Select Policy Expiry Date");
+                    flag = false;
+                }
+                else
+                    $('#v_prvexpdate').text("");
+
+                if ($scope.IsODOnly) {
+                    var tpexpdate = FirstQuote.prvtpexpdate;
+                    var tpcomp = !angular.isUndefined($scope.tpprvinsurer) ? $scope.tpprvinsurer.id : undefined;
+                    if (angular.isUndefined(tpcomp)) {
+                        $('#v_tpcomp').text("Please Select TP Insurance Company");
+                        flag = false;
+                    }
+                    else
+                        $('#v_tpcomp').text("");
+                    if (angular.isUndefined(tpexpdate)) {
+                        $('#v_tpexpdate').text("Please Select TP Expiry Date");
+                        flag = false;
+                    }
+                    else
+                        $('#v_tpexpdate').text("");
+                }
+            }
+            if (flag == false) {
+                return;
+            }
+            else
+                QualifyCompany();
+            //}
+        });
+
+        //$("#callQualifyCompany").click(function () {
+
+        //    debugger;
+        //    $('#v_tpexpdate').text("");
+        //    $('#v_prvexpdate').text("");
+        //    $('#v_prvcomp').text("");
+        //    $('#v_tpcomp').text("");
+        //    if ($scope.DontKnowPreviousInsurer) {
+        //        alert("This is a Breakin Case,We'll come back soon with this functionality!!");
+        //    }
+
+
+        //    else {
+        //        var flag = true;
+        //        var prvcomp = !angular.isUndefined($scope.prvinsurer) ? $scope.prvinsurer.id : undefined;
+        //        var prvexpdate = FirstQuote.prvexpdate;
+        //        if (angular.isUndefined(prvcomp)) {
+        //            $('#v_prvcomp').text("Please Select Previous Insurance Company");
+        //            flag = false;
+        //        }
+        //        else
+        //            $('#v_prvcomp').text("");
+        //        if (angular.isUndefined(prvexpdate)) {
+        //            $('#v_prvexpdate').text("Please Select Policy Expiry Date");
+        //            flag = false;
+        //        }
+        //        else
+        //            $('#v_prvexpdate').text("");
+
+        //        if ($scope.IsODOnly) {
+        //            var tpexpdate = FirstQuote.prvtpexpdate;
+        //            var tpcomp = !angular.isUndefined($scope.tpprvinsurer) ? $scope.tpprvinsurer.id : undefined;
+        //            if (angular.isUndefined(tpcomp)) {
+        //                $('#v_tpcomp').text("Please Select TP Insurance Company");
+        //                flag = false;
+        //            }
+        //            else
+        //                $('#v_tpcomp').text("");
+        //            if (angular.isUndefined(tpexpdate)) {
+        //                $('#v_tpexpdate').text("Please Select TP Expiry Date");
+        //                flag = false;
+        //            }
+        //            else
+        //                $('#v_tpexpdate').text("");
+        //        }
+        //        if (flag == false) {
+        //            return;
+        //        }
+        //        else
+        //            QualifyCompany();
+        //    }
+        //});
+
+        //$scope.existing_policy_status = function ($event, policyexisting) {
+        //    //alert(policyexisting);
+        //    $("#existingpolicyexpired").val(policyexisting);
+        //    $scope.div_date = false;
+        //    $scope.div_existing_policy_expire = false;
+
+        //    if (policyexisting == "notexpire") {
+        //        $scope.div_make_claim_existing_policy = true;
+        //    }
+        //    else if (policyexisting == "60Days") {
+        //        $scope.div_make_claim_existing_policy = true;
+        //    }
+        //    //else if (policyexisting == "60to90Days") {
+        //    //    $scope.div_make_claim_existing_policy = true;
+        //    //}
+        //    else {
+        //        $("#modal-popup").modal('hide');
+        //    }
+        //}
+        //$scope.claim_taken_existing_policy = function ($event, claimtaken) {
+        //    //alert(claimtaken);
+        //    $("#claimtaken").val(claimtaken);
+        //    //$("#modal-popup").modal('hide');
+        //    if (claimtaken === 'yes') {
+        //        $scope.chkClaimed = true;
+        //        $scope.CurrentNcb = "0";
+        //    }
+        //    else {
+        //        $scope.chkClaimed = false;
+        //        $scope.GetApplicableNCB();
+
+        //    }
+        //    FirstQuote.chkClaimed = $scope.chkClaimed;
+        //    QualifyCompany();
+        //}
+    });
+</script>

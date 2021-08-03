@@ -1,0 +1,1382 @@
+﻿
+@{
+    ViewBag.Title = "Proposal";
+}
+
+<link href="~/assets/css/date-picker.min.css" rel="stylesheet" />
+<link href="~/assets/css/date-picker.min.css" rel="stylesheet" /><link href="~/assets/waitme/waitMe.min.css" rel="stylesheet" />
+
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .errorblock {
+        font-size: 12px;
+    }
+
+    .form-control:disabled {
+        background-color: #e9ecef;
+    }
+</style>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<div>
+    <div ng-app="myApp">
+        <div id="" ng-controller="myProposalCtrl">
+            <section class="padding-sm proposal light-bg cont-w owner-deatl m-top2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-5 plan-summ">
+                            <div class="p-box">
+                                <div class="p-4">
+                                    <div class="row quote-tile">
+                                        <div class="col-md-4 col-xs-4"><img class="img-fluid" src="/assets/images/{{ProposalData.comresponse.CompanyName}}.png" alt="ns"></div>
+                                        <div class="col-md-8 col-xs-8">
+                                            <div class="row-box plan-box">
+                                                <b>Net Premium</b>
+                                                <span class="ng-scope">₹ {{ProposalData.netprm}}</span>
+                                            </div>
+                                            <div class="row-box plan-box">
+                                                <b>GST </b>
+                                                <span class="ng-scope">₹{{ProposalData.gst}}</span>
+                                            </div>
+                                            <div class="row-box pay-now">
+                                                <div class="pay">Total Premium</div>
+                                                <div class="total-ammount">₹ {{ProposalData.finalprm}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-box mt-3">
+                                        <p class="mb-0"><b>{{FirstQuote.ModelName}} {{FirstQuote.VariantName}} {{FirstQuote.Fuel}}</b></p>
+                                        <ul class="list-f">
+                                            <li>Private Car</li>
+                                            <li>{{FirstQuote.ManufactureYear}}</li>
+                                            <li>{{FirstQuote.Fuel}}</li>
+                                            <li>{{FirstQuote.RTOCode}}</li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <p><b>Enquiry No</b>: {{FirstQuote.EnqId}}</p>
+                                    <hr>
+                                    <div class="row-box plan-box">
+                                        <b>Policy Start date:</b>
+                                        <span class="ng-scope">{{  ProposalData.comresponse.PolicyStartDate | date :  "dd-MM-y"}}</span>
+                                    </div>
+                                    <div class="row-box plan-box">
+                                        <b>Policy End date:</b>
+                                        <span class="ng-scope">{{  ProposalData.comresponse.PolicyEndDate | date :  "dd-MM-y"}}</span>
+                                    </div>
+
+
+                                    <div class="row-box plan-box tpdateforhdfc">
+                                        <b>TP Start date:</b>
+                                        <span class="ng-scope">{{  ProposalData.comresponse.TPStartDate | date :  "dd-MM-y"}}</span>
+                                    </div>
+                                    <div class="row-box plan-box tpdateforhdfc">
+                                        <b>TP End date:</b>
+                                        <span class="ng-scope">{{  ProposalData.comresponse.TPEndDate | date :  "dd-MM-y"}}</span>
+                                    </div>
+                                    <hr>
+                                    <div class="premium-amount">
+                                        <div class="row-box plan-box">
+                                            <b>IDV</b>
+                                            <span class="ng-scope">₹ {{  ProposalData.comresponse.IDV}}</span>
+                                        </div>
+                                        @*<div class="row-box plan-box">
+                                                <b>NCB</b>
+                                                <span class="ng-scope"> {{NCB}}</span>
+                                            </div>
+                                            <div class="row-box plan-box">
+                                                <b>Plan Type</b>
+                                                <span class="ng-scope">{{  ProposalData.comresponse.PlanName}}</span>
+                                            </div>*@
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-7" ng-show="owner">
+                            <div class="p-box">
+                                <div class="p-4">
+                                    <div class="row-box">
+                                        <h4>Owner Details</h4>
+                                        <a href="#" class="btn-link-sm">1/3</a>
+                                    </div>
+                                    <form name="myform" novalidate>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                                                <div class="form-group">
+                                                    <select class="form-control select-box" ng-model="selectedsalute" name="salutation" ng-required="isindividual">
+                                                        <option value="" disabled>Salutation</option>
+                                                        <option ng-repeat="item in salutationlist" value="{{item.value}}">{{item.name}}</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.salutation.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                                                <div class="form-group">
+                                                    <input type="text" ng-model="custfname" name="custfname" class="form-control" placeholder="First Name" onkeydown="return alphaOnly(event);" ng-required="isindividual">
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.custfname.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                                                <div class="form-group">
+                                                    <input type="text" ng-model="custmname" class="form-control" placeholder="Middle Name" onkeydown="return alphaOnly(event);">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                                                <div class="form-group">
+                                                    <input type="text" name="custlname" ng-model="custlname" class="form-control" placeholder="Last Name" onkeydown="return alphaOnly(event);" ng-required="isindividual">
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.custlname.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <select class="form-control select-box" ng-model="custgender" name="custgender" ng-required="isindividual">
+                                                        <option value="" disabled>Gender</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.custgender.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <select class="form-control select-box" ng-model="custmstatus" name="custmstatus" ng-required="isindividual">
+                                                        <option value="" disabled>Marital Status</option>
+                                                        <option ng-repeat="item in mstatuslist" value="{{item.value}}">{{item.name}}</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.custmstatus.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm--6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <select class="form-control select-box" ng-model="selectedoccup" name="custoccup" required>
+                                                        <option value="" disabled>Occupation</option>
+
+                                                        <option ng-repeat="item in occupationlist" value="{{item.value}}">{{item.name}}</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.custoccup.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input readonly="readonly" value="" name="custdob" id="custdob" ng-model="custdob" placeholder="Date of Birth" class="form-control datepicker" autocomplete="off" required />
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.custdob.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="email" ng-model="custemail" id="custemail" name="custemail" ng-pattern="/^([A-Za-z0-9_\-\.])+\@('@')([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/" class="form-control" placeholder="Email" required>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.custemail.$invalid">Enter valid emailid</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="number" ng-model="custmobile" name="custmobile" ng-pattern="/[6-9][0-9]{9}$/" onkeydown="return numberOnly(event);" class="form-control" placeholder="Mobile Number" required>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.custmobile.$invalid">This is required field.</p>
+                                                    <p class="errorblock" style="color:red;" ng-show="myform.custmobile.$dirty && myform.custmobile.$error.pattern">Enter valid mobile number.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="text" ng-model="txtadd1" name="txtadd1" class="form-control" placeholder="Address 1(Street Name)" required>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.txtadd1.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="text" name="txtadd2" ng-model="txtadd2" class="form-control" placeholder="Address 2(Building No)" required>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.txtadd2.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4" ng-show="!israheja">
+                                                <div class="form-group">
+                                                    <input type="text" ng-model="txtadd3" class="form-control" placeholder="Address 3(Area)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <select ng-model="selectedstate" name="ddlstate" id="ddlstate" class="form-control" required>
+                                                        <option value="" disabled>Select State</option>
+                                                        <option ng-repeat="item in statelist" stateid="{{item.id}}" value="{{item.value}}">{{item.statename}}</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.ddlstate.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <select ng-model="selectedcity" id="ddlcity" name="ddlcity" class="form-control" required>
+                                                        <option value="" disabled>Select City</option>
+                                                        <option ng-repeat="item in citylist" cityid="{{item.id}}" value="{{item.cityname}}">{{item.cityname}}</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.ddlcity.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4" ng-show="israheja">
+                                                <div class="form-group">
+                                                    <select ng-model="selectedarea" name="ddlarea" class="form-control" ng-required="israheja">
+                                                        <option value="" disabled>Select Area</option>
+                                                        <option ng-repeat="item in arealist" value="{{item.areaname}}">{{item.areaname}}</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.ddlarea.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="number" id="txtpincode" name="txtpincode" ng-pattern="/^[1-9]{1}[0-9]{5}$/" ng-model="txtpincode" class="form-control" onkeydown="return numberOnly(event);" placeholder="Pincode" required>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.txtpincode.$error.required">required</p>
+                                                    <p class="errorblock" style="color:red;" ng-show="myform.txtpincode.$dirty && myform.txtpincode.$error.pattern">Enter valid Pincode number.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" ng-model="custpan" placeholder="PanCard" name="custpancard" id="custpancard" ng-pattern="/^[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}$/" ng-required="!isindividual">
+                                                    <p class="errorblock" style="color:red;" ng-show="(submitted && myform.custpancard.$error.required)">This is required field.</p>
+                                                    <p class="errorblock" style="color:red;" ng-show="(myform.custpancard.$dirty && myform.custpancard.$error.pattern)">Enter valid PAN Card number.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Gst No" id="custgstno" name="custgstno" ng-model="custgstno" ng-pattern="/^[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[0-9]{1}[a-zA-Z]{1}[a-zA-Z0-9]{1}$/" ng-required="!isindividual">
+                                                    <p class="errorblock" style="color:red;" ng-show="(submitted && myform.custgstno.$error.required)">This is required field.</p>
+                                                    <p class="errorblock" style="color:red;" ng-show="(myform.custgstno.$dirty && myform.custgstno.$error.pattern)">Enter valid GSTIN number.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control" placeholder="Adhaar NO" id="custaadharno" name="custaadharno" ng-model="custaadharno" ng-pattern="/^[2-9]{1}[0-9]{11}$/" ng-required="!isindividual" ng-maxlength="12">
+                                                    <p class="errorblock" style="color:red;" ng-show="(submitted && myform.custaadharno.$error.required)">This is required field.</p>
+                                                    <p class="errorblock" style="color:red;" ng-show="(myform.custaadharno.$dirty && myform.custaadharno.$error.pattern)">Enter valid Aadhar number.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+                                                <div class="form-group">
+                                                    <label>Registration Address is same as above</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input class="form-check-input" ng-click="IsSameRegist($event)" value="yes" type="radio" name="regradios" id="sameregist" checked>
+                                                    <label class="form-check-label" for="sameregist">
+                                                        Yes
+                                                    </label>
+                                                    <input class="form-check-input" ng-click="IsSameRegist($event)" value="no" type="radio" name="regradios" id="diffregist">
+                                                    <label class="form-check-label" for="diffregist">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3" ng-show="!hassameregist">
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="text" ng-model="txtregadd1" name="txtregadd1" class="form-control" placeholder="Address 1" ng-required="!hassameregist">
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.txtregadd1.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="text" name="txtregadd2" ng-model="txtregadd2" class="form-control" placeholder="Address 2" ng-required="!hassameregist">
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.txtregadd2.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="text" ng-model="txtregadd3" class="form-control" placeholder="Address 3">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*<div class="row mt-3" ng-show="!hassameregist">
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                    <div class="form-group">
+                                                        <select ng-model="regstate" name="regstate" id="regstate" class="form-control" ng-required="!hassameregist">
+                                                            <option value="" disabled>Select State</option>
+                                                            <option ng-repeat="item in statelist" stateid="{{item.stateid}}" value="{{item.statename}}">{{item.statename}}</option>
+                                                        </select>
+                                                        <p class="errorblock" style="color:red;" ng-show="submitted && myform.regstate.$invalid">This is required field.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                    <div class="form-group">
+                                                        <select ng-model="regcity" name="regcity" class="form-control" ng-required="!hassameregist">
+                                                            <option value="" disabled>Select City</option>
+                                                            <option ng-repeat="item in citylist" value="{{item.cityname}}">{{item.cityname}}</option>
+                                                        </select>
+                                                        <p class="errorblock" style="color:red;" ng-show="submitted && myform.regcity.$invalid">This is required field.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                    <div class="form-group">
+                                                        <input type="number" id="txtregpincode" name="txtregpincode" ng-model="txtregpincode" ng-pattern="/^[1-9]{1}[0-9]{5}$/" class="form-control" placeholder="Pincode" ng-required="!hassameregist">
+                                                        <p class="errorblock" style="color:red;" ng-show="submitted && myform.txtregpincode.$error.required">This is required field.</p>
+                                                        <p class="errorblock" style="color:red;" ng-show="myform.txtregpincode.$dirty && myform.txtregpincode.$error.pattern">Enter valid Pincode number.</p>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                        <div class="row mt-3" ng-show="!hassameregist">
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <select ng-model="regstate" name="regstate" id="regstate" class="form-control" ng-required="!hassameregist">
+                                                        <option value="" disabled>Select State</option>
+                                                        <option ng-repeat="item in statelist" regstateid="{{item.id}}" value="{{item.value}}">{{item.statename}}</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.regstate.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <select ng-model="regcity" name="regcity" id="regcity" class="form-control" ng-required="!hassameregist">
+                                                        <option value="" disabled>Select City</option>
+                                                        <option ng-repeat="item in regcitylist" regcityid="{{item.id}}" value="{{item.cityname}}">{{item.cityname}}</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.regcity.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4" ng-show="israheja">
+                                                <div class="form-group">
+                                                    <select ng-model="regarea" name="regarea" class="form-control" ng-required="israheja && !hassameregist">
+                                                        <option value="" disabled>Select Area</option>
+                                                        <option ng-repeat="item in regarealist" value="{{item.areaname}}">{{item.areaname}}</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.ddlarea.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-4">
+                                                <div class="form-group">
+                                                    <input type="number" onkeydown="return numberOnly(event);" id="txtregpincode" name="txtregpincode" ng-model="txtregpincode" ng-pattern="/^[1-9]{1}[0-9]{5}$/" class="form-control" placeholder="Pincode" ng-required="!hassameregist">
+                                                    <p class="errorblock" style="color:red;" ng-show="submitted && myform.txtregpincode.$error.required">This is required field.</p>
+                                                    <p class="errorblock" style="color:red;" ng-show="myform.txtregpincode.$dirty && myform.txtregpincode.$error.pattern">Enter valid Pincode number.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row-box btn btn-pre-next" style="display:inline-block;">
+                                            <a href="#" ng-click="VehicleDetail()" style="float:right;" class="btn btn-br b-next">Continue To Vehicle Details <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-7" ng-show="vehicle">
+                            <div class="p-box">
+                                <div class="p-4">
+                                    <div class="row-box">
+                                        <h4>Vehicle Details</h4>
+                                        <a href="#" class="btn btn-link-sm">2/3</a>
+                                    </div>
+                                    <form name="vehicleform" novalidate>
+                                        <div class="row mt-3">
+                                            <div class="col-md-3 col-sm-3" ng-show="ispolicynew">
+                                                <div class="form-group">
+                                                    <label>
+                                                        Without Vehicle Number
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1 col-sm-1" ng-show="ispolicynew">
+                                                <div class="form-group">
+                                                    <input class="form-check-input" ng-click="hasvehiclenumber($event)" value="no" type="radio" name="vradios" id="withoutvehicleno" checked>
+                                                    <label class="form-check-label" for="withoutvehicleno">
+                                                        Yes
+                                                    </label>
+                                                    <input class="form-check-input" ng-click="hasvehiclenumber($event)" value="yes" type="radio" name="vradios" id="withvehicleno">
+                                                    <label class="form-check-label" for="withvehicleno">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">{{FirstQuote.RTOCode}}</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="eg.AB1234" id="vregno" ng-model="txtvehnumber" ng-pattern="/^[A-Z|a-z]{1,3}[0-9]{4}$/" name="txtvehnumber" ng-disabled="!hasvnumber && ispolicynew" ng-required="hasvnumber ||!ispolicynew">
+                                                    </div>
+                                                    @*<input type="text" class="form-control" placeholder="Vehicle number" id="vregno" ng-model="txtvehnumber" ng-pattern="/^[A-Z|a-z]{2}[-]{1}\d{1,2}[-]{1}[A-Z|a-z\d]{1,4}[-]{0,1}\d{1,4}$/" name="txtvehnumber" ng-disabled="!hasvnumber && ispolicynew" ng-required="hasvnumber">*@
+                                                    <p class="errorblock" style="color:red;" ng-show="(hasvnumber||!ispolicynew) && vsubmitted && vehicleform.txtvehnumber.$invalid ">This is required field.</p>
+                                                    <p class="errorblock" style="color:red;" ng-show="(hasvnumber||!ispolicynew) && vehicleform.txtvehnumber.$dirty && vehicleform.txtvehnumber.$error.pattern ">Please Enter Valid RegistrationNo (Sample: AB1234)</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control datepicker Datepick" ng-model="vpurchasedate" placeholder="Purchase date " ng-disabled="!hasvnumber" format="dd/mm/YYYY">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Customer type" ng-model="CustomerType" disabled>
+                                                </div>
+                                            </div>
+                                            @*<div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Engine number" ng-model="txtengine" name="txtengine" ng-pattern="/^([A-Za-z]{2}[A-z0-9]{15,18})$/" required>
+                                                        <p class="errorblock" style="color:red;" ng-show="vsubmitted && vehicleform.txtengine.$invalid">This is required field.</p>
+                                                        <p class="errorblock" style="color:red;" ng-show="vehicleform.txtengine.$dirty && vehicleform.txtengine.$error.pattern">Engine number is 17 digit.</p>
+                                                    </div>
+                                                </div>*@
+
+                                            <div class="col-md-4 col-sm-4" ng-show="!isFgi">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Engine number" ng-model="txtengine" name="txtengine" ng-pattern="/^([A-Za-z]{2}[A-z0-9]{15,18})$/" ng-required="!isFgi">
+                                                    <p class="errorblock" style="color:red;" ng-show="vsubmitted && vehicleform.txtengine.$invalid">This is required field.</p>
+                                                    <p class="errorblock" style="color:red;" ng-show="vehicleform.txtengine.$dirty && vehicleform.txtengine.$error.pattern">Engine number is 17 digit.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4" ng-show="isFgi">
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control" placeholder="Engine number" ng-model="txtengine1" name="txtengine1" ng-pattern="/^[1-9]{1}[0-9]{16}$/" ng-required="isFgi">
+                                                    <p class="errorblock" style="color:red;" ng-show="vsubmitted && vehicleform.txtengine1.$invalid">This is required field.</p>
+                                                    <p class="errorblock" style="color:red;" ng-show="vehicleform.txtengine1.$dirty && vehicleform.txtengine1.$error.pattern">Engine number is 17 digit numbers only.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Chassis number" ng-model="chaisisno" name="txtchaisis" required ng-pattern="/^([A-Za-z]{2}[A-z0-9]{15,18})$/">
+                                                    <p class="errorblock" style="color:red;" ng-show="vsubmitted && vehicleform.txtchaisis.$error.required">This is required field.</p>
+                                                    <p class="errorblock" style="color:red;" ng-show="vehicleform.txtchaisis.$dirty && vehicleform.txtchaisis.$error.pattern">Chassis  number is 17 digit.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div ng-show="!ispolicynew">
+                                            <b class="w-100 mb-1">Previous Policy Detail</b>
+                                            <div class="row mt-3">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Prev. policy number" ng-model="prvpolno" name="prvpolno" ng-required="!ispolicynew">
+                                                        <p class="errorblock" style="color:red;" ng-show="vsubmitted && vehicleform.prvpolno.$invalid">This is required field.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" ng-model="previouscompany" disabled>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="Expiry Date" ng-model="previousexpdate" class="form-control DOB" disabled />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3" ng-show="israheja">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Previous Comapny Address" ng-model="prvpoladd" name="prvpoladd" ng-required="!ispolicynew && israheja">
+                                                        <p class="errorblock" style="color:red;" ng-show="vsubmitted && vehicleform.prvpoladd.$invalid">This is required field.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div ng-show="isonlyod">
+                                                <b class="w-100 mb-1">Previous TP Policy Detail</b>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" placeholder="Prev. TP policy number" ng-model="prvtppolno" name="prvtppolno" ng-required="isonlyod">
+                                                            <p class="errorblock" style="color:red;" ng-show="vsubmitted && vehicleform.prvtppolno.$invalid">This is required field.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" ng-model="previoustpcompany" disabled>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <input type="text" placeholder="Expiry Date" ng-model="previoustpexpdate" class="form-control DOB" disabled />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3" ng-show="israheja">
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" placeholder="Previous Company Address" ng-model="prvtpadd" name="prvtpadd" ng-required="isonlyod && israheja">
+                                                            <p class="errorblock" style="color:red;" ng-show="vsubmitted && vehicleform.prvtpadd.$invalid">This is required field.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-2 col-sm-2">
+                                                <div class="form-group">
+                                                    <label>Hypothecation:</label>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2">
+                                                <div class="form-group">
+                                                    <div class="inline-rad">
+                                                        <div class="form-check form-check-inline mb-0 ">
+                                                            <input class="form-check-input" ng-click="hashypothecation($event)" value="Yes" type="radio" name="hradios" id="radios2">
+                                                            <label class="form-check-label" for="radios2">
+                                                                Yes
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline mb-0 ">
+                                                            <input class="form-check-input" type="radio" ng-click="hashypothecation($event)" value="No" name="hradios" id="radios3" checked>
+                                                            <label class="form-check-label" for="radios3">
+                                                                No
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4" ng-show="ishypothecation">
+                                                <div class="form-group">
+                                                    <select class="form-control select-box" ng-model="hfinancername" name="hfinancername" ng-required="ishypothecation">
+                                                        <option value="" disabled>Select Financier Name</option>
+                                                        <option ng-repeat="item in financerlist" value="{{item.value}}">{{item.name}}</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="ishypothecation && vsubmitted && vehicleform.hfinancername.$invalid ">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4" ng-show="ishypothecation">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Financer City" ng-model="hfinancercity" name="hfinancercity" ng-required="ishypothecation">
+                                                    <p class="errorblock" style="color:red;" ng-show="ishypothecation && vsubmitted && vehicleform.hfinancercity.$invalid ">This is required field.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row-box btn btn-pre-next" style="display:inline-block;">
+                                            <a href="#" ng-click="OwnerDetail()" class="btn btn-br b-pre" style="float:left;"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a>
+                                            <a href="#" ng-click="NomineeDetail()" class="btn btn-br b-next" style="float:right;">Continue Nominee Details <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-7" ng-show="nominee">
+                            <div class="p-box">
+                                <div class="p-4">
+                                    <div class="row-box">
+                                        <h4>Nominee Details</h4>
+                                        <a href="#" class="btn btn-link-sm">3/3</a>
+                                    </div>
+                                    <form name="nomineform" novalidate>
+                                        <div class="row mt-3">
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <select class="form-control select-box" ng-model="nomrelatn" name="nomrelatn">
+                                                        <option value="" disabled>Select Relation</option>
+                                                        <option ng-repeat="item in nominerel" value="{{item.value}}">{{item.name}}</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="propsubmitted && nomineform.nomrelatn.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <select class="form-control select-box" ng-model="nomgender" name="nomgender" required>
+                                                        <option value="" disabled>Select Gender</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </select>
+                                                    <p class="errorblock" style="color:red;" ng-show="propsubmitted && nomineform.nomgender.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <input readonly="readonly" placeholder="Date of Birth" name="nomdob" id="nomdob" ng-model="nomdob" class="form-control datepicker" required />
+                                                    <p class="errorblock" style="color:red;" ng-show="propsubmitted && nomineform.nomdob.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-5 col-sm-5">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="nomfname" ng-model="nomfname" placeholder="Full Name" onkeydown="return alphaOnlywithspace(event);" required>
+                                                    <p class="errorblock" style="color:red;" ng-show="propsubmitted && nomineform.nomfname.$invalid">This is required field.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-show="isunderage ">
+                                            <b class="w-100 mb-1">Appointee Detail</b>
+                                            <div class="row mt-3">
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="appointename" ng-model="appointename" placeholder="Appointee Full Name" onkeydown="return alphaOnlywithspace(event);" ng-required="isunderage">
+                                                        <p class="errorblock" style="color:red;" ng-show="propsubmitted && nomineform.appointename.$invalid">This is required field.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <select class="form-control select-box" ng-model="appointerelatn" name="appointerelatn" ng-required="isunderage">
+                                                            <option value="" disabled>Select Appointee Relation</option>
+                                                            <option ng-repeat="item in nominerel" value="{{item.value}}">{{item.name}}</option>
+                                                        </select>
+                                                        <p class="errorblock" style="color:red;" ng-show="propsubmitted && nomineform.appointerelatn.$invalid">This is required field.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <input readonly="readonly" placeholder="Appointee DOB" id="appointedob" name="appointedob" ng-model="appointedob" class="form-control datepicker" ng-required="isunderage" />
+                                                        <p class="errorblock" style="color:red;" ng-show="propsubmitted && nomineform.appointedob.$invalid">This is required field.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <b class="w-100 mb-1">I understand that</b>
+                                        <ul class="mb-1">
+                                            <li>
+                                                My premium is derived on the basis of information filled by me, which includes my previous year policy details and No claim Bonus discount %, if any.
+                                            </li>
+                                            <li>
+                                                {{ProposalData.comresponse.CompanyName}} may verify my previous year policy details and may hold claim settlement process till the time confirmation is received from previous year
+                                            </li>
+                                            <li>
+                                                The company shall have no liabilty under this insurance contract if it is found that any of my / our statement on particulars or declaration(other than NCB discount) in the proposal form or other documents are incorrect and / or untrue / false
+                                            </li>
+                                            <li>
+                                                If any discrepancy found in the information provided for arriving at NCB discount %, Company shall communicate to me via e-mail & / or letter for payment of the balance premium amount within 20 days from the date of communication.
+                                            </li>
+                                            
+                                        </ul>
+                                        <div class="form-group form-check w-100 pl-0 mb-0">
+                                            <input type="checkbox" class="form-check-input " id="termsofuse" required name="termsofuse" ng-model="termsofuse">
+                                            <label class="form-check-label" for="termsofuse">I hearby agree to the Privacy Policy and Terms of Use agreement of the policy purchase.</label>
+                                            <p class="errorblock" style="color:red;" ng-show="propsubmitted && nomineform.termsofuse.$invalid">This is required field.</p>
+                                        </div>
+                                        @*<div class="form-group form-check w-100 pl-0 mb-0">
+                                            <input type="checkbox" class="form-check-input " id="emailalert" required name="emailalert" ng-model="emailalert">
+                                            <label class="form-check-label" for="emailalert">Receive Service SMS and E-mail alerts.</label>
+                                            <p class="errorblock" style="color:red;" ng-show="propsubmitted && nomineform.emailalert.$invalid">This is required field.</p>
+                                        </div>*@
+                                        <div class="form-group form-check w-100 pl-0 mb-0">
+                                            <input type="checkbox" class="form-check-input" id="whatsappalert" required name="whatsappalert" ng-model="whatsappalert">
+                                            <label class="form-check-label" for="whatsappalert">Yes, I want to register my contact number for receiving messages on Whatsapp.</label>
+                                            <p class="errorblock" style="color:red;" ng-show="propsubmitted && nomineform.whatsappalert.$invalid">This is required field.</p>
+                                        </div>
+                                        <div class="row-box btn btn-pre-next" style="display:inline-block;">
+                                            <a href="#" ng-click="VehicleDetail()" class="btn btn-br b-pre" style="float:left;"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a>
+                                            <a href="#" id="proposalsubmit" ng-click="proposalsubmit()" class="btn btn-br b-next" style="float:right;">Continue To Other Details <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+<script src="~/assets/js/angular.min.js"></script>
+<script src="~/assets/js/ngStorage.min.js"></script>
+@*<script src="~/assets/js/date-picker.min.js"></script>*@
+<script src="~/assets/js/angular-filter.js"></script>
+<script src="~/assets/waitme/waitMe.min.js"></script>
+<script type="text/javascript">
+    var app = angular.module("myApp", ["ngStorage", "angular.filter"]);
+
+    app.controller("myProposalCtrl", function ($scope, $http, $window, $compile, $sessionStorage, $filter) {
+
+        $scope.FirstQuote = !angular.isUndefined($scope.FirstQuote) ? (angular.copy($scope.FirstQuote)) : $sessionStorage.FirstQuote;
+        $scope.ProposalData = !angular.isUndefined($scope.ProposalData) ? (angular.copy($scope.ProposalData)) : $sessionStorage.ProposalData;
+        console.log($scope.ProposalData);
+        console.log("aaaaaa");
+
+        alert($scope.ProposalData.comresponse.PolicyEndDate);
+        $scope.quoterequest = angular.copy($sessionStorage.quoterequest);
+
+        if ($scope.ProposalData.comresponse.CompanyName == "HDFC" && $scope.ProposalData.comresponse.PlanName != "ODOnly") {
+            $(".tpdateforhdfc").show();
+        }
+        else {
+            $(".tpdateforhdfc").hide();
+        }
+
+        var QuotationReq = $filter('filter')($scope.quoterequest, { CompanyName: $scope.ProposalData.comresponse.CompanyName })[0];
+        console.log(QuotationReq);
+
+
+        $scope.CustomerType = QuotationReq.CustomerType
+        if ($scope.CustomerType == "Individual")
+            $scope.isindividual = true;
+        else
+            $scope.isindividual = false;
+
+        var addonlist = String($scope.ProposalData.selectedaddons).split(',');
+        console.log(addonlist);
+        $scope.owner = true;
+        $scope.hassameregist = true;
+        $scope.myform = {};
+        $scope.vehicleform = {};
+        $scope.nomineform = {};
+        $scope.statelist = [];
+        $scope.citylist = [];
+
+        $scope.arealist = [];
+        $scope.regstatelist = [];
+        $scope.regcitylist = [];
+        $scope.regarealist = [];
+        $scope.nominerel = [];
+        $scope.mstatuslist = [];
+        $scope.occupationlist = [];
+        $scope.salutationlist = [];
+        $scope.financerlist = [];
+        $scope.companyid = 0;
+        $scope.NCB = QuotationReq.PolicyType == "New" ? "0" : QuotationReq.PreviousPolicyDetails.PreviousNcbPercentage;
+        debugger;
+        $scope.ispolicynew = QuotationReq.PolicyType == "New" ? true : false;
+        $scope.isonlyod = QuotationReq.IsODOnly;
+        $scope.previoustpcompany = QuotationReq.PreviousTPPolicyDetails != null ? QuotationReq.PreviousTPPolicyDetails.CompanyName : "";
+        $scope.previoustpexpdate = QuotationReq.PreviousTPPolicyDetails != null ? convertdate(new Date(QuotationReq.PreviousTPPolicyDetails.PolicyEndDate)) : "";
+        $scope.israheja = QuotationReq.CompanyName == "RAHEJA" ? true : false;
+        $scope.isFgi = QuotationReq.CompanyName == "FGI" ? true : false;
+        $scope.previouscompany = QuotationReq.PreviousPolicyDetails != null ? QuotationReq.PreviousPolicyDetails.PreviousCompanyName : "";
+        $scope.previousexpdate = QuotationReq.PreviousPolicyDetails != null ? convertdate(new Date(QuotationReq.PreviousPolicyDetails.PreviousPolicyEndDate)) : "";
+        var purchasedate = new Date(QuotationReq.VehicleDetails.PurchaseDate);
+        //var p_year = purchasedate.getFullYear();
+        //var p_day = String(purchasedate.getDate()).padStart(2, '0');
+        //var p_month = String(purchasedate.getMonth() + 1).padStart(2, '0');
+        $scope.vpurchasedate = convertdate(purchasedate);
+        $scope.registrationno = QuotationReq.VehicleDetails.RegistrationNumber;
+        $scope.txtvehnumber = String($scope.registrationno).substring(4);
+        function convertdate(date) {
+            var p_year = date.getFullYear();
+            var p_day = String(date.getDate()).padStart(2, '0');
+            var p_month = String(date.getMonth() + 1).padStart(2, '0');
+            var propdate = p_day + "-" + p_month + "-" + p_year;
+            return propdate;
+
+        }
+
+        //$http({
+        //    url: '/PrivateCar/GetComapnyIdbyName',
+        //    method: "POST",
+        //    data: { company: QuotationReq.CompanyName }
+        //})
+        //  .then(function (result) {
+        //      $scope.companyid = result.data.data;
+
+
+        //      $http({
+        //          url: '/PrivateCar/GetStateCompanywise',
+        //          method: "POST",
+        //          data: { comid: $scope.companyid }
+        //      })
+        // .then(function (result) {
+        //     $scope.statelist = result.data.data;
+        // })
+
+        $http({
+            url: '/PrivateCar/GetComapnyIdbyName',
+            method: "POST",
+            data: { company: QuotationReq.CompanyName }
+        })
+         .then(function (result) {
+             $scope.companyid = result.data.data;
+
+             if ($scope.companyid === "16") {
+
+                 $http({
+                     url: '/PrivateCar/GetstateRaheja',
+                     method: "POST",
+                     data: { comid: $scope.companyid }
+                 })
+         .then(function (result) {
+             $scope.statelist = result.data;
+         })
+             }
+             else {
+                 $http({
+                     url: '/PrivateCar/GetStateCompanywise',
+                     method: "POST",
+                     data: { comid: $scope.companyid }
+                 })
+            .then(function (result) {
+                $scope.statelist = result.data.data;
+            })
+             }
+
+             $http({
+                 url: '/privatecar/GetNomineeCompanywise',
+                 method: "post",
+                 data: { comid: $scope.companyid }
+             })
+               .then(function (result) {
+                   $scope.nominerel = result.data.data;
+               })
+             $http({
+                 url: '/privatecar/GetOccupationCompanywise',
+                 method: "post",
+                 data: { comid: $scope.companyid }
+             })
+               .then(function (result) {
+                   console.log(result.data.data)
+
+                   $scope.occupationlist = result.data.data;
+               })
+             $http({
+                 url: '/privatecar/GetMarritalStatusCompanywise',
+                 method: "post",
+                 data: { comid: $scope.companyid }
+             })
+               .then(function (result) {
+                   $scope.mstatuslist = result.data.data;
+               })
+             $http({
+                 url: '/privatecar/GetSalutationCompanywise',
+                 method: "post",
+                 data: { comid: $scope.companyid }
+             })
+               .then(function (result) {
+                   $scope.salutationlist = result.data.data;
+               })
+             $http({
+                 url: '/privatecar/GetFinancerLIst',
+                 method: "post",
+                 data: { comid: $scope.companyid }
+             })
+               .then(function (result) {
+                   $scope.financerlist = result.data.data;
+               })
+
+
+         })
+
+        @*$('#ddlstate').change(function () {
+            debugger;
+            var stateid = $('option:selected', this).attr('stateid');
+            GetCity(stateid);
+        })
+        $('#regstate').change(function () {
+            debugger;
+            var stateid = $('option:selected', this).attr('stateid');
+            GetRegCity(stateid);
+        })
+        function GetCity(stateid) {
+            var url = '@Url.Action("GetCityCompanywise", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { stateid: stateid }
+            })
+            .then(function (result) {
+                $scope.citylist = result.data;
+            })
+
+        }
+        function GetRegCity(stateid) {
+            var url = '@Url.Action("GetCityCompanywise", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { stateid: stateid }
+            })
+            .then(function (result) {
+                $scope.regcitylist = result.data;
+            })
+
+        }*@
+
+        $('#ddlstate').change(function () {
+            debugger;
+            var stateid = $('option:selected', this).attr('stateid');
+            if ($scope.companyid === "16") {
+                GetCityRaheja(stateid);
+            }
+            else {
+                GetCity(stateid);
+            }
+
+        })
+
+        $('#ddlcity').change(function () {
+            debugger;
+            var cityid = $('option:selected', this).attr('cityid');
+            if ($scope.companyid === "16") {
+                GetAreaRaheja(cityid);
+            }
+        })
+
+        $('#regstate').change(function () {
+            debugger;
+            var stateid = $('option:selected', this).attr('regstateid');
+            if ($scope.companyid === "16") {
+                GetRegCityRaheja(stateid);
+            }
+            else {
+                GetRegCity(stateid);
+            }
+
+        })
+
+        $('#regcity').change(function () {
+            debugger;
+            var cityid = $('option:selected', this).attr('regcityid');
+            if ($scope.companyid === "16") {
+                GetRegAreaRaheja(cityid);
+            }
+        })
+
+
+
+        function GetCity(stateid) {
+            var url = '@Url.Action("GetCityCompanywise", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { stateid: stateid }
+            })
+            .then(function (result) {
+                $scope.citylist = result.data;
+            })
+
+        }
+        function GetCityRaheja(stateid) {
+            var url = '@Url.Action("GetcityRaheja", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { stateid: stateid }
+            })
+            .then(function (result) {
+                $scope.citylist = result.data;
+            })
+
+        }
+        function GetAreaRaheja(cityid) {
+            var url = '@Url.Action("GetareaRaheja", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { cityid: cityid }
+            })
+            .then(function (result) {
+                $scope.arealist = result.data;
+            })
+
+        }
+        function GetRegCity(stateid) {
+            var url = '@Url.Action("GetCityCompanywise", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { stateid: stateid }
+            })
+            .then(function (result) {
+                $scope.regcitylist = result.data;
+            })
+
+        }
+
+        function GetRegCityRaheja(stateid) {
+            var url = '@Url.Action("GetcityRaheja", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { stateid: stateid }
+            })
+            .then(function (result) {
+                $scope.regcitylist = result.data;
+            })
+
+        }
+
+        function GetRegAreaRaheja(cityid) {
+            var url = '@Url.Action("GetareaRaheja", "PrivateCar")';
+            $http({
+                url: url,
+                method: "POST",
+                data: { cityid: cityid }
+            })
+            .then(function (result) {
+                $scope.regarealist = result.data;
+            })
+
+        }
+        $scope.NomineeDetail = function (form) {
+            debugger;
+
+            $scope.vsubmitted = true;
+            if ($scope.vehicleform.$valid) {
+                $scope.vehicle = false;
+                $scope.nominee = true;
+                $scope.owner = false;
+            }
+        }
+        $scope.OwnerDetail = function () {
+            $scope.owner = true;
+            $scope.nominee = false;
+            $scope.vehicle = false;
+        }
+        $scope.VehicleDetail = function (form) {
+            $scope.submitted = true;
+            var salutationText = $filter('filter')($scope.salutationlist, { value: $scope.selectedsalute })[0];
+            $sessionStorage.salutationText = salutationText.name;
+
+            var occupationText = $filter('filter')($scope.occupationlist, { value: $scope.selectedoccup })[0];
+            $sessionStorage.occupationText = occupationText.name;
+
+            var stateText = $filter('filter')($scope.statelist, { value: $scope.selectedstate })[0];
+            $sessionStorage.stateText = stateText.statename;
+            if ($scope.myform.$valid) {
+                $scope.vehicle = true;
+                $scope.owner = false;
+                $scope.nominee = false;
+            }
+        }
+        $scope.hasvehiclenumber = function ($event) {
+            var id = ($event.target).attributes["value"].value;
+            if (id == "yes") {
+                $scope.hasvnumber = true;
+
+            }
+            else {
+                $scope.hasvnumber = false;
+                $scope.vpurchasedate = "";
+            }
+        }
+        $scope.hashypothecation = function ($event) {
+            debugger;
+            var id = ($event.target).attributes["value"].value;
+            if (id == "Yes") {
+                $scope.ishypothecation = true;
+            }
+            else {
+                $scope.ishypothecation = false;
+            }
+        }
+        $scope.IsSameRegist = function ($event) {
+            var id = ($event.target).attributes["value"].value;
+            if (id == "yes") {
+                $scope.hassameregist = true;
+            }
+            else {
+                $scope.hassameregist = false;
+            }
+        }
+
+        function ConvertDateFormat(requestdate) {
+            debugger
+            var sdatearray = requestdate.split("-");
+            var newsdate = sdatearray[1] + '/' + sdatearray[0] + '/' + sdatearray[2];
+
+            return new Date(newsdate);
+        };
+        $scope.proposalsubmit = function () {
+
+
+
+            var nominerelText = $filter('filter')($scope.nominerel, { value: $scope.nomrelatn })[0];
+            $sessionStorage.nominerelText = nominerelText.name
+            debugger;
+            $scope.propsubmitted = true;
+            if ($scope.nomineform.$valid) {
+
+                $('#proposalsubmit').waitMe({
+                    effect: 'bouncePulse',
+                    maxSize: '10',
+                    color: '#ef3b85',
+                    waitTime: '-1',
+                    textPos: 'horizontal',
+
+                    source: '',
+
+
+                });
+
+                $("#pageloader").fadeIn();
+                QuotationReq.RequestType = "Proposal";
+                QuotationReq.PreviousTPPolicyDetails.RequestType = "Proposal";
+                QuotationReq.PreviousTPPolicyDetails.PolicyNo = !angular.isUndefined($scope.prvtppolno) ? $scope.prvtppolno : "";
+                QuotationReq.PreviousTPPolicyDetails.CompanyAddress = !angular.isUndefined($scope.prvtpadd) ? $scope.prvtpadd : "";
+                QuotationReq.PreviousPolicyDetails.PreviousPolicyNo = !angular.isUndefined($scope.prvpolno) ? $scope.prvpolno : "";
+                QuotationReq.PreviousPolicyDetails.PreviousCompanyAddress = !angular.isUndefined($scope.prvpoladd) ? $scope.prvpoladd : "";
+                QuotationReq.NomineeName = $scope.nomfname;
+                QuotationReq.NomineeDateOfBirth = ConvertDateFormat($scope.nomdob);
+                QuotationReq.NomineeRelationShip = $scope.nomrelatn;
+                QuotationReq.NomineeGender = $scope.nomgender;
+
+                QuotationReq.AppointeeName = $scope.isunderage ? (!angular.isUndefined($scope.appointename) ? $scope.appointename : "") : "";
+                QuotationReq.AppointeeRelationShip = $scope.isunderage ? (!angular.isUndefined($scope.appointerelatn) ? $scope.appointerelatn : "") : "";
+                QuotationReq.AppointeeDateOfBirth = $scope.isunderage ? (!angular.isUndefined($scope.appointedob) ? ConvertDateFormat($scope.appointedob) : "") : "";
+                QuotationReq.VehicleDetails.EngineNumber = $scope.isFgi ? $scope.txtengine1 : $scope.txtengine; //$scope.txtengine;
+                QuotationReq.VehicleDetails.ChassisNumber = $scope.chaisisno;
+
+                QuotationReq.VehicleDetails.IsVehicleLoan = $scope.ishypothecation;
+
+                QuotationReq.VehicleDetails.LoanCompanyName = !angular.isUndefined($scope.hfinancername) ? $scope.hfinancername : "";
+                QuotationReq.VehicleDetails.LoanCity = !angular.isUndefined($scope.hfinancercity) ? $scope.hfinancercity : "";
+                QuotationReq.VehicleDetails.RegistrationNumber = String($scope.registrationno).substring(0, 4) + $scope.txtvehnumber;
+                QuotationReq.IDV = $scope.ProposalData.comresponse.IDV;
+
+
+
+
+                if ($scope.ProposalData.comresponse.CompanyName == "ICICI") {
+                    var sdate = $scope.ProposalData.comresponse.PolicyStartDate;
+                    var sdatearray = sdate.split("/");
+                    var newsdate = sdatearray[1] + '/' + sdatearray[0] + '/' + sdatearray[2];
+                    QuotationReq.PolicyStartDate = new Date(newsdate);
+
+                    var edate = $scope.ProposalData.comresponse.PolicyEndDate;
+                    var edatearray = edate.split("/");
+                    var newedate = edatearray[1] + '/' + edatearray[0] + '/' + edatearray[2];
+                    QuotationReq.PolicyEndDate = new Date(newedate);
+                }
+                else if ($scope.ProposalData.comresponse.CompanyName == "TATA") {
+                    var sdate = $scope.ProposalData.comresponse.PolicyStartDate;
+                    var sdatearray = sdate.split("-");
+                    var newsdate = sdatearray[1] + '/' + sdatearray[0] + '/' + sdatearray[2];
+                    QuotationReq.PolicyStartDate = new Date(newsdate);
+
+                    var edate = $scope.ProposalData.comresponse.PolicyEndDate;
+                    var edatearray = edate.split("-");
+                    var newedate = edatearray[1] + '/' + edatearray[0] + '/' + edatearray[2];
+                    QuotationReq.PolicyEndDate = new Date(newedate);
+                }
+                else {
+                    QuotationReq.PolicyStartDate = $scope.ProposalData.comresponse.PolicyStartDate;
+                    QuotationReq.PolicyEndDate = $scope.ProposalData.comresponse.PolicyEndDate;
+                }
+
+
+
+
+                QuotationReq.ClientDetails = {
+                    "Salutation": $scope.selectedsalute,
+                    "FirstName": $scope.custfname,
+                    "MiddleName": !angular.isUndefined($scope.custmname) ? $scope.custmname : "",
+                    "LastName": $scope.custlname,
+                    "Gender": $scope.custgender,
+                    "DateOfBirth": ConvertDateFormat($scope.custdob),
+                    "MaritalStatus": $scope.custmstatus,
+                    "EmailId": $scope.custemail,
+                    "MobileNo": $scope.custmobile,
+                    "Occupation": $scope.selectedoccup,
+                    "PanCardNo": $scope.custpan,
+                    "GSTIN": $scope.custgstno,
+                    "AadharNo": $scope.custaadharno,
+                };
+
+                QuotationReq.CustomerAddressDetails =
+                {
+                    "IsRegistrationAddressSame": $scope.hassameregist,
+                    "Address1": $scope.txtadd1,
+                    "Address2": $scope.txtadd2,
+                    "Address3": !angular.isUndefined($scope.txtadd3) ? $scope.txtadd3 : "",
+                    "Area": $scope.selectedarea,
+                    "Country": "India",
+                    "State": $scope.selectedstate,
+                    "City": $scope.selectedcity,
+                    "Pincode": $scope.txtpincode,
+                };
+                QuotationReq.VehicleAddressDetails = {
+                    "Address1": ($scope.hassameregist) ? $scope.txtadd1 : $scope.txtregadd1,
+                    "Address2": ($scope.hassameregist) ? $scope.txtadd2 : $scope.txtregadd2,
+                    "Address3": ($scope.hassameregist) ? (!angular.isUndefined($scope.txtadd3) ? $scope.txtadd3 : "") : !angular.isUndefined($scope.txtregadd3) ? $scope.txtregadd3 : "",
+                    "Area": ($scope.hassameregist) ? $scope.selectedarea : $scope.regarea,
+                    "Country": "India",
+                    "State": ($scope.hassameregist) ? $scope.selectedstate : $scope.regstate,
+                    "City": ($scope.hassameregist) ? $scope.selectedcity : $scope.regcity,
+                    "Pincode": ($scope.hassameregist) ? $scope.txtpincode : $scope.txtregpincode,
+                };
+
+                QuotationReq.CompanyWiseRefference = $scope.ProposalData.comresponse.CompanyWiseRefference;
+                //QuotationReq.CompanyWiseRefference = {
+                //    "CorrelationId": $scope.ProposalData.comresponse.CompanyWiseRefference.CorrelationId,
+                //    "applicationId": $scope.ProposalData.comresponse.CompanyWiseRefference.applicationId,
+                //    "QuoteNo": $scope.ProposalData.comresponse.CompanyWiseRefference.QuoteNo,
+                //    "OrderNo": $scope.ProposalData.comresponse.CompanyWiseRefference.OrderNo,
+                //};
+                QuotationReq.PremiumDetails = {
+                    "AddonPremium": Math.round($scope.ProposalData.netaddon),
+                    "ncbDiscAmount": Math.round($scope.ProposalData.ncbdisc),
+                    "OdPremiumAmount": Math.round($scope.ProposalData.netod),
+                    "TpPremiumAmount": Math.round($scope.ProposalData.nettp),
+                    "TaxAmount": Math.round($scope.ProposalData.gst),
+                    "NetPremiumAmount": Math.round($scope.ProposalData.netprm),
+                    "TotalPremiumAmount": Math.round($scope.ProposalData.finalprm)
+                };
+                QuotationReq.enquiryid = $scope.FirstQuote.EnqId;
+                QuotationReq.CoverageDetails.IsEmployeeLiability = $scope.ProposalData.selectedcovers;
+                QuotationReq.CoverageDetails.IsPACoverForOwnerDriver = $scope.ProposalData.paowndriver;
+                $sessionStorage.proposalreq = QuotationReq;
+
+
+                //console.log(QuotationReq);
+                $http({
+                    url: '/PrivateCar/Getproposal',
+                    method: "POST",
+                    data: JSON.stringify(QuotationReq)
+                }).then(function (response) {
+                    console.log("resoponse:" + response);
+                    if (!angular.isUndefined(response && response.data.length > 0)) {
+                        console.log("response");
+                        console.log(response.data);
+                        $sessionStorage.proposalresponse = response.data;
+
+
+
+                        if (response.data.Status == 1) {
+                            $('#proposalsubmit ').waitMe("hide");
+
+                            setTimeout(function () {
+                                $window.location.href = '/Motor/PrivateCar/ReviewAndPay';
+                            }, 3000);
+                        }
+                        else {
+                            $('#proposalsubmit').waitMe("hide");
+                            alert(response.data.ErrorMsg);
+
+                        }
+                    }
+                });
+            }
+        }
+        $scope.$watch("custmobile", function (newVal, oldVal) {
+            if (String(newVal).length > 10) {
+                $scope.custmobile = oldVal;
+            }
+        });
+
+        $("#nomdob").change(function () {
+            debugger;
+            var dob = ConvertDateFormat($(this).val());
+            new Date($(this).val());
+            var today = new Date();
+            var age = Math.floor((today - dob) / (365.25 * 24 * 60 * 60 * 1000));
+            if (age >= 18)
+                $scope.isunderage = false;
+            else
+                $scope.isunderage = true;
+
+
+        })
+        $("#vregno").focusout(function () {
+            debugger;
+            var reg = $(this).val();
+            if ($(this).hasClass('ng-valid-pattern')) {
+                if (reg.length == 5) {
+                    if (Number.isNaN(reg[1]) == false) {
+                        var output = [reg.slice(0, 2), '0', reg.slice(2)].join('');
+                        $scope.txtvehnumber = output;
+                    }
+                }
+                else if (reg.length == 4) {
+                    var output = [reg.slice(0, 1), '0', reg.slice(1)].join('');
+                    $scope.txtvehnumber = output;
+                }
+
+            }
+        })
+        $(document).ready(function () {
+            $(function () {
+                debugger;
+                var start = new Date();
+                var apoindate = new Date();
+
+                apoindate.setFullYear(start.getFullYear() + 18);
+
+                start.setFullYear(start.getFullYear() - 100);
+                var end = new Date();
+                end.setFullYear(end.getFullYear() - 18);
+                var nomend = new Date();
+
+                if ($scope.ProposalData.comresponse.CompanyName == "HDFC" || $scope.ProposalData.comresponse.CompanyName == "DIGIT" || $scope.ProposalData.comresponse.CompanyName == "TATA") {
+                    nomend.setFullYear(nomend.getFullYear() - 18);
+                }
+                else {
+                    nomend.setFullYear(nomend.getFullYear() - 6);
+                }
+
+                $('#custdob').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'dd-mm-yy',
+                    minDate: start,
+                    maxDate: end,
+                    yearRange: start.getFullYear() + ':' + end.getFullYear()
+                });
+
+                $('#nomdob').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'dd-mm-yy',
+                    minDate: start,
+                    maxDate: nomend,
+                    yearRange: start.getFullYear() + ':' + nomend.getFullYear()
+                });
+
+                $('#appointedob').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'dd-mm-yy',
+                    minDate: start,
+                    maxDate: end,
+                    yearRange: start.getFullYear() + ':' + end.getFullYear()
+                });
+
+                $('.Datepick').datepicker({
+                    dateFormat: 'dd/mm/yy'
+                });
+            });
+
+        });
+    });
+
+
+
+
+    $('.purchasedate').datepicker({
+        uiLibrary: 'bootstrap4',
+        iconsLibrary: 'fontawesome'
+
+    });
+
+</script>
+<script>
+
+    function alphaOnly(event) {
+        var key = event.keyCode;
+        return (((key >= 65 && key <= 90) || key == 8) || key == 9);
+    };
+    function alphaOnlywithspace(event) {
+        var key = event.keyCode;
+        return (((key >= 65 && key <= 90) || (key == 8 || key == 32)) || key == 9);
+    };
+    $('.datepicker, .drop-avoid').click(function (e) {
+        e.stopPropagation();
+    });
+
+    function numberOnly(event) {
+        var key = event.keyCode;
+        return (((key >= 48 && key <= 57) || (key >= 37 && key <= 40) || (key >= 96 && key <= 105)) || (key == 9 || key == 8));
+
+    }
+</script>
+
