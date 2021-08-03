@@ -4,7 +4,7 @@ namespace AndApp
 
     public  class MapperClass
     {
-       
+       //test1
 
         public void AutoMapperBase()
         {
